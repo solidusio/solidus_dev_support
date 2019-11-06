@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A basic rails_helper to be included as the starting point for extensions
 #
 # Can be required from an extension's spec/rails_helper.rb

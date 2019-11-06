@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A SimpleCov and Codecov configuration to track code coverage in your extension
 #
 # Include it AT THE TOP of your spec/spec_helper.rb:
