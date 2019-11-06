@@ -4,10 +4,10 @@
 #
 # Can be required from an extension's spec/feature_helper.rb
 #
-#     require 'solidus_support/extension/feature_helper'
+#     require 'solidus_kitchen/extension/feature_helper'
 #
 
-require 'solidus_support/extension/rails_helper'
+require 'solidus_kitchen/rspec/rails_helper'
 
 require 'capybara-screenshot/rspec'
 require 'selenium/webdriver'
@@ -26,6 +26,7 @@ end
 
 Capybara.javascript_driver = (ENV['CAPYBARA_DRIVER'] || :selenium_chrome_headless).to_sym
 Capybara.default_max_wait_time = 10
+Capybara.server = :webrick
 
 require 'spree/testing_support/capybara_ext'
 

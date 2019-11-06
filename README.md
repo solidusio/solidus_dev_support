@@ -25,7 +25,7 @@ This gem provides some useful helpers for RSpec to setup an extension's test env
 Add this to your extension's `spec/spec_helper.rb`:
 
 ```ruby
-require 'solidus_support/rspec/feature_helper'
+require 'solidus_kitchen/rspec/feature_helper'
 ```
 
 This helper loads configuration needed to run extension feature specs correctly, setting up Capybara
@@ -35,7 +35,7 @@ and configuring a Rails test application to precompile assets before the first f
 want:
 
 ```ruby
-require 'solidus_support/rspec/rails_helper'
+require 'solidus_kitchen/rspec/rails_helper'
 ```
 
 This will include the Rails and Solidus-related RSpec configuration, such as authorization helpers,
@@ -45,7 +45,7 @@ Solidus factories, URL helpers, and other helpers to easily work with Solidus.
 basic RSpec environment:
 
 ```ruby
-require 'solidus_support/rspec/spec_helper'
+require 'solidus_kitchen/rspec/spec_helper'
 ```
 
 ### Code coverage
@@ -54,7 +54,7 @@ The gem also includes a SimpleCov configuration that will send your test coverag
 directly to Codecov.io. Simply add this at the top of your `spec/spec_helper.rb`:
 
 ```ruby
-require 'solidus_support/rspec/coverage'
+require 'solidus_kitchen/rspec/coverage'
 ```
 
 **Note: Make sure to add this at the VERY TOP of your spec_helper, otherwise you'll get skewed

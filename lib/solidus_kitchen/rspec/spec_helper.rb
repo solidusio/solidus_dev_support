@@ -4,7 +4,7 @@
 #
 # Can be required from an extension's spec/spec_helper.rb
 #
-#     require 'solidus_support/extension/spec_helper'
+#     require 'solidus_kitchen/extension/spec_helper'
 #
 
 RSpec.configure do |config|
@@ -17,7 +17,6 @@ RSpec.configure do |config|
   config.fail_fast = ENV['FAIL_FAST'] || false
   config.order = 'random'
 
-  config.infer_spec_type_from_file_location!
   config.raise_errors_for_deprecations!
 
   config.example_status_persistence_file_path = "./spec/examples.txt"

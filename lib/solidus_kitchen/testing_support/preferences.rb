@@ -13,7 +13,7 @@ module SolidusKitchen
       # spec/spec_helper.rb of the extension both:
       #
       # require 'spree/testing_support/preferences'
-      # require 'solidus_support/testing_support/preferences'
+      # require 'solidus_kitchen/testing_support/preferences'
       #
       # @example Set a preference on Spree::Config
       #   stub_spree_preferences(allow_guest_checkout: false)
