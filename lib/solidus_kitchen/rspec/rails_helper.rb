@@ -11,6 +11,7 @@ require 'solidus_support/extension/spec_helper'
 
 require 'rspec/rails'
 require 'database_cleaner'
+require 'factory_bot_rails'
 require 'ffaker'
 
 require 'spree/testing_support/authorization_helpers'
@@ -44,4 +45,9 @@ RSpec.configure do |config|
       example.run
     end
   end
+
+  config.include ActiveJob::TestHelper
 end
+
+FactoryBot.find_definitions
+ActiveJob::Base.queue_adapter = :test

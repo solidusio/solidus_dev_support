@@ -26,8 +26,12 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
+  spec.add_dependency 'capybara', '~> 3.29'
   spec.add_dependency 'capybara-screenshot', '~> 1.0'
   spec.add_dependency 'codecov', '~> 0.1.16'
+  spec.add_dependency 'database_cleaner', '~> 1.7'
+  spec.add_dependency 'factory_bot_rails', '~> 5.1'
+  spec.add_dependency 'ffaker', '~> 2.13'
   spec.add_dependency 'rspec-rails', '~> 4.0.0.beta3'
   spec.add_dependency 'rubocop', '~> 0.76.0'
   spec.add_dependency 'rubocop-performance', '~> 1.5'
