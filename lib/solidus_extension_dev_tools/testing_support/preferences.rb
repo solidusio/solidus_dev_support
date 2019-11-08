@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module SolidusKitchen
+module SolidusExtensionDevTools
   module TestingSupport
     module Preferences
       # This wrapper method allows to stub spree preferences using
@@ -13,7 +13,7 @@ module SolidusKitchen
       # spec/spec_helper.rb of the extension both:
       #
       # require 'spree/testing_support/preferences'
-      # require 'solidus_kitchen/testing_support/preferences'
+      # require 'solidus_extension_dev_tools/testing_support/preferences'
       #
       # @example Set a preference on Spree::Config
       #   stub_spree_preferences(allow_guest_checkout: false)
@@ -29,7 +29,7 @@ module SolidusKitchen
       #   param is an Hash, preferences will be stubbed on Spree::Config.
       # @param prefs [Hash, nil] names and values to be stubbed
       def stub_spree_preferences(prefs_or_conf_class, prefs = nil)
-        super && return if SolidusKitchen.reset_spree_preferences_deprecated?
+        super && return if SolidusExtensionDevTools.reset_spree_preferences_deprecated?
 
         if prefs_or_conf_class.is_a?(Hash)
           preference_store_class = Spree::Config
