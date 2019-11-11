@@ -191,3 +191,6 @@ RSpec/ExampleLength:
 
 Layout/AlignArguments:
   EnforcedStyle: with_fixed_indentation
+
+Layout/MultilineOperationIndentation:
+  Enabled: false
