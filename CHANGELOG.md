@@ -10,6 +10,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 - Disabled all `Metrics` cops except for `LineLength`
+- Set `Layout/AlignArguments` cop to `with_fixed_indentation`
 
 ## [0.1.1] - 2019-11-11
 

@@ -188,3 +188,6 @@ Metrics/LineLength:
 
 RSpec/ExampleLength:
   Enabled: false
+
+Layout/AlignArguments:
+  EnforcedStyle: with_fixed_indentation
