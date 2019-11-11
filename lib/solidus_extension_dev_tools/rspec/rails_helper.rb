@@ -8,6 +8,7 @@
 #
 
 require 'solidus_extension_dev_tools/rspec/spec_helper'
+require 'solidus_extension_dev_tools'
 
 require 'rspec/rails'
 require 'database_cleaner'
