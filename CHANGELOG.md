@@ -7,6 +7,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Use [Webdrivers](https://github.com/titusfortner/webdrivers) to keep Selenium WebDrivers updated
+
 ### Changed
 
 - Disabled all `Metrics` cops except for `LineLength`

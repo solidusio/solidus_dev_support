@@ -10,6 +10,7 @@
 require 'solidus_extension_dev_tools/rspec/rails_helper'
 
 require 'capybara-screenshot/rspec'
+require 'webdrivers'
 require 'selenium/webdriver'
 
 Capybara.register_driver :selenium_chrome_headless do |app|
