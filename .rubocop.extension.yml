@@ -160,8 +160,8 @@ Metrics/ModuleLength:
 Metrics/CyclomaticComplexity:
   Enabled: false
 
-Metrics/LineLength:
-  Enabled: false
+# Metrics/LineLength:
+#   Enabled: false
 
 Metrics/MethodLength:
   Enabled: false
