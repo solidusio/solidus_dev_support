@@ -9,7 +9,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
-- Use [Webdrivers](https://github.com/titusfortner/webdrivers) to keep Selenium WebDrivers updated
+- Adopted [Webdrivers](https://github.com/titusfortner/webdrivers) to keep Selenium WebDrivers 
+  updated
 
 ### Changed
 
