@@ -178,3 +178,13 @@ require:
   - rubocop-rspec
   - rubocop-rails
   - rubocop-performance
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/LineLength:
+  Enabled: true
+  Max: 100
+
+RSpec/ExampleLength:
+  Enabled: false

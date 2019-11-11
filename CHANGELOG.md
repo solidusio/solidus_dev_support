@@ -7,6 +7,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Disabled all `Metrics` cops except for `LineLength`
+
 ## [0.1.1] - 2019-11-11
 
 ### Fixed
