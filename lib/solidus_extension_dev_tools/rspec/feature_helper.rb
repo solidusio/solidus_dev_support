@@ -13,18 +13,6 @@ require 'capybara-screenshot/rspec'
 require 'webdrivers'
 require 'selenium/webdriver'
 
-Capybara.register_driver :selenium_chrome_headless do |app|
-  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-    chromeOptions: { args: %w[headless start-maximized] }
-  )
-
-  Capybara::Selenium::Driver.new(
-    app,
-    browser: :chrome,
-    desired_capabilities: capabilities
-  )
-end
-
 Capybara.javascript_driver = (ENV['CAPYBARA_DRIVER'] || :selenium_chrome_headless).to_sym
 Capybara.default_max_wait_time = 10
 Capybara.server = :webrick
