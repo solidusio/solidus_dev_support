@@ -16,6 +16,16 @@ require 'selenium/webdriver'
 Capybara.javascript_driver = (ENV['CAPYBARA_DRIVER'] || :selenium_chrome_headless).to_sym
 Capybara.default_max_wait_time = 10
 Capybara.server = :webrick
+Capybara.register_driver :selenium_chrome_headless do |app|
+  Capybara::Selenium::Driver.load_selenium
+  browser_options = ::Selenium::WebDriver::Chrome::Options.new.tap do |opts|
+    opts.args << '--headless'
+    opts.args << '--disable-gpu' if Gem.win_platform?
+    opts.args << '--disable-site-isolation-trials'
+    opts.args << '--window-size=1920,1080'
+  end
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: browser_options)
+end
 
 require 'spree/testing_support/capybara_ext'
 

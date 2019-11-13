@@ -11,6 +11,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Adopted [Webdrivers](https://github.com/titusfortner/webdrivers) to keep Selenium WebDrivers 
   updated
+- Fix window size to 1920x1080px in feature specs
 
 ### Changed
 
