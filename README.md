@@ -85,6 +85,7 @@ inherit_gem:
 AllCops:
   Exclude:
     - spec/dummy/**/*
+    - vendor/**/*
 ``` 
 
 You can now run RuboCop with:
