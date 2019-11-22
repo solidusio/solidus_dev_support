@@ -122,6 +122,15 @@ You can refer to
 [`gem release`'s documentation](https://github.com/svenfuchs/gem-release/blob/master/README.md) for
 further configuration and usage instructions.
 
+### Rake tasks
+
+Put this in your `Rakefile`:
+
+```rb
+require 'solidus_extension_dev_tools/rake_tasks'
+SolidusExtensionDevTools::RakeTasks.install
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run 
