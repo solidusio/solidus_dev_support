@@ -32,6 +32,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'database_cleaner', '~> 1.7'
   spec.add_dependency 'factory_bot_rails', '~> 5.1'
   spec.add_dependency 'ffaker', '~> 2.13'
+  spec.add_dependency 'github_changelog_generator', '~> 1.15'
   spec.add_dependency 'rspec-rails', '~> 4.0.0.beta3'
   spec.add_dependency 'rubocop', '~> 0.76.0'
   spec.add_dependency 'rubocop-performance', '~> 1.5'

@@ -94,6 +94,18 @@ You can now run RuboCop with:
 $ bundle exec rubocop
 ```
 
+### Changelog generator
+
+Generating a changelog for your extension is possible with.
+
+```console
+$ CHANGELOG_GITHUB_TOKEN="«your-40-digit-github-token»" bundle exec github_changelog_generator github_username/github_project
+```
+
+This generates a `CHANGELOG.md`, with pretty Markdown formatting.
+
+For further instructions please read the [GitHub Changelog Generator README](https://github.com/github-changelog-generator/github-changelog-generator#usage)
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run 
