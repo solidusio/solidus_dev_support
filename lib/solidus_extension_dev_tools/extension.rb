@@ -9,7 +9,6 @@ module SolidusExtensionDevTools
 
     desc 'builds a solidus extension'
     argument :file_name, type: :string, desc: 'rails app_path', default: '.'
-    class_option :ci, type: :string, desc: 'which ci platform to use (circleci, travis)', default: 'circleci'
 
     source_root File.expand_path('templates/extension', __dir__)
 
@@ -21,6 +20,7 @@ module SolidusExtensionDevTools
       directory 'app', "#{file_name}/app"
       directory 'lib', "#{file_name}/lib"
       directory 'bin', "#{file_name}/bin"
+      directory '.circleci', "#{file_name}/.circleci"
 
       template 'extension.gemspec.erb', "#{file_name}/#{file_name}.gemspec"
       template 'Gemfile', "#{file_name}/Gemfile"
@@ -34,13 +34,6 @@ module SolidusExtensionDevTools
       template 'rspec', "#{file_name}/.rspec"
       template 'spec/spec_helper.rb.tt', "#{file_name}/spec/spec_helper.rb"
       template 'rubocop.yml', "#{file_name}/.rubocop.yml"
-
-      case options[:ci]
-      when "travis"
-        template 'travis.yml', "#{file_name}/.travis.yml"
-      when "circleci"
-        directory '.circleci', "#{file_name}/.circleci"
-      end
     end
 
     no_tasks do
