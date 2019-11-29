@@ -35,6 +35,10 @@ module SolidusExtensionDevTools
       namespace :extension do
         directory ENV['DUMMY_PATH'] do
           Rake::Task['extension:test_app']
+
+          # We need to go back to the gem root since extension:test_app changes
+          # the working directory to be the dummy app.
+          cd root
         end
       end
     end
