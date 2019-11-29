@@ -9,8 +9,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
-- Adopted [Webdrivers](https://github.com/titusfortner/webdrivers) to keep Selenium WebDrivers 
-  updated
+- Adopted [Apparition](https://github.com/twalpole/apparition) as the deafult JS driver for Capybara
 - Fix window size to 1920x1080px in feature specs
 
 ### Changed

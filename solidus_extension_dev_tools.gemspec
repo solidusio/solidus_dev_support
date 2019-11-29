@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
+  spec.add_dependency 'apparition', '~> 0.4'
   spec.add_dependency 'capybara', '~> 3.29'
   spec.add_dependency 'capybara-screenshot', '~> 1.0'
   spec.add_dependency 'codecov', '~> 0.1.16'
@@ -34,16 +35,15 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'ffaker', '~> 2.13'
   spec.add_dependency 'gem-release', '~> 2.1'
   spec.add_dependency 'github_changelog_generator', '~> 1.15'
+  spec.add_dependency 'puma', '~> 4.3'
   spec.add_dependency 'rspec-rails', '~> 4.0.0.beta3'
   spec.add_dependency 'rspec_junit_formatter'
   spec.add_dependency 'rubocop', '~> 0.76.0'
   spec.add_dependency 'rubocop-performance', '~> 1.5'
   spec.add_dependency 'rubocop-rails', '~> 2.3'
   spec.add_dependency 'rubocop-rspec', '~> 1.36'
-  spec.add_dependency 'selenium-webdriver', '~> 3.142'
   spec.add_dependency 'solidus_core', ['>= 2.0', '< 3']
   spec.add_dependency 'solidus_support', '~> 0.3.3'
-  spec.add_dependency 'webdrivers', '~> 4.1'
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake'
