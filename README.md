@@ -67,10 +67,10 @@ and [codecov-ruby](https://github.com/codecov/codecov-ruby) docs.
 
 ### RuboCop configuration
 
-solidus_extension_dev_tools includes a default [RuboCop](https://github.com/rubocop-hq/rubocop) configuration
-for Solidus extensions. Currently, this is based on [Relaxed Ruby Style](https://relaxed.ruby.style)
-with a few customizations, but in the future we plan to provide custom cops to ensure your
-extension follows established Solidus best practices.
+solidus_extension_dev_tools includes a default [RuboCop](https://github.com/rubocop-hq/rubocop)
+configuration for Solidus extensions. Currently, this is based on 
+[Relaxed Ruby Style](https://relaxed.ruby.style) with a few customizations, but in the future we
+plan to provide custom cops to ensure your extension follows established Solidus best practices.
 
 We strongly recommend including the RuboCop configuration in your extension. All you have to do is
 add this to your `.rubocop.yml`:
@@ -96,7 +96,7 @@ $ bundle exec rubocop
 
 ### Changelog generator
 
-Generating a changelog for your extension is possible with.
+Generating a changelog for your extension is possible by running this command:
 
 ```console
 $ CHANGELOG_GITHUB_TOKEN="«your-40-digit-github-token»" bundle exec github_changelog_generator github_username/github_project
@@ -104,7 +104,31 @@ $ CHANGELOG_GITHUB_TOKEN="«your-40-digit-github-token»" bundle exec github_cha
 
 This generates a `CHANGELOG.md`, with pretty Markdown formatting.
 
-For further instructions please read the [GitHub Changelog Generator README](https://github.com/github-changelog-generator/github-changelog-generator#usage)
+For further instructions please read the [GitHub Changelog Generator documentation](https://github.com/github-changelog-generator/github-changelog-generator#usage).
+
+### Release management
+
+By installing solidus_extension_dev_tools, you also get
+[`gem release`](https://github.com/svenfuchs/gem-release), which you can use to automatically manage
+releases for your gem.
+
+For instance, you can run the following to release a new minor version:
+
+```console
+gem bump --version minor --tag --release
+```
+
+The above command will:
+
+* bump the gem version to the next minor;
+* commit the change and push it to `upstream/master`;
+* create a Git tag;
+* push the tag to the `upstream` remote;
+* release the new version on RubyGems.
+
+You can refer to 
+[`gem release`'s documentation](https://github.com/svenfuchs/gem-release/blob/master/README.md) for
+further configuration and usage instructions.
 
 ## Development
 
