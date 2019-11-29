@@ -129,6 +129,8 @@ Put this in your `Rakefile`:
 ```rb
 require 'solidus_extension_dev_tools/rake_tasks'
 SolidusExtensionDevTools::RakeTasks.install
+
+task default: 'extension:specs'
 ```
 
 ## Development
