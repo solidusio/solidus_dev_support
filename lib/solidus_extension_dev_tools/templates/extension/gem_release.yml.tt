@@ -1,0 +1,5 @@
+bump:
+  recurse: false
+  file: 'lib/<%=file_name%>/version.rb'
+  message: Bump <%=class_name%> to %{version}
+  branch: true
