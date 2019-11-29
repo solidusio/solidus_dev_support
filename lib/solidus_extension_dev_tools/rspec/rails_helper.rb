@@ -4,7 +4,7 @@
 #
 # Can be required from an extension's spec/rails_helper.rb
 #
-#     require 'solidus_extension_dev_tools/extension/rails_helper'
+#     require 'solidus_extension_dev_tools/rspec/rails_helper'
 #
 
 require 'solidus_extension_dev_tools/rspec/spec_helper'
