@@ -68,7 +68,7 @@ and [codecov-ruby](https://github.com/codecov/codecov-ruby) docs.
 ### RuboCop configuration
 
 solidus_extension_dev_tools includes a default [RuboCop](https://github.com/rubocop-hq/rubocop)
-configuration for Solidus extensions. Currently, this is based on 
+configuration for Solidus extensions. Currently, this is based on
 [Relaxed Ruby Style](https://relaxed.ruby.style) with a few customizations, but in the future we
 plan to provide custom cops to ensure your extension follows established Solidus best practices.
 
@@ -78,7 +78,7 @@ add this to your `.rubocop.yml`:
 ```yaml
 require:
   - solidus_extension_dev_tools/rubocop
-``` 
+```
 
 You can now run RuboCop with:
 
@@ -118,7 +118,7 @@ The above command will:
 * push the tag to the `upstream` remote;
 * release the new version on RubyGems.
 
-You can refer to 
+You can refer to
 [`gem release`'s documentation](https://github.com/svenfuchs/gem-release/blob/master/README.md) for
 further configuration and usage instructions.
 
@@ -135,13 +135,13 @@ task default: 'extension:specs'
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run 
-the tests. You can also run `bin/console` for an interactive prompt that will allow you to 
+After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run
+the tests. You can also run `bin/console` for an interactive prompt that will allow you to
 experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new 
-version, update the version number in `version.rb`, and then run `bundle exec rake release`, which 
-will create a git tag for the version, push git commits and tags, and push the `.gem` file to 
+To install this gem onto your local machine, run `bundle exec rake install`. To release a new
+version, update the version number in `version.rb`, and then run `bundle exec rake release`, which
+will create a git tag for the version, push git commits and tags, and push the `.gem` file to
 [rubygems.org](https://rubygems.org).
 
 ## Contributing
