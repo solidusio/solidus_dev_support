@@ -78,14 +78,6 @@ add this to your `.rubocop.yml`:
 ```yaml
 require:
   - solidus_extension_dev_tools/rubocop
-
-inherit_gem:
-  solidus_extension_dev_tools: .rubocop.extension.yml
-
-AllCops:
-  Exclude:
-    - spec/dummy/**/*
-    - vendor/**/*
 ``` 
 
 You can now run RuboCop with:
