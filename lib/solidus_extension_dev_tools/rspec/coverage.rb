@@ -4,7 +4,7 @@
 #
 # Include it AT THE TOP of your spec/spec_helper.rb:
 #
-#     require 'solidus_extension_dev_tools/extension/coverage'
+#     require 'solidus_extension_dev_tools/rspec/coverage'
 #
 # Note that things may not work properly if you don't include this at the very top!
 #

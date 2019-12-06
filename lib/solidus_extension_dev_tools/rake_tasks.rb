@@ -28,15 +28,25 @@ module SolidusExtensionDevTools
       require 'rake/clean'
       ::CLOBBER.include test_app_path
 
-      ENV['DUMMY_PATH'] = test_app_path
+      ENV['DUMMY_PATH'] = test_app_path.to_s
       ENV['LIB_NAME'] = gemspec.name
       require 'spree/testing_support/extension_rake'
+
+      namespace :extension do
+        directory ENV['DUMMY_PATH'] do
+          Rake::Task['extension:test_app']
+
+          # We need to go back to the gem root since extension:test_app changes
+          # the working directory to be the dummy app.
+          cd root
+        end
+      end
     end
 
     def install_rspec_task
       namespace :extension do
         require 'rspec/core/rake_task'
-        ::RSpec::Core::RakeTask.new(:specs, [] => :test_app) do |t|
+        ::RSpec::Core::RakeTask.new(:specs, [] => FileList[ENV['DUMMY_PATH']]) do |t|
           # Ref: https://circleci.com/docs/2.0/configuration-reference#store_test_results
           # Ref: https://github.com/solidusio/circleci-orbs-extensions#test-results-rspec
           if ENV['TEST_RESULTS_PATH']

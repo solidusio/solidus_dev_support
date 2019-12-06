@@ -4,7 +4,7 @@
 #
 # Can be required from an extension's spec/spec_helper.rb
 #
-#     require 'solidus_extension_dev_tools/extension/spec_helper'
+#     require 'solidus_extension_dev_tools/rspec/spec_helper'
 #
 
 RSpec.configure do |config|
