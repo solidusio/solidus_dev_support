@@ -1,0 +1,52 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'optparse'
+
+require 'solidus_extension_dev_tools'
+require 'solidus_extension_dev_tools/extension'
+
+Options = Struct.new(:name)
+
+class Parser
+  class << self
+    def parse(args)
+      options.parse!(args)
+    end
+
+    def options
+      OptionParser.new do |opts|
+        opts.banner = 'Usage: solidus [[extension extension_name] | [-h] [-v]]'
+
+        opts.on('-h', '--help', 'Prints this help') do
+          puts opts
+        end
+
+        opts.on(
+          '-v',
+          '--version',
+          "Prints the current version: #{SolidusExtensionDevTools::VERSION}"
+        ) do
+          puts SolidusExtensionDevTools::VERSION
+        end
+      end
+    end
+  end
+end
+
+# Print help if no options are supplied
+ARGV << '--help' unless ARGV.first
+
+if ARGV.first == 'extension' || ARGV.first == 'e'
+  ARGV.shift
+
+  unless ARGV.first
+    puts 'An extension must have a name!'
+    puts `solidus -h`
+    exit 1
+  end
+
+  SolidusExtensionDevTools::Extension.start
+else
+  Parser.parse(ARGV)
+end

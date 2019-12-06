@@ -1,0 +1,23 @@
+# frozen_string_literal: true
+
+$:.push File.expand_path('lib', __dir__)
+require '<%= file_name %>/version'
+
+Gem::Specification.new do |s|
+  s.name        = '<%= file_name %>'
+  s.version     = <%= class_name %>::VERSION
+  s.summary     = 'TODO'
+  s.description = 'TODO'
+  s.license     = 'BSD-3-Clause'
+
+  # s.author    = 'You'
+  # s.email     = 'you@example.com'
+  # s.homepage  = 'http://www.example.com'
+
+  s.files = Dir["{app,config,db,lib}/**/*", 'LICENSE', 'Rakefile', 'README.md']
+  s.test_files = Dir['spec/**/*']
+
+  s.add_dependency 'solidus_core' # Set Solidus version
+
+  s.add_development_dependency 'solidus_extension_dev_tools'
+end
