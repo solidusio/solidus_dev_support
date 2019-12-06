@@ -18,6 +18,38 @@ $ bundle
 
 ## Usage
 
+### Engine Extensions
+
+This extension provides a module that extends `Rails::Engine` functionalities
+to support loading correctly the decorators class created into an extension
+both for development and production enviroments.
+
+To use it just include the provided module in the Engine as follow:
+
+```ruby
+module SolidusExtensionName
+  class Engine < Rails::Engine
+    engine_name 'solidus_extension_name'
+
+    include SolidusExtensionDevTools::EngineExtensions::Decorators
+    # ...
+  end
+end
+```
+
+To make it work, be sure to remove the previous implementation from the
+Engine, that should be something like:
+
+```ruby
+def self.activate
+  Dir.glob(File.join(root, "app/**/*_decorator*.rb")) do |c|
+    Rails.configuration.cache_classes ? require(c) : load(c)
+  end
+end
+
+config.to_prepare(&method(:activate).to_proc)
+```
+
 ### RSpec helpers
 
 This gem provides some useful helpers for RSpec to setup an extension's test environment easily.
