@@ -11,10 +11,13 @@ gem 'solidus_auth_devise'
 
 gem 'factory_bot', '> 4.10.0'
 
-if ENV['DB'] == 'mysql'
-  gem 'mysql2', '~> 0.4.10'
+case ENV['DB']
+when 'mysql'
+  gem 'mysql2'
+when 'postgresql'
+  gem 'pg'
 else
-  gem 'pg', '~> 0.21'
+  gem 'sqlite3'
 end
 
 gem 'solidus_extension_dev_tools', github: 'solidusio-contrib/solidus_extension_dev_tools'
