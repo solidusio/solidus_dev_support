@@ -10,7 +10,11 @@
 #
 
 require 'simplecov'
-SimpleCov.start 'rails'
+SimpleCov.start('rails') do
+  add_filter %r{^/lib/generators/.*/install/install_generator.rb}
+  add_filter %r{^/lib/.*/factories.rb}
+  add_filter %r{^/lib/.*/version.rb}
+end
 
 if ENV['CI']
   require 'codecov'
