@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'fileutils'
+require 'open3'
 require 'spec_helper'
 
 RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
@@ -34,20 +35,20 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
   end
 
   def check_bundle_install
-    expect { cd(install_path) { sh('bundle install 2>&1') } }.to raise_error(command_failed, /invalid gemspec/)
+    expect { cd(install_path) { sh('bundle install') } }.to raise_error(command_failed, /invalid gemspec/)
     # Update gemspec with the required fields
     gemspec_path = install_path.join(gemspec_name)
     new_content = gemspec_path.read.gsub(/\n.*s.author[^\n]+/, "\n  s.author = 'someone'").gsub(/TODO/, 'something')
     gemspec_path.write(new_content)
     output = cd(install_path) do
-      sh('bundle install 2>&1')
+      sh('bundle install')
     end
     expect(output).to include('Bundle complete!')
   end
 
   def check_default_task
     output = cd(install_path) do
-      sh('bundle exec rake 2>&1')
+      sh('bundle exec rake')
     end
     expect(output).to include('Generating dummy Rails application')
     expect(output).to include('no offenses detected')
@@ -59,7 +60,7 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
       "require 'spec_helper'\nRSpec.describe 'Some test' do it { expect(true).to be_truthy } end\n"
     )
     output = cd(install_path) do
-      sh('bundle exec rspec 2>&1')
+      sh('bundle exec rspec')
     end
     expect(output).to include('1 example, 0 failures')
     expect(output).to include('Coverage report generated')
@@ -67,8 +68,8 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
 
   def sh(*args)
     command = args.size == 1 ? args.first : args.shelljoin
-    output = Bundler.with_clean_env { `#{command}` }
-    $?.success? ? output : raise(command_failed, "command failed: #{command} \n#{output}")
+    stdout, stderr, status = Bundler.with_clean_env { Open3.capture3(command) }
+    status.success? ? stdout : raise(command_failed, "command failed: #{command}\n#{stderr}\n#{stdout}")
   end
 
   it 'checks the create extension process' do
