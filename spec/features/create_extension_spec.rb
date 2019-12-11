@@ -59,11 +59,11 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
     install_path.join('spec', 'some_spec.rb').write(
       "require 'spec_helper'\nRSpec.describe 'Some test' do it { expect(true).to be_truthy } end\n"
     )
-    output = cd(install_path) do
-      sh('bundle exec rspec')
+    cd(install_path) do
+      output = sh('bundle exec rspec')
+      expect(output).to include('1 example, 0 failures')
+      expect(output).to include(ENV['CI'] ? 'Coverage reports upload successfully' : 'Coverage report generated')
     end
-    expect(output).to include('1 example, 0 failures')
-    expect(output).to include('Coverage report generated')
   end
 
   def sh(*args)
