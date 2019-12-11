@@ -22,16 +22,20 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
   end
 
   def check_solidus_cmd
-    output = cd(tmp_path) { `#{solidus_cmd} extension -h` }
-    expect($?).to be_success
-    expect(output).to include('Usage')
+    cd(tmp_path) do
+      output = `#{solidus_cmd} -h`
+      expect($?).to be_success
+      expect(output).to include('Usage')
+    end
   end
 
   def check_create_extension
-    output = cd(tmp_path) { `#{solidus_cmd} extension #{extension_name}` }
-    expect($?).to be_success
-    expect(output).to include(gemspec_name)
-    expect(output).to include('.circleci')
+    cd(tmp_path) do
+      output = `#{solidus_cmd} extension #{extension_name}`
+      expect($?).to be_success
+      expect(output).to include(gemspec_name)
+      expect(output).to include('.circleci')
+    end
   end
 
   def check_bundle_install
@@ -40,19 +44,19 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
     gemspec_path = install_path.join(gemspec_name)
     new_content = gemspec_path.read.gsub(/\n.*s.author[^\n]+/, "\n  s.author = 'someone'").gsub(/TODO/, 'something')
     gemspec_path.write(new_content)
-    output = cd(install_path) do
-      sh('bundle install')
+    cd(install_path) do
+      output = sh('bundle install')
+      expect(output).to include('Bundle complete!')
     end
-    expect(output).to include('Bundle complete!')
   end
 
   def check_default_task
-    output = cd(install_path) do
-      sh('bundle exec rake')
+    cd(install_path) do
+      output = sh('bundle exec rake')
+      expect(output).to include('Generating dummy Rails application')
+      expect(output).to include('no offenses detected')
+      expect(output).to include('0 examples, 0 failures')
     end
-    expect(output).to include('Generating dummy Rails application')
-    expect(output).to include('no offenses detected')
-    expect(output).to include('0 examples, 0 failures')
   end
 
   def check_run_specs
