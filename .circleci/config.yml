@@ -16,12 +16,18 @@ jobs:
     executor: solidusio_extensions/mysql
     steps:
       - solidusio_extensions/run-tests
+  run-specs-without-db:
+    docker:
+      - environment:
+          RAILS_ENV: test
+        image: 'circleci/ruby:2.5.6-node-browsers'
+    steps:
+      - solidusio_extensions/run-tests
 
 workflows:
   "Run specs on supported Solidus versions":
     jobs:
-      - run-specs-with-postgres
-      - run-specs-with-mysql
+      - run-specs-without-db
   "Weekly run specs against master":
     triggers:
       - schedule:
