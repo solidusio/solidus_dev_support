@@ -45,21 +45,14 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
       open('Gemfile', 'a') { |f| f.puts "gem 'solidus_dev_support', path: '../../..'" }
     end
 
-    expect {
-      cd(install_path) do
-        sh('bundle install')
-      end
-    }.to raise_error(CommandFailed, /invalid gemspec/)
+    expect { bundle_install }.to raise_error(CommandFailed, /invalid gemspec/)
 
     # Update gemspec with the required fields
     gemspec_path = install_path.join(gemspec_name)
     new_content = gemspec_path.read.gsub(/\n.*s.author[^\n]+/, "\n  s.author = 'someone'").gsub(/TODO/, 'https://example.com')
     gemspec_path.write(new_content)
 
-    cd(install_path) do
-      output = sh('bundle install')
-      expect(output).to include('Bundle complete!')
-    end
+    expect(bundle_install).to match(/Bundle complete/)
   end
 
   def check_default_task
@@ -84,7 +77,14 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
   def sh(*args)
     command = args.size == 1 ? args.first : args.shelljoin
     stdout, stderr, status = Bundler.with_clean_env { Open3.capture3(command) }
-    status.success? ? stdout : raise(CommandFailed, "command failed: #{command}\n#{stderr}\n#{stdout}")
+    status.success? ? stdout.to_s : raise(CommandFailed, "command failed: #{command}\n#{stderr}\n#{stdout}")
+  end
+
+  def bundle_install
+    command = 'bundle install'
+    command += " --path=#{ext_root}/vendor/bundle" if ENV['CI']
+
+    cd(install_path) { sh command }
   end
 
   it 'checks the create extension process' do
