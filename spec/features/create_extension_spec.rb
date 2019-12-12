@@ -39,13 +39,15 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
   end
 
   def check_bundle_install
-    expect { cd(install_path) { sh('bundle install') } }.to raise_error(command_failed, /invalid gemspec/)
+    bundle_install = 'bundle install'
+    bundle_install += " --path=#{ext_root}/vendor/bundle" if ENV['CI']
+    expect { cd(install_path) { sh(bundle_install) } }.to raise_error(command_failed, /invalid gemspec/)
     # Update gemspec with the required fields
     gemspec_path = install_path.join(gemspec_name)
     new_content = gemspec_path.read.gsub(/\n.*s.author[^\n]+/, "\n  s.author = 'someone'").gsub(/TODO/, 'something')
     gemspec_path.write(new_content)
     cd(install_path) do
-      output = sh('bundle install')
+      output = sh(bundle_install)
       expect(output).to include('Bundle complete!')
     end
   end
