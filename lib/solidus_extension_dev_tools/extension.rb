@@ -21,6 +21,7 @@ module SolidusExtensionDevTools
       directory 'lib', "#{file_name}/lib"
       directory 'bin', "#{file_name}/bin"
       directory '.circleci', "#{file_name}/.circleci"
+      directory '.github', "#{file_name}/.github"
 
       template 'extension.gemspec.erb', "#{file_name}/#{file_name}.gemspec"
       template 'Gemfile', "#{file_name}/Gemfile"
