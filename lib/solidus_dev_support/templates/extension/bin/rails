@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+app_root = 'spec/dummy'
+
+unless File.exist? "#{app_root}/bin/rails"
+  system "bin/rake", app_root or begin
+    warn "Automatic creation of the dummy app failed"
+    exit 1
+  end
+end
+
+Dir.chdir 'spec/dummy'
+exec 'bin/rails', *ARGV
