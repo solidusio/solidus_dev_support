@@ -7,27 +7,60 @@ orbs:
   # or goes EOL.
   solidusio_extensions: solidusio/extensions@volatile
 
-jobs:
-  run-specs-with-postgres:
-    executor: solidusio_extensions/postgres
-    steps:
-      - solidusio_extensions/run-tests
-  run-specs-with-mysql:
-    executor: solidusio_extensions/mysql
-    steps:
-      - solidusio_extensions/run-tests
-  run-specs-without-db:
+
+executors:
+  sqlite-in-memory:
     docker:
-      - environment:
+      - image: circleci/ruby:2.5.6-node-browsers
+        environment:
           RAILS_ENV: test
-        image: 'circleci/ruby:2.5.6-node-browsers'
+          DB: sqlite3
+          DATABASE_URL: sqlite3::memory:?pool=1
+
+jobs:
+  run-specs-master:
+    executor: sqlite-in-memory
     steps:
-      - solidusio_extensions/run-tests
+      - checkout
+      - solidusio_extensions/test-branch:
+          branch: master
+      - store_test_results:
+          path: test-results
+
+  run-specs-2-9:
+    executor: sqlite-in-memory
+    steps:
+      - checkout
+      - solidusio_extensions/test-branch:
+          branch: v2.9
+      - store_test_results:
+          path: test-results
+
+  run-specs-2-8:
+    executor: sqlite-in-memory
+    steps:
+      - checkout
+      - solidusio_extensions/test-branch:
+          branch: v2.8
+      - store_test_results:
+          path: test-results
+
+  run-specs-2-7:
+    executor: sqlite-in-memory
+    steps:
+      - checkout
+      - solidusio_extensions/test-branch:
+          branch: v2.7
+      - store_test_results:
+          path: test-results
 
 workflows:
   "Run specs on supported Solidus versions":
     jobs:
-      - run-specs-without-db
+      - run-specs-master
+      - run-specs-2-9
+      - run-specs-2-8
+      - run-specs-2-7
   "Weekly run specs against master":
     triggers:
       - schedule:
@@ -37,5 +70,7 @@ workflows:
               only:
                 - master
     jobs:
-      - run-specs-with-postgres
-      - run-specs-with-mysql
+      - run-specs-master
+      - run-specs-2-9
+      - run-specs-2-8
+      - run-specs-2-7
