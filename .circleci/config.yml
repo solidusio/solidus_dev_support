@@ -14,7 +14,7 @@ executors:
       - image: circleci/ruby:2.5.6-node-browsers
         environment:
           RAILS_ENV: test
-          DB: sqlite3
+          DB: sqlite
           DATABASE_URL: sqlite3::memory:?pool=1
 
 jobs:
@@ -27,7 +27,7 @@ jobs:
       - store_test_results:
           path: test-results
 
-  run-specs-2-9:
+  run-specs-current:
     executor: sqlite-in-memory
     steps:
       - checkout
@@ -36,7 +36,7 @@ jobs:
       - store_test_results:
           path: test-results
 
-  run-specs-2-8:
+  run-specs-previous:
     executor: sqlite-in-memory
     steps:
       - checkout
@@ -45,22 +45,25 @@ jobs:
       - store_test_results:
           path: test-results
 
-  run-specs-2-7:
+  run-specs-older:
     executor: sqlite-in-memory
     steps:
       - checkout
       - solidusio_extensions/test-branch:
           branch: v2.7
+      - solidusio_extensions/test-branch:
+          branch: v2.6
       - store_test_results:
           path: test-results
+
 
 workflows:
   "Run specs on supported Solidus versions":
     jobs:
       - run-specs-master
-      - run-specs-2-9
-      - run-specs-2-8
-      - run-specs-2-7
+      - run-specs-current
+      - run-specs-previous
+      - run-specs-older
   "Weekly run specs against master":
     triggers:
       - schedule:
@@ -71,6 +74,6 @@ workflows:
                 - master
     jobs:
       - run-specs-master
-      - run-specs-2-9
-      - run-specs-2-8
-      - run-specs-2-7
+      - run-specs-current
+      - run-specs-previous
+      - run-specs-older
