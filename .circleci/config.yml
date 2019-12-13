@@ -16,6 +16,7 @@ executors:
           RAILS_ENV: test
           DB: sqlite
           DATABASE_URL: sqlite3::memory:?pool=1
+          DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL: true
 
 jobs:
   run-specs-master:
