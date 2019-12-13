@@ -3,8 +3,7 @@
 
 require 'optparse'
 
-require 'solidus_dev_support'
-require 'solidus_dev_support/extension'
+require 'solidus_dev_support/version'
 
 Options = Struct.new(:name)
 
@@ -46,6 +45,8 @@ if ARGV.first == 'extension' || ARGV.first == 'e'
     exit 1
   end
 
+  require 'solidus_dev_support'
+  require 'solidus_dev_support/extension'
   SolidusDevSupport::Extension.start
 else
   Parser.parse(ARGV)
