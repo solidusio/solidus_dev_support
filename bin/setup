@@ -1,8 +1,20 @@
-#!/usr/bin/env bash
-set -euo pipefail
-IFS=$'\n\t'
-set -vx
+#!/usr/bin/env ruby
+require 'fileutils'
+include FileUtils
 
-bundle install
+GEM_ROOT = File.expand_path('..', __dir__)
 
-# Do any other automated setup that you need to do here
+def system(*args)
+  puts "$ #{args.size == 1 ? args.first : args.shelljoin}"
+  super
+end
+
+def system!(*args)
+  system(*args) || abort("\n== Command #{args} failed ==")
+end
+
+cd GEM_ROOT
+
+puts "\n== Installing Ruby dependencies =="
+system! %{gem install bundler --conservative}
+system! %{bundle check || bundle install}
