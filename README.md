@@ -1,4 +1,4 @@
-# solidus_extension_dev_tools
+# solidus_dev_support
 
 This is a collection of tools for developing Solidus extensions.
 
@@ -7,7 +7,7 @@ This is a collection of tools for developing Solidus extensions.
 Add this gem as a development dependency of your extension:
 
 ```ruby
-spec.add_development_dependency 'solidus_extension_dev_tools'
+spec.add_development_dependency 'solidus_dev_support'
 ```
 
 And then execute:
@@ -25,7 +25,7 @@ This gem provides some useful helpers for RSpec to setup an extension's test env
 Add this to your extension's `spec/spec_helper.rb`:
 
 ```ruby
-require 'solidus_extension_dev_tools/rspec/feature_helper'
+require 'solidus_dev_support/rspec/feature_helper'
 ```
 
 This helper loads configuration needed to run extension feature specs correctly, setting up Capybara
@@ -35,7 +35,7 @@ and configuring a Rails test application to precompile assets before the first f
 want:
 
 ```ruby
-require 'solidus_extension_dev_tools/rspec/rails_helper'
+require 'solidus_dev_support/rspec/rails_helper'
 ```
 
 This will include the Rails and Solidus-related RSpec configuration, such as authorization helpers,
@@ -45,7 +45,7 @@ Solidus factories, URL helpers, and other helpers to easily work with Solidus.
 basic RSpec environment:
 
 ```ruby
-require 'solidus_extension_dev_tools/rspec/spec_helper'
+require 'solidus_dev_support/rspec/spec_helper'
 ```
 
 ### Code coverage
@@ -54,7 +54,7 @@ The gem also includes a SimpleCov configuration that will send your test coverag
 directly to Codecov.io. Simply add this at the top of your `spec/spec_helper.rb`:
 
 ```ruby
-require 'solidus_extension_dev_tools/rspec/coverage'
+require 'solidus_dev_support/rspec/coverage'
 ```
 
 **Note: Make sure to add this at the VERY TOP of your spec_helper, otherwise you'll get skewed
@@ -67,7 +67,7 @@ and [codecov-ruby](https://github.com/codecov/codecov-ruby) docs.
 
 ### RuboCop configuration
 
-solidus_extension_dev_tools includes a default [RuboCop](https://github.com/rubocop-hq/rubocop)
+solidus_dev_support includes a default [RuboCop](https://github.com/rubocop-hq/rubocop)
 configuration for Solidus extensions. Currently, this is based on
 [Relaxed Ruby Style](https://relaxed.ruby.style) with a few customizations, but in the future we
 plan to provide custom cops to ensure your extension follows established Solidus best practices.
@@ -77,7 +77,7 @@ add this to your `.rubocop.yml`:
 
 ```yaml
 require:
-  - solidus_extension_dev_tools/rubocop
+  - solidus_dev_support/rubocop
 ```
 
 You can now run RuboCop with:
@@ -100,7 +100,7 @@ For further instructions please read the [GitHub Changelog Generator documentati
 
 ### Release management
 
-By installing solidus_extension_dev_tools, you also get
+By installing solidus_dev_support, you also get
 [`gem release`](https://github.com/svenfuchs/gem-release), which you can use to automatically manage
 releases for your gem.
 
@@ -127,8 +127,8 @@ further configuration and usage instructions.
 Put this in your `Rakefile`:
 
 ```rb
-require 'solidus_extension_dev_tools/rake_tasks'
-SolidusExtensionDevTools::RakeTasks.install
+require 'solidus_dev_support/rake_tasks'
+SolidusDevSupport::RakeTasks.install
 
 task default: 'extension:specs'
 ```
@@ -146,7 +146,7 @@ will create a git tag for the version, push git commits and tags, and push the `
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/solidusio/solidus_extension_dev_tools.
+Bug reports and pull requests are welcome on GitHub at https://github.com/solidusio/solidus_dev_support.
 
 ## License
 

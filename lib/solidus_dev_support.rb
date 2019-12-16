@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require "solidus_support"
-require "solidus_extension_dev_tools/version"
+require "solidus_dev_support/version"
 
-module SolidusExtensionDevTools
+module SolidusDevSupport
   class Error < StandardError; end
 
   class << self

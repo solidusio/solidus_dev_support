@@ -20,6 +20,6 @@ else
   gem 'sqlite3'
 end
 
-gem 'solidus_extension_dev_tools', github: 'solidusio-contrib/solidus_extension_dev_tools'
+gem 'solidus_dev_support', github: 'solidusio-contrib/solidus_dev_support'
 
 gemspec

@@ -4,10 +4,10 @@
 #
 # Can be required from an extension's spec/feature_helper.rb
 #
-#     require 'solidus_extension_dev_tools/rspec/feature_helper'
+#     require 'solidus_dev_support/rspec/feature_helper'
 #
 
-require 'solidus_extension_dev_tools/rspec/rails_helper'
+require 'solidus_dev_support/rspec/rails_helper'
 
 require 'capybara-screenshot/rspec'
 require 'capybara/apparition'

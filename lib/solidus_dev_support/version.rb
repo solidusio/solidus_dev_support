@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-module SolidusExtensionDevTools
+module SolidusDevSupport
   VERSION = "0.1.1"
 end

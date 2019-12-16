@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module SolidusExtensionDevTools
+module SolidusDevSupport
   module RuboCop
     CONFIG_PATH = "#{__dir__}/rubocop/config.yml"
 
@@ -13,4 +13,4 @@ module SolidusExtensionDevTools
   end
 end
 
-SolidusExtensionDevTools::RuboCop.inject_defaults!
+SolidusDevSupport::RuboCop.inject_defaults!

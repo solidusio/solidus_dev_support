@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "bundler/setup"
-require "solidus_extension_dev_tools"
+require "solidus_dev_support"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
