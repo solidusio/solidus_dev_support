@@ -110,7 +110,7 @@ releases for your gem.
 For instance, you can run the following to release a new minor version:
 
 ```console
-gem bump --version minor --tag --release
+$ gem bump --version minor --tag --release
 ```
 
 The above command will:
