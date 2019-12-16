@@ -16,6 +16,7 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
   let(:command_failed) { Class.new(StandardError) }
 
   around do |example|
+    rm_rf(tmp_path)
     mkdir_p(tmp_path)
     example.run
     rm_rf(tmp_path)
@@ -39,11 +40,21 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
   end
 
   def check_bundle_install
-    expect { cd(install_path) { sh('bundle install') } }.to raise_error(command_failed, /invalid gemspec/)
+    cd(install_path) do
+      open('Gemfile', 'a') { |f| f.puts "gem 'solidus_dev_support', path: '../../..'" }
+    end
+
+    expect {
+      cd(install_path) do
+        sh('bundle install')
+      end
+    }.to raise_error(command_failed, /invalid gemspec/)
+
     # Update gemspec with the required fields
     gemspec_path = install_path.join(gemspec_name)
     new_content = gemspec_path.read.gsub(/\n.*s.author[^\n]+/, "\n  s.author = 'someone'").gsub(/TODO/, 'something')
     gemspec_path.write(new_content)
+
     cd(install_path) do
       output = sh('bundle install')
       expect(output).to include('Bundle complete!')
