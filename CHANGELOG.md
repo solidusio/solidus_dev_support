@@ -11,8 +11,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Adopted [Apparition](https://github.com/twalpole/apparition) as the deafult JS driver for Capybara
 - Fix window size to 1920x1080px in feature specs
-- Add the [Github configuration](https://github.com/apps/stale) to automatically mark issues as stale
-- Add the [Github configuration](https://github.com/apps/stale) for all the new extension generated using this gem
+- Added [Stale](https://github.com/apps/stale) to automatically mark GitHub issues as stale
 
 ### Changed
 
@@ -22,7 +21,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
-- Fix Chrome not starting in headless mode
+- Fixed Chrome not starting in headless mode
 
 ## [0.1.1] - 2019-11-11
 
