@@ -7,6 +7,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.2.0] - 2019-12-16
+
 ### Added
 
 - Adopted [Apparition](https://github.com/twalpole/apparition) as the deafult JS driver for Capybara
@@ -34,6 +36,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 Initial release.
 
-[Unreleased]: https://github.com/solidusio-contrib/solidus_dev_support/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/solidusio-contrib/solidus_dev_support/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/solidusio-contrib/solidus_dev_support/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/solidusio-contrib/solidus_dev_support/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/solidusio-contrib/solidus_dev_support/releases/tag/v0.1.0
