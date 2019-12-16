@@ -1,6 +1,9 @@
 # solidus_dev_support
 
-This is a collection of tools for developing Solidus extensions.
+This gem contains common development functionality for Solidus extensions.
+
+If you're looking for runtime tools instead, look at
+[solidus_support](https://github.com/solidusio/solidus_support).
 
 ## Installation
 
