@@ -10,7 +10,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 
 - Adopted [Apparition](https://github.com/twalpole/apparition) as the deafult JS driver for Capybara
-- Fix window size to 1920x1080px in feature specs
+- Fixed window size to 1920x1080px in feature specs
 - Added [Stale](https://github.com/apps/stale) to automatically mark GitHub issues as stale
 
 ### Changed
