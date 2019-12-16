@@ -2,20 +2,20 @@
 
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'solidus_extension_dev_tools/version'
+require 'solidus_dev_support/version'
 
 Gem::Specification.new do |spec|
-  spec.name = 'solidus_extension_dev_tools'
-  spec.version = SolidusExtensionDevTools::VERSION
+  spec.name = 'solidus_dev_support'
+  spec.version = SolidusDevSupport::VERSION
   spec.authors = ['Alessandro Desantis']
   spec.email = ['alessandrodesantis@nebulab.it']
 
   spec.summary = 'Development tools for Solidus extensions.'
-  spec.homepage = 'https://github.com/solidusio/solidus_extension_dev_tools'
+  spec.homepage = 'https://github.com/solidusio/solidus_dev_support'
   spec.license = 'MIT'
 
   spec.metadata['homepage_uri'] = spec.homepage
-  spec.metadata['source_code_uri'] = 'https://github.com/solidusio/solidus_extension_dev_tools'
+  spec.metadata['source_code_uri'] = 'https://github.com/solidusio/solidus_dev_support'
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.

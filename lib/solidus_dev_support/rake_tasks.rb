@@ -3,7 +3,7 @@
 require 'rake'
 require 'pathname'
 
-module SolidusExtensionDevTools
+module SolidusDevSupport
   class RakeTasks
     include Rake::DSL
 

@@ -3,8 +3,8 @@
 
 require 'optparse'
 
-require 'solidus_extension_dev_tools'
-require 'solidus_extension_dev_tools/extension'
+require 'solidus_dev_support'
+require 'solidus_dev_support/extension'
 
 Options = Struct.new(:name)
 
@@ -25,9 +25,9 @@ class Parser
         opts.on(
           '-v',
           '--version',
-          "Prints the current version: #{SolidusExtensionDevTools::VERSION}"
+          "Prints the current version: #{SolidusDevSupport::VERSION}"
         ) do
-          puts SolidusExtensionDevTools::VERSION
+          puts SolidusDevSupport::VERSION
         end
       end
     end
@@ -46,7 +46,7 @@ if ARGV.first == 'extension' || ARGV.first == 'e'
     exit 1
   end
 
-  SolidusExtensionDevTools::Extension.start
+  SolidusDevSupport::Extension.start
 else
   Parser.parse(ARGV)
 end

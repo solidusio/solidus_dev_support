@@ -4,11 +4,11 @@
 #
 # Can be required from an extension's spec/rails_helper.rb
 #
-#     require 'solidus_extension_dev_tools/rspec/rails_helper'
+#     require 'solidus_dev_support/rspec/rails_helper'
 #
 
-require 'solidus_extension_dev_tools/rspec/spec_helper'
-require 'solidus_extension_dev_tools'
+require 'solidus_dev_support/rspec/spec_helper'
+require 'solidus_dev_support'
 
 require 'rspec/rails'
 require 'database_cleaner'
@@ -20,7 +20,7 @@ require 'spree/testing_support/factories'
 require 'spree/testing_support/url_helpers'
 require 'spree/testing_support/preferences'
 require 'spree/testing_support/controller_requests'
-require 'solidus_extension_dev_tools/testing_support/preferences'
+require 'solidus_dev_support/testing_support/preferences'
 
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
@@ -34,7 +34,7 @@ RSpec.configure do |config|
   config.include Spree::TestingSupport::ControllerRequests, type: :controller
 
   config.include Spree::TestingSupport::Preferences
-  config.include SolidusExtensionDevTools::TestingSupport::Preferences
+  config.include SolidusDevSupport::TestingSupport::Preferences
 
   config.before :suite do
     DatabaseCleaner.clean_with :truncation
@@ -50,7 +50,7 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = RSpec.current_example.metadata[:js] ? :truncation : :transaction
 
     DatabaseCleaner.cleaning do
-      reset_spree_preferences unless SolidusExtensionDevTools.reset_spree_preferences_deprecated?
+      reset_spree_preferences unless SolidusDevSupport.reset_spree_preferences_deprecated?
 
       example.run
     end

@@ -3,7 +3,7 @@
 require 'thor'
 require 'thor/group'
 
-module SolidusExtensionDevTools
+module SolidusDevSupport
   class Extension < Thor::Group
     include Thor::Actions
 
