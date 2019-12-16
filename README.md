@@ -1,5 +1,7 @@
 # solidus_dev_support
 
+[![CircleCI](https://circleci.com/gh/solidusio-contrib/solidus_dev_support.svg?style=svg)](https://circleci.com/gh/solidusio-contrib/solidus_dev_support)
+
 This gem contains common development functionality for Solidus extensions.
 
 If you're looking for runtime tools instead, look at
