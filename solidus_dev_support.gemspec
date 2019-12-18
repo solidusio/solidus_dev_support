@@ -43,7 +43,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'rubocop-rails', '~> 2.3'
   spec.add_dependency 'rubocop-rspec', '~> 1.36'
   spec.add_dependency 'solidus_core', ['>= 2.0', '< 3']
-  spec.add_dependency 'solidus_support', '~> 0.4.0'
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake'
