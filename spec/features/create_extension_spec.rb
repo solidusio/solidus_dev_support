@@ -23,6 +23,16 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
     rm_rf(tmp_path)
   end
 
+  it 'checks the create extension process' do
+    check_solidus_cmd
+    check_create_extension
+    check_bundle_install
+    check_default_task
+    check_run_specs
+  end
+
+  private
+
   def check_solidus_cmd
     cd(tmp_path) do
       output = `#{solidus_cmd} -h`
@@ -85,13 +95,5 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
     command += " --path=#{ext_root}/vendor/bundle" if ENV['CI']
 
     cd(install_path) { sh command }
-  end
-
-  it 'checks the create extension process' do
-    check_solidus_cmd
-    check_create_extension
-    check_bundle_install
-    check_default_task
-    check_run_specs
   end
 end
