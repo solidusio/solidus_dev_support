@@ -11,7 +11,7 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
   let(:solidus_cmd) { "#{ext_root}/exe/solidus" }
   let(:extension_name) { 'test_extension' }
   let(:gemspec_name) { "solidus_#{extension_name}.gemspec" }
-  let(:tmp_path) { Pathname.new(ext_root).join('spec', 'tmp') }
+  let(:tmp_path) { Pathname.new(ext_root).join('tmp') }
   let(:install_path) { tmp_path.join("solidus_#{extension_name}") }
 
   class CommandFailed < StandardError; end
