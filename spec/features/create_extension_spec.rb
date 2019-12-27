@@ -16,11 +16,9 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
 
   class CommandFailed < StandardError; end
 
-  around do |example|
-    rm_rf(tmp_path)
+  before do
+    rm_rf(install_path)
     mkdir_p(tmp_path)
-    example.run
-    rm_rf(tmp_path)
   end
 
   it 'checks the create extension process' do
