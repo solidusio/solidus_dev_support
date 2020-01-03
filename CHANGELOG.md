@@ -9,7 +9,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-- Remove solidus_support gemspec dependency
+- Removed solidus_support gemspec dependency
 - Updated solidus_support to 0.4.0 for Zeitwerk and Rails 6 compatibility
 
 ## [0.2.0] - 2019-12-16
