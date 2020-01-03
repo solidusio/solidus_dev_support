@@ -2,6 +2,7 @@
 
 require 'thor'
 require 'thor/group'
+require 'pathname'
 
 module SolidusDevSupport
   class Extension < Thor::Group
@@ -22,6 +23,10 @@ module SolidusDevSupport
       directory 'bin', "#{file_name}/bin"
       directory '.circleci', "#{file_name}/.circleci"
       directory '.github', "#{file_name}/.github"
+
+      Dir["#{file_name}/bin/*"].each do |executable|
+        make_executable executable
+      end
 
       template 'extension.gemspec.erb', "#{file_name}/#{file_name}.gemspec"
       template 'Gemfile', "#{file_name}/Gemfile"
@@ -44,6 +49,12 @@ module SolidusDevSupport
 
       def use_prefix(prefix)
         @file_name = prefix + Thor::Util.snake_case(file_name) unless file_name =~ /^#{prefix}/
+      end
+
+      def make_executable(path)
+        path = Pathname(path)
+        executable = (path.stat.mode | 0o111)
+        path.chmod(executable)
       end
     end
   end
