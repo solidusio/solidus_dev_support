@@ -11,10 +11,12 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Enforced Rails version depending on the Solidus version in generated Gemfile
 - Made Git ignore `spec/examples.txt` in generated extensions
+- It's now possible to update an existing extension with the command `bundle exec solidus extension .` from within the extension
 
 ### Changed
 
 - Removed the version constraint for Factory Bot from the Gemfile
+- The `solidus` executable is now solely managed by Thor and is open to extension by other gems
 
 ### Fixed
 
@@ -24,6 +26,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Removed
 
 - Removed RuboCop from the default Rake task
+- Removed the `-v` option from the `solidus` executable
 
 ## [0.3.0] - 2019-01-10
 
@@ -37,6 +40,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 - Updated solidus_support to 0.4.0 for Zeitwerk and Rails 6 compatibility
+- Updated the `solidus` executable to only rely on Thor and be open to extension by other gems
 
 ### Removed
 
