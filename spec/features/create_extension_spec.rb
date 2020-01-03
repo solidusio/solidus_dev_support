@@ -27,7 +27,7 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
     cd(tmp_path) do
       output = `#{solidus_cmd} -h`
       expect($?).to be_success
-      expect(output).to include('Usage')
+      expect(output).to include('Commands:')
     end
   end
 
