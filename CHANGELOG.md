@@ -7,6 +7,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Adopted Ruby 2.4+ as the minimum Ruby version in generated extensions
+
 ### Changed
 
 - Removed solidus_support gemspec dependency

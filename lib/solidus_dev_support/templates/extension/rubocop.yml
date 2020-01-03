@@ -5,7 +5,6 @@ inherit_gem:
   solidus_dev_support: .rubocop.yml
 
 AllCops:
-  TargetRubyVersion: 2.5
   Exclude:
     - spec/dummy/**/*
     - vendor/**/*
