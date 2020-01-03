@@ -7,11 +7,11 @@ require 'spec_helper'
 RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
   include FileUtils
 
-  let(:ext_root) { File.expand_path('../..', __dir__) }
-  let(:solidus_cmd) { "#{ext_root}/exe/solidus" }
+  let(:gem_root) { File.expand_path('../..', __dir__) }
+  let(:solidus_cmd) { "#{gem_root}/exe/solidus" }
   let(:extension_name) { 'test_extension' }
   let(:gemspec_name) { "solidus_#{extension_name}.gemspec" }
-  let(:tmp_path) { Pathname.new(ext_root).join('tmp') }
+  let(:tmp_path) { Pathname.new(gem_root).join('tmp') }
   let(:install_path) { tmp_path.join("solidus_#{extension_name}") }
 
   class CommandFailed < StandardError; end
@@ -90,7 +90,7 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
 
   def bundle_install
     command = 'bundle install'
-    command += " --path=#{ext_root}/vendor/bundle" if ENV['CI']
+    command += " --path=#{gem_root}/vendor/bundle" if ENV['CI']
 
     cd(install_path) { sh command }
   end
