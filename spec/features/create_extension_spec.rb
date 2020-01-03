@@ -89,8 +89,12 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
   end
 
   def bundle_install
+    # Optimize the bundle path within the CI, in this context using bundler env
+    # variables doesn't help because commands are run with a clean env.
+    bundle_path = "#{gem_root}/vendor/bundle"
+
     command = 'bundle install'
-    command += " --path=#{gem_root}/vendor/bundle" if ENV['CI']
+    command += " --path=#{bundle_path.shellescape}" if File.exist?(bundle_path)
 
     cd(install_path) { sh command }
   end
