@@ -78,7 +78,7 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
     cd(install_path) do
       output = sh('bundle exec rspec')
       expect(output).to include('1 example, 0 failures')
-      expect(output).to include(ENV['CI'] ? 'Coverage reports upload successfully' : 'Coverage report generated')
+      expect(output).to include(ENV['CODECOV_TOKEN'] ? 'Coverage reports upload successfully' : 'Coverage report generated')
     end
   end
 

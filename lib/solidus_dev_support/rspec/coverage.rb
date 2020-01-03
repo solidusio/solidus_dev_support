@@ -16,7 +16,9 @@ SimpleCov.start('rails') do
   add_filter %r{^/lib/.*/version.rb}
 end
 
-if ENV['CI']
+if ENV['CODECOV_TOKEN']
   require 'codecov'
   SimpleCov.formatter = SimpleCov::Formatter::Codecov
+else
+  warn "Provide a CODECOV_TOKEN environment variable to enable Codecov uploads"
 end
