@@ -20,16 +20,22 @@ executors:
            DATABASE_URL: sqlite3::memory:?pool=1
            DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL: true
 
+commands:
+  setup:
+    steps:
+      - checkout
+      - run: "gem install bundler -v '>=2' --conservative"
+
 jobs:
   solidus-master:
     executor: sqlite-memory
-    steps: ['checkout', 'solidusio_extensions/run-tests-solidus-master']
+    steps: ['setup', 'solidusio_extensions/run-tests-solidus-master']
   solidus-current:
     executor: sqlite-memory
-    steps: ['checkout', 'solidusio_extensions/run-tests-solidus-current']
+    steps: ['setup', 'solidusio_extensions/run-tests-solidus-current']
   solidus-older:
     executor: sqlite-memory
-    steps: ['checkout', 'solidusio_extensions/run-tests-solidus-older']
+    steps: ['setup', 'solidusio_extensions/run-tests-solidus-older']
 
 workflows:
   "Run specs on supported Solidus versions":
