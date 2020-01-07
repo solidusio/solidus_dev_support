@@ -101,6 +101,8 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
     command = 'bundle install'
     command += " --path=#{bundle_path.shellescape}" if File.exist?(bundle_path)
 
-    cd(install_path) { sh command }
+    output = nil
+    cd(install_path) { output = sh command }
+    output
   end
 end
