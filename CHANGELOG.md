@@ -7,6 +7,24 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Enforced Rails version depending on the Solidus version in generated Gemfile
+- Made Git ignore `spec/examples.txt` in generated extensions
+
+### Changed
+
+- Removed the version constraint for Factory Bot from the Gemfile
+
+### Fixed
+
+- Fixed generated extensions using an old Rakefile
+- Fixed some RuboCop offenses in the generated files
+
+### Removed
+
+- Removed RuboCop from the default Rake task
+
 ## [0.3.0] - 2019-01-10
 
 ### Added
@@ -14,6 +32,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Adopted Ruby 2.4+ as the minimum Ruby version in generated extensions
 - Added `bin/console`, `bin/rails` and `bin/setup` to generated extensions
 - Added some Bundler gemspec defaults to generated extensions
+- Configured the default Rake task to run generate the test app before running RSpec
 
 ### Changed
 
@@ -22,6 +41,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Removed
 
 - Removed solidus_support as a dependency
+
+### Fixed
+
+- Fixed `extension:test_app` not going back to the root after execution
 
 ## [0.2.0] - 2019-12-16
 
