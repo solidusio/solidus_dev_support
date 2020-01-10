@@ -19,6 +19,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Fixed
 
 - Fixed generated extensions using an old Rakefile
+- Fixed some RuboCop offenses in the generated files
 
 ### Removed
 
