@@ -23,6 +23,17 @@ $ bundle
 
 ## Usage
 
+### Extension generator
+
+This gem provides a generator for Solidus extensions. To use it, simply run:
+
+```console
+$ solidus extension my_awesome_extension
+```
+
+This will generate the basic extension structure, already configured to use all the shiny helpers
+in solidus_dev_support.
+
 ### RSpec helpers
 
 This gem provides some useful helpers for RSpec to setup an extension's test environment easily.
