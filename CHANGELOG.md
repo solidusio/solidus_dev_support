@@ -15,18 +15,19 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-- Removed the version constraint for Factory Bot from the Gemfile
 - The `solidus` executable is now solely managed by Thor and is open to extension by other gems
 
 ### Fixed
 
 - Fixed generated extensions using an old Rakefile
 - Fixed some RuboCop offenses in the generated files
+- Fixed the `bin/setup` script calling a non-existing Rake binary
 
 ### Removed
 
 - Removed RuboCop from the default Rake task
 - Removed the `-v` option from the `solidus` executable
+- Removed the factory_bot gem from the Gemfile
 
 ## [0.3.0] - 2019-01-10
 

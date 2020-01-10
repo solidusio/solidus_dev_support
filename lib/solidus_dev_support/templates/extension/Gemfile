@@ -17,8 +17,6 @@ end
 # Provides basic authentication functionality for testing parts of your engine
 gem 'solidus_auth_devise'
 
-gem 'factory_bot'
-
 case ENV['DB']
 when 'mysql'
   gem 'mysql2'
