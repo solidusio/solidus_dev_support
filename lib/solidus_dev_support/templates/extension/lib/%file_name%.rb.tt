@@ -3,4 +3,5 @@
 require 'solidus_core'
 require 'solidus_support'
 
+require '<%=file_name%>/version'
 require '<%=file_name%>/engine'
