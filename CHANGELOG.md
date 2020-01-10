@@ -10,6 +10,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 
 - Enforced Rails version depending on the Solidus version in generated Gemfile
+- Made Git ignore `spec/examples.txt` in generated extensions
 
 ### Fixed
 
