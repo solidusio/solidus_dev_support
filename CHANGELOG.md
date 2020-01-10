@@ -7,6 +7,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Enforced Rails version depending on the Solidus version in generated Gemfile
+
 ## [0.3.0] - 2019-01-10
 
 ### Added
