@@ -1,54 +1,56 @@
 # frozen_string_literal: true
 
 require 'thor'
-require 'thor/group'
 require 'pathname'
 
 module SolidusDevSupport
-  class Extension < Thor::Group
+  class Extension < Thor
     include Thor::Actions
+    PREFIX = 'solidus_'
 
-    desc 'builds a solidus extension'
-    argument :file_name, type: :string, desc: 'rails app_path', default: '.'
+    default_command :generate
 
-    source_root File.expand_path('templates/extension', __dir__)
+    desc 'generate PATH', 'Generates a new Solidus extension'
+    def generate(raw_path = '.')
+      self.path = raw_path
 
-    def generate
-      use_prefix 'solidus_'
+      empty_directory path
 
-      empty_directory file_name
-
-      directory 'app', "#{file_name}/app"
-      directory 'lib', "#{file_name}/lib"
-      directory 'bin', "#{file_name}/bin"
-      directory '.circleci', "#{file_name}/.circleci"
-      directory '.github', "#{file_name}/.github"
+      directory 'app', "#{path}/app"
+      directory 'lib', "#{path}/lib"
+      directory 'bin', "#{path}/bin"
+      directory '.circleci', "#{path}/.circleci"
+      directory '.github', "#{path}/.github"
 
       Dir["#{file_name}/bin/*"].each do |executable|
         make_executable executable
       end
 
-      template 'extension.gemspec.erb', "#{file_name}/#{file_name}.gemspec"
-      template 'Gemfile', "#{file_name}/Gemfile"
-      template 'gitignore', "#{file_name}/.gitignore"
-      template 'gem_release.yml.tt', "#{file_name}/.gem_release.yml"
-      template 'LICENSE', "#{file_name}/LICENSE"
-      template 'Rakefile', "#{file_name}/Rakefile"
-      template 'README.md', "#{file_name}/README.md"
-      template 'config/routes.rb', "#{file_name}/config/routes.rb"
-      template 'config/locales/en.yml', "#{file_name}/config/locales/en.yml"
-      template 'rspec', "#{file_name}/.rspec"
-      template 'spec/spec_helper.rb.tt', "#{file_name}/spec/spec_helper.rb"
-      template 'rubocop.yml', "#{file_name}/.rubocop.yml"
+      template 'extension.gemspec.erb', "#{path}/#{file_name}.gemspec"
+      template 'Gemfile', "#{path}/Gemfile"
+      template 'gitignore', "#{path}/.gitignore"
+      template 'gem_release.yml.tt', "#{path}/.gem_release.yml"
+      template 'LICENSE', "#{path}/LICENSE"
+      template 'Rakefile', "#{path}/Rakefile"
+      template 'README.md', "#{path}/README.md"
+      template 'config/routes.rb', "#{path}/config/routes.rb"
+      template 'config/locales/en.yml', "#{path}/config/locales/en.yml"
+      template 'rspec', "#{path}/.rspec"
+      template 'spec/spec_helper.rb.tt', "#{path}/spec/spec_helper.rb"
+      template 'rubocop.yml', "#{path}/.rubocop.yml"
     end
 
     no_tasks do
-      def class_name
-        Thor::Util.camel_case file_name
-      end
+      def path=(path)
+        path = File.expand_path(path)
 
-      def use_prefix(prefix)
-        @file_name = prefix + Thor::Util.snake_case(file_name) unless file_name =~ /^#{prefix}/
+        @file_name = Thor::Util.snake_case(File.basename(path))
+        @file_name = PREFIX + @file_name unless @file_name.start_with?(PREFIX)
+
+        @class_name = Thor::Util.camel_case @file_name
+
+        @root = File.dirname(path)
+        @path = File.join(@root, @file_name)
       end
 
       def make_executable(path)
@@ -56,6 +58,12 @@ module SolidusDevSupport
         executable = (path.stat.mode | 0o111)
         path.chmod(executable)
       end
+
+      attr_reader :root, :path, :file_name, :class_name
+    end
+
+    def self.source_root
+      "#{__dir__}/templates/extension"
     end
   end
 end
