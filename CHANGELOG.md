@@ -11,6 +11,14 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Enforced Rails version depending on the Solidus version in generated Gemfile
 
+### Fixed
+
+- Fixed generated extensions using an old Rakefile
+
+### Removed
+
+- Removed RuboCop from the default Rake task
+
 ## [0.3.0] - 2019-01-10
 
 ### Added

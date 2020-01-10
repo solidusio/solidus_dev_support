@@ -66,7 +66,6 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
     cd(install_path) do
       output = sh('bundle exec rake')
       expect(output).to include('Generating dummy Rails application')
-      expect(output).to include('no offenses detected')
       expect(output).to include('0 examples, 0 failures')
     end
   end
