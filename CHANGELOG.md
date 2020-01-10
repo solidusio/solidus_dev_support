@@ -42,6 +42,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Removed solidus_support as a dependency
 
+### Fixed
+
+- Fixed `extension:test_app` not going back to the root after execution
+
 ## [0.2.0] - 2019-12-16
 
 ### Added
