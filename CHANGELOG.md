@@ -32,6 +32,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Adopted Ruby 2.4+ as the minimum Ruby version in generated extensions
 - Added `bin/console`, `bin/rails` and `bin/setup` to generated extensions
 - Added some Bundler gemspec defaults to generated extensions
+- Configured the default Rake task to run generate the test app before running RSpec
 
 ### Changed
 

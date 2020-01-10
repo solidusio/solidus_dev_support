@@ -146,7 +146,7 @@ To install extension-related Rake tasks, add this to your `Rakefile`:
 require 'solidus_dev_support/rake_tasks'
 SolidusDevSupport::RakeTasks.install
 
-task default: 'extension:specs'
+task default: %w[extension:test_app extension:specs]
 ```
 
 (If your extension used the legacy extension Rakefile, then you should completely replace its
@@ -154,8 +154,10 @@ contents with the block above.)
 
 This will provide the following tasks:
 
-- `extension:specs` (default), which runs the specs for your extension
 - `extension:test_app`, which generates a dummy app for your extension
+- `extension:specs` (default), which runs the specs for your extension
+
+It also allows you to run `rake` to, respectively, generate a test app and run all tests.
 
 ## Development
 
