@@ -10,6 +10,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 
 - Adopted Ruby 2.4+ as the minimum Ruby version in generated extensions
+- Added `bin/console`, `bin/rails` and `bin/setup` to generated extensions
 
 ### Changed
 
