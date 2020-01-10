@@ -12,6 +12,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Enforced Rails version depending on the Solidus version in generated Gemfile
 - Made Git ignore `spec/examples.txt` in generated extensions
 
+### Changed
+
+- Removed the version constraint for Factory Bot from the Gemfile
+
 ### Fixed
 
 - Fixed generated extensions using an old Rakefile
