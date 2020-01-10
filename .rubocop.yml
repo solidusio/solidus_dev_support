@@ -1,2 +1,11 @@
 inherit_from:
   - https://relaxed.ruby.style/rubocop.yml
+
+AllCops:
+  Exclude:
+    - tmp/**/*
+
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - "**/bin/*"
+    - "**/exe/*"
