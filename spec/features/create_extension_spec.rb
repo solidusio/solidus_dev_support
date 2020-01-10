@@ -7,21 +7,29 @@ require 'spec_helper'
 RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
   include FileUtils
 
-  let(:ext_root) { File.expand_path('../..', __dir__) }
-  let(:solidus_cmd) { "#{ext_root}/exe/solidus" }
+  let(:gem_root) { File.expand_path('../..', __dir__) }
+  let(:solidus_cmd) { "#{gem_root}/exe/solidus" }
   let(:extension_name) { 'test_extension' }
   let(:gemspec_name) { "solidus_#{extension_name}.gemspec" }
-  let(:tmp_path) { Pathname.new(ext_root).join('spec', 'tmp') }
+  let(:tmp_path) { Pathname.new(gem_root).join('tmp') }
   let(:install_path) { tmp_path.join("solidus_#{extension_name}") }
 
   class CommandFailed < StandardError; end
 
-  around do |example|
-    rm_rf(tmp_path)
+  before do
+    rm_rf(install_path)
     mkdir_p(tmp_path)
-    example.run
-    rm_rf(tmp_path)
   end
+
+  it 'checks the create extension process' do
+    check_solidus_cmd
+    check_create_extension
+    check_bundle_install
+    check_default_task
+    check_run_specs
+  end
+
+  private
 
   def check_solidus_cmd
     cd(tmp_path) do
@@ -45,21 +53,14 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
       open('Gemfile', 'a') { |f| f.puts "gem 'solidus_dev_support', path: '../../..'" }
     end
 
-    expect {
-      cd(install_path) do
-        sh('bundle install')
-      end
-    }.to raise_error(CommandFailed, /invalid gemspec/)
+    expect { bundle_install }.to raise_error(CommandFailed, /invalid gemspec/)
 
     # Update gemspec with the required fields
     gemspec_path = install_path.join(gemspec_name)
     new_content = gemspec_path.read.gsub(/\n.*s.author[^\n]+/, "\n  s.author = 'someone'").gsub(/TODO/, 'https://example.com')
     gemspec_path.write(new_content)
 
-    cd(install_path) do
-      output = sh('bundle install')
-      expect(output).to include('Bundle complete!')
-    end
+    expect(bundle_install).to match(/Bundle complete/)
   end
 
   def check_default_task
@@ -77,21 +78,31 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
     cd(install_path) do
       output = sh('bundle exec rspec')
       expect(output).to include('1 example, 0 failures')
-      expect(output).to include(ENV['CI'] ? 'Coverage reports upload successfully' : 'Coverage report generated')
+      expect(output).to include(ENV['CODECOV_TOKEN'] ? 'Coverage reports upload successfully' : 'Coverage report generated')
     end
   end
 
   def sh(*args)
     command = args.size == 1 ? args.first : args.shelljoin
-    stdout, stderr, status = Bundler.with_clean_env { Open3.capture3(command) }
-    status.success? ? stdout : raise(CommandFailed, "command failed: #{command}\n#{stderr}\n#{stdout}")
+    output, status = Bundler.with_clean_env { Open3.capture2e(command) }
+
+    if status.success?
+      output.to_s
+    else
+      raise(CommandFailed, "command failed: #{command}\n#{output}")
+    end
   end
 
-  it 'checks the create extension process' do
-    check_solidus_cmd
-    check_create_extension
-    check_bundle_install
-    check_default_task
-    check_run_specs
+  def bundle_install
+    # Optimize the bundle path within the CI, in this context using bundler env
+    # variables doesn't help because commands are run with a clean env.
+    bundle_path = "#{gem_root}/vendor/bundle"
+
+    command = 'bundle install'
+    command += " --path=#{bundle_path.shellescape}" if File.exist?(bundle_path)
+
+    output = nil
+    cd(install_path) { output = sh command }
+    output
   end
 end

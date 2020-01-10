@@ -7,21 +7,43 @@ orbs:
   # or goes EOL.
   solidusio_extensions: solidusio/extensions@volatile
 
+executors:
+  # We don't rely directly on the DB, but we still want to ensure generated
+  # extensions are able to connect and spin up Solidus. Using an in-memory
+  # SQLite makes it blazingly fast.
+  sqlite-memory:
+    docker:
+       - image: circleci/ruby:2.5.6-node-browsers
+         environment:
+           RAILS_ENV: test
+           DB: sqlite
+           DATABASE_URL: sqlite3::memory:?pool=1
+           DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL: true
+
+commands:
+  setup:
+    steps:
+      - checkout
+      - run: "gem install bundler -v '>=2' --conservative"
+
 jobs:
-  run-specs-with-postgres:
-    executor: solidusio_extensions/postgres
-    steps:
-      - solidusio_extensions/run-tests
-  run-specs-with-mysql:
-    executor: solidusio_extensions/mysql
-    steps:
-      - solidusio_extensions/run-tests
+  solidus-master:
+    executor: sqlite-memory
+    steps: ['setup', 'solidusio_extensions/run-tests-solidus-master']
+  solidus-current:
+    executor: sqlite-memory
+    steps: ['setup', 'solidusio_extensions/run-tests-solidus-current']
+  solidus-older:
+    executor: sqlite-memory
+    steps: ['setup', 'solidusio_extensions/run-tests-solidus-older']
 
 workflows:
   "Run specs on supported Solidus versions":
     jobs:
-      - run-specs-with-postgres
-      - run-specs-with-mysql
+      - solidus-master
+      - solidus-current
+      - solidus-older
+
   "Weekly run specs against master":
     triggers:
       - schedule:
@@ -31,5 +53,6 @@ workflows:
               only:
                 - master
     jobs:
-      - run-specs-with-postgres
-      - run-specs-with-mysql
+      - solidus-master
+      - solidus-current
+      - solidus-older
