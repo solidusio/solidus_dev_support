@@ -7,6 +7,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed the generated RuboCop config inheriting from this gem's dev-only config
+
 ## [0.4.0] - 2020-01-10
 
 ### Added
