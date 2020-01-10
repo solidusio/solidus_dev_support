@@ -22,8 +22,13 @@ module SolidusDevSupport
       directory '.circleci', "#{path}/.circleci"
       directory '.github', "#{path}/.github"
 
-      Dir["#{file_name}/bin/*"].each do |executable|
-        make_executable executable
+      %w[
+        bin/console
+        bin/rails
+        bin/setup
+      ].each do |bin|
+        template bin, "#{path}/#{bin}"
+        make_executable "#{path}/#{bin}"
       end
 
       template 'extension.gemspec.erb', "#{path}/#{file_name}.gemspec"

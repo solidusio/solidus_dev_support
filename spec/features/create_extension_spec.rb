@@ -46,6 +46,18 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
       expect(output).to include(gemspec_name)
       expect(output).to include('.circleci')
     end
+
+    cd(install_path) do
+      %w[
+        bin/setup
+        bin/rails
+        bin/console
+      ].each do |bin|
+        bin = Pathname(bin)
+        expect(bin.exist?).to eq(true)
+        expect(bin.stat.executable?).to eq(true)
+      end
+    end
   end
 
   def check_bundle_install
