@@ -11,7 +11,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Enforced Rails version depending on the Solidus version in generated Gemfile
 - Made Git ignore `spec/examples.txt` in generated extensions
-- It's now possible to update an existing extension with the command `bundle exec solidus extension .` from within the extension
+- Added the ability to run `solidus extension .` to update an extension
 
 ### Changed
 
