@@ -11,5 +11,5 @@ unless File.exist? "#{app_root}/bin/rails"
   end
 end
 
-Dir.chdir 'spec/dummy'
+Dir.chdir app_root
 exec 'bin/rails', *ARGV
