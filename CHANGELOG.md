@@ -21,6 +21,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Fixed generated extensions using an old Rakefile
 - Fixed some RuboCop offenses in the generated files
+- Fixed the `bin/setup` script calling a non-existing Rake binary
 
 ### Removed
 
