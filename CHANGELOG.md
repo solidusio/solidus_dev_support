@@ -13,6 +13,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Fixed the generated RuboCop config inheriting from this gem's dev-only config
 - Fixed the generated extension not requiring the `version` file
+- Fixed the generator not properly marking `bin/` files as executable
 
 ## [0.4.0] - 2020-01-10
 
