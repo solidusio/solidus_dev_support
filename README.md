@@ -34,6 +34,19 @@ $ solidus extension my_awesome_extension
 This will generate the basic extension structure, already configured to use all the shiny helpers
 in solidus_dev_support.
 
+#### Updating existing extensions
+
+If you have an existing extension and want to update it to use the latest standards from this gem,
+you can run the following in the extension's directory:
+
+```console
+$ solidus extension .
+```
+
+In case of conflicting files, you will be prompted for an action. You can overwrite the files with
+the new version, keep the current version or view the diff and only apply the adjustments that make
+sense to you.
+
 ### RSpec helpers
 
 This gem provides some useful helpers for RSpec to setup an extension's test environment easily.
