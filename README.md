@@ -136,15 +136,16 @@ releases for your gem.
 For instance, you can run the following to release a new minor version:
 
 ```console
-$ gem bump --version minor --tag --release
+$ gem bump -v minor -r
 ```
 
 The above command will:
 
-* bump the gem version to the next minor;
-* commit the change and push it to `upstream/master`;
+* bump the gem version to the next minor (you can also use `patch`, `major` or a specific version
+  number);
+* commit the change and push it to `origin/master`;
 * create a Git tag;
-* push the tag to the `upstream` remote;
+* push the tag to the `origin` remote;
 * release the new version on RubyGems.
 
 You can refer to
