@@ -15,6 +15,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Replaced "Spree" with "Solidus" in the license of generated extensions
 
+### Changed
+
+- Updated gem-release to use tags instead of branches for new releases
+
 ## [0.4.1] - 2020-01-15
 
 ### Fixed
