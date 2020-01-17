@@ -11,6 +11,12 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Added support for a local Gemfile for local development dependencies (e.g. 'pry-debug')
 
+### Changed
+
+- The default rake task no longer re-generates the `test_app` each time it runs.
+  In order to get that behavior back simply call clobber before launching it:
+  `bin/rake clobber default`
+
 ## [0.5.0] - 2020-01-16
 
 ### Added
