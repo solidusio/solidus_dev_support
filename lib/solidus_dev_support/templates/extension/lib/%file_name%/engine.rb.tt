@@ -6,7 +6,7 @@ module <%= class_name %>
   class Engine < Rails::Engine
     include SolidusSupport::EngineExtensions::Decorators
 
-    isolate_namespace Spree
+    isolate_namespace ::Spree
 
     engine_name '<%= file_name %>'
 

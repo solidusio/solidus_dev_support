@@ -17,6 +17,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   In order to get that behavior back simply call clobber before launching it:
   `bin/rake clobber default`
 
+## Fixed
+
+- Fixed generated extensions isolating the wrong namespace
+
 ## [0.5.0] - 2020-01-16
 
 ### Added
