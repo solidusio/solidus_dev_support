@@ -6,7 +6,7 @@ end
 
 require 'generators/sandbox_generator'
 
-desc "Generates a development app"
+desc "Generates a sandbox app for development purposes"
 namespace :extension do
   task :sandbox, :user_class do |_t, args|
     args.with_defaults(user_class: "Spree::LegacyUser")
