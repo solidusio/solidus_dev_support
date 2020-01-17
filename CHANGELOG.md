@@ -7,6 +7,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Added support for a local Gemfile for local development dependencies (e.g. 'pry-debug')
+
 ## [0.5.0] - 2020-01-16
 
 ### Added
