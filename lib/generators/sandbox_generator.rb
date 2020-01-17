@@ -4,9 +4,9 @@ require "rails/generators/rails/app/app_generator"
 require 'active_support/core_ext/hash'
 require 'spree/core/version'
 
-module Spree
+module SolidusDevSupport
   # @private
-  class DevGenerator < Rails::Generators::Base
+  class SandboxGenerator < Rails::Generators::Base
     desc "Creates blank Rails application, installs Solidus and all sample data"
 
     class_option :lib_name, default: ''
@@ -19,14 +19,14 @@ module Spree
     end
 
     def clean_up
-      remove_directory_if_exists(dev_path)
+      remove_directory_if_exists(sandbox_path)
     end
 
     PASSTHROUGH_OPTIONS = [
       :skip_active_record, :skip_javascript, :database, :javascript, :quiet, :pretend, :force, :skip
     ]
 
-    def generate_dev_app
+    def generate_sandbox
       # calling slice on a Thor::CoreExtensions::HashWithIndifferentAccess
       # object has been known to return nil
       opts = {}.merge(options).slice(*PASSTHROUGH_OPTIONS)
@@ -45,24 +45,24 @@ module Spree
 
       puts "Generating dev Rails application..."
       invoke Rails::Generators::AppGenerator,
-        [File.expand_path(dev_path, destination_root)], opts
+        [File.expand_path(sandbox_path, destination_root)], opts
     end
 
-    def test_dev_config
+    def customize_sandbox
       @lib_name = options[:lib_name]
       @database = options[:database]
 
-      template "rails/database.yml", "#{dev_path}/config/database.yml", force: true
-      template "rails/boot.rb", "#{dev_path}/config/boot.rb", force: true
-      template "rails/application.rb.tt", "#{dev_path}/config/application.rb", force: true
-      template "rails/routes.rb", "#{dev_path}/config/routes.rb", force: true
-      template "rails/test.rb.tt", "#{dev_path}/config/environments/test.rb", force: true
-      template "rails/script/rails", "#{dev_path}/spec/dev/script/rails", force: true
+      template "rails/database.yml", "#{sandbox_path}/config/database.yml", force: true
+      template "rails/boot.rb", "#{sandbox_path}/config/boot.rb", force: true
+      template "rails/application.rb.tt", "#{sandbox_path}/config/application.rb", force: true
+      template "rails/routes.rb", "#{sandbox_path}/config/routes.rb", force: true
+      template "rails/test.rb.tt", "#{sandbox_path}/config/environments/test.rb", force: true
+      template "rails/script/rails", "#{sandbox_path}/spec/dev/script/rails", force: true
     end
 
-    def test_dev_inject_extension_requirements
-      if DevGeneratorHelper.inject_extension_requirements
-        inside dev_path do
+    def inject_components
+      if SandboxGeneratorHelper.inject_extension_requirements
+        inside sandbox_path do
           inject_require_for('spree_frontend')
           inject_require_for('spree_backend')
           inject_require_for('spree_api')
@@ -70,8 +70,8 @@ module Spree
       end
     end
 
-    def test_dev_clean
-      inside dev_path do
+    def clean_sandbox
+      inside sandbox_path do
         remove_file ".gitignore"
         remove_file "doc"
         remove_file "Gemfile"
@@ -102,8 +102,8 @@ end
       ], before: /require '#{@lib_name}'/, verbose: true
     end
 
-    def dev_path
-      ENV['DEV_APP_PATH'] || 'tmp/sample_store'
+    def sandbox_path
+      ENV['SANDBOX_PATH'] || 'sandbox'
     end
 
     def module_name
@@ -112,9 +112,9 @@ end
 
     def application_definition
       @application_definition ||= begin
-        dev_application_path = File.expand_path("#{dev_path}/config/application.rb", destination_root)
-        unless options[:pretend] || !File.exist?(dev_application_path)
-          contents = File.read(dev_application_path)
+        _sandbox_path = File.expand_path("#{sandbox_path}/config/application.rb", destination_root)
+        unless options[:pretend] || !File.exist?(_sandbox_path)
+          contents = File.read(_sandbox_path)
           contents[(contents.index("module #{module_name}"))..-1]
         end
       end
@@ -141,7 +141,7 @@ end
   end
 
   # @private
-  module DevGeneratorHelper
+  module SandboxGeneratorHelper
     mattr_accessor :inject_extension_requirements
     self.inject_extension_requirements = false
   end

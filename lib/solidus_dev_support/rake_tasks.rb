@@ -14,15 +14,15 @@ module SolidusDevSupport
     def initialize(root: Dir.pwd)
       @root = Pathname(root)
       @test_app_path = @root.join(ENV['DUMMY_PATH'] || 'spec/dummy')
-      @dev_app_path = @root.join(ENV['DEV_APP_PATH'] || 'tmp/sample_store')
+      @sandbox_path = @root.join(ENV['SANDBOX_PATH'] || 'tmp/sample_store')
       @gemspec = Bundler.load_gemspec(@root.glob("{,*}.gemspec").first)
     end
 
-    attr_reader :test_app_path, :dev_app_path, :root, :gemspec
+    attr_reader :test_app_path, :sandbox_path, :root, :gemspec
 
     def install
       install_test_app_task
-      install_dev_app_task
+      install_sandbox_task
       install_rspec_task
     end
 
@@ -43,38 +43,38 @@ module SolidusDevSupport
       end
     end
 
-    def install_dev_app_task
+    def install_sandbox_task
       require 'rake/clean'
-      ::CLOBBER.include dev_app_path
+      ::CLOBBER.include sandbox_path
 
-      ENV['DEV_APP_PATH'] = dev_app_path.to_s
+      ENV['SANDBOX_PATH'] = sandbox_path.to_s
       ENV['LIB_NAME'] = gemspec.name
-      require 'solidus_dev_support/dev_support'
+      require 'solidus_dev_support/sandbox_tasks'
 
       namespace :extension do
-        directory ENV['DEV_APP_PATH'] do
-          Rake::Task['extension:dev_app']
+        directory ENV['SANDBOX_PATH'] do
+          Rake::Task['extension:sandbox']
 
-          # We need to go back to the gem root since extension:dev_app changes
+          # We need to go back to the gem root since extension:sandbox changes
           # the working directory to be the development app.
           cd root
         end
       end
     end
 
-    def install_dev_app_helper_tasks
+    def install_sandbox_helper_tasks
       require 'rake/clean'
-      ::CLOBBER.include dev_app_path
+      ::CLOBBER.include sandbox_path
 
-      ENV['DEV_APP_PATH'] = dev_app_path.to_s
+      ENV['SANDBOX_PATH'] = sandbox_path.to_s
       ENV['LIB_NAME'] = gemspec.name
       require 'solidus_dev_support/dev_support'
 
       namespace :extension do
-        directory ENV['DEV_APP_PATH'] do
-          Rake::Task['extension:dev_app:server']
+        directory ENV['SANDBOX_PATH'] do
+          Rake::Task['extension:sandbox:server']
 
-          # We need to go back to the gem root since extension:dev_app changes
+          # We need to go back to the gem root since extension:sandbox changes
           # the working directory to be the development app.
           cd root
         end
