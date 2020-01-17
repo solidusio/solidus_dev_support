@@ -34,9 +34,15 @@ module SolidusDevSupport
       ::CLOBBER.include test_app_path
 
       namespace :extension do
+        # We need to go back to the gem root since the upstream
+        # extension:test_app changes the working directory to be the dummy app.
         task :test_app do
           Rake::Task['extension:test_app'].invoke
           cd root
+        end
+
+        directory ENV['DUMMY_PATH'] do
+          Rake::Task['extension:test_app'].invoke
         end
       end
     end
