@@ -27,6 +27,7 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
     check_bundle_install
     check_default_task
     check_run_specs
+    check_sandbox
   end
 
   private
@@ -95,6 +96,19 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
       output = sh('bundle exec rspec')
       expect(output).to include('1 example, 0 failures')
       expect(output).to include(ENV['CODECOV_TOKEN'] ? 'Coverage reports upload successfully' : 'Coverage report generated')
+    end
+  end
+
+  def check_sandbox
+    cd(install_path) do
+      command = 'bin/rails runner "puts %{The version of SolidusTestExtension is #{SolidusTestExtension::VERSION}}"'
+      first_run_output = sh(command)
+      expect(first_run_output).to include("Creating the sandbox app...")
+      expect(first_run_output).to include('The version of SolidusTestExtension is 0.0.1')
+
+      second_run_output = sh(command)
+      expect(second_run_output).not_to include("Creating the sandbox app...")
+      expect(second_run_output).to include('The version of SolidusTestExtension is 0.0.1')
     end
   end
 

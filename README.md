@@ -47,6 +47,29 @@ In case of conflicting files, you will be prompted for an action. You can overwr
 the new version, keep the current version or view the diff and only apply the adjustments that make
 sense to you.
 
+### Sandbox app
+
+When developing an extension you will surely need to try it out within a Rails app with Solidus
+installed. Using solidus_dev_support your extension will have a `bin/rails` executable that will
+operate on a _sandbox_ app (creating it if necessary).
+
+The path for the sandbox app is `./sandbox` and `bin/rails` will forward any Rails command
+to `sandbox/bin/rails`.
+
+Example:
+
+```bash
+$ bin/rails server
+=> Booting Puma
+=> Rails 6.0.2.1 application starting in development
+* Listening on tcp://127.0.0.1:3000
+Use Ctrl-C to stop
+```
+
+#### Rebuilding the sandbox app
+
+To rebuild the sandbox app just remove the `./sandbox` folder or run `bin/sandbox`.
+
 ### RSpec helpers
 
 This gem provides some useful helpers for RSpec to setup an extension's test environment easily.
