@@ -25,6 +25,7 @@ module SolidusDevSupport
       %w[
         bin/console
         bin/rails
+        bin/rake
         bin/setup
       ].each do |bin|
         template bin, "#{path}/#{bin}"
