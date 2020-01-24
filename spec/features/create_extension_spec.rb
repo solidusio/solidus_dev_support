@@ -96,7 +96,7 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
 
   def sh(*args)
     command = args.size == 1 ? args.first : args.shelljoin
-    output, status = Bundler.with_clean_env { Open3.capture2e(command) }
+    output, status = Bundler.with_unbundled_env { Open3.capture2e(command) }
 
     if status.success?
       output.to_s
