@@ -69,8 +69,12 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
 
     # Update gemspec with the required fields
     gemspec_path = install_path.join(gemspec_name)
-    new_content = gemspec_path.read.gsub(/\n.*s.author[^\n]+/, "\n  s.author = 'someone'").gsub(/TODO/, 'https://example.com')
-    gemspec_path.write(new_content)
+    gemspec = gemspec_path.read.lines
+    gemspec.grep(/spec\.author/).first.replace("  spec.author = 'John Doe'\n")
+    gemspec.grep(/spec\.email/).first.replace("  spec.email = 'john@example.com'\n")
+    gemspec.grep(/spec\.summary/).first.replace("  spec.summary = 'A nice extension'\n")
+    gemspec.grep(/spec\.description/).first.replace("  spec.description = 'A super nice extension'\n")
+    gemspec_path.write(gemspec.join)
 
     expect(bundle_install).to match(/Bundle complete/)
   end
@@ -96,12 +100,25 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
 
   def sh(*args)
     command = args.size == 1 ? args.first : args.shelljoin
-    output, status = Bundler.with_unbundled_env { Open3.capture2e(command) }
+    output, status = with_unbundled_env { Open3.capture2e(command) }
 
     if status.success?
       output.to_s
     else
+      if $DEBUG
+        warn '~'*80
+        warn "$ #{command}"
+        warn output.to_s
+      end
       raise(CommandFailed, "command failed: #{command}\n#{output}")
+    end
+  end
+
+  def with_unbundled_env(&block)
+    if Bundler.respond_to?(:with_unbundled_env)
+      Bundler.with_unbundled_env(&block)
+    else
+      Bundler.with_clean_env(&block)
     end
   end
 
