@@ -100,7 +100,7 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
 
   def sh(*args)
     command = args.size == 1 ? args.first : args.shelljoin
-    output, status = Bundler.with_unbundled_env { Open3.capture2e(command) }
+    output, status = with_unbundled_env { Open3.capture2e(command) }
 
     if status.success?
       output.to_s
@@ -111,6 +111,14 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
         warn output.to_s
       end
       raise(CommandFailed, "command failed: #{command}\n#{output}")
+    end
+  end
+
+  def with_unbundled_env(&block)
+    if Bundler.respond_to?(:with_unbundled_env)
+      Bundler.with_unbundled_env(&block)
+    else
+      Bundler.with_clean_env(&block)
     end
   end
 
