@@ -17,6 +17,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 
 - Added support for a local Gemfile for local development dependencies (e.g. 'pry-debug')
+- Added a `bin/sandbox` script to all extension for local development with `bin/rails` support.
 
 ### Changed
 

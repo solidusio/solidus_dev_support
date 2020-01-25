@@ -2,12 +2,15 @@
 
 # frozen_string_literal: true
 
-app_root = 'spec/dummy'
+app_root = 'sandbox'
 
 unless File.exist? "#{app_root}/bin/rails"
-  system "bin/rake", app_root or begin # rubocop:disable Style/AndOr
-    warn "Automatic creation of the dummy app failed"
-    exit 1
+  warn 'Creating the sandbox app...'
+  Dir.chdir "#{__dir__}/.." do
+    system "#{__dir__}/sandbox" or begin # rubocop:disable Style/AndOr
+      warn 'Automatic creation of the sandbox app failed'
+      exit 1
+    end
   end
 end
 

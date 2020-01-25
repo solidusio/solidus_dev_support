@@ -21,6 +21,7 @@ module SolidusDevSupport
 
     def install
       install_test_app_task
+      install_dev_app_task
       install_rspec_task
     end
 
@@ -44,6 +45,14 @@ module SolidusDevSupport
         directory ENV['DUMMY_PATH'] do
           Rake::Task['extension:test_app'].invoke
         end
+      end
+    end
+
+    def install_dev_app_task
+      desc "Creates a sandbox application for simulating the Extension code in a deployed Rails app"
+      task :sandbox do
+        warn "DEPRECATED TASK: This task is here just for parity with solidus, please use bin/sandbox directly."
+        exec("bin/sandbox", gemspec.name)
       end
     end
 
