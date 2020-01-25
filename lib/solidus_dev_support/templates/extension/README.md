@@ -26,7 +26,7 @@ First bundle your dependencies, then run `rake`. `rake` will default to building
 
 ```shell
 bundle
-bundle exec rake
+bin/rake
 ```
 
 When testing your application's integration with this extension you may use its factories.

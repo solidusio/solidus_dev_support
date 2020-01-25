@@ -7,6 +7,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Added a binstub for `rake` to the extension generator
+
 ## [0.6.0] - 2020-01-20
 
 ### Added
