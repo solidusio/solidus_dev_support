@@ -12,6 +12,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Added a binstub for `rake` to the extension generator
 - Added the ability for the generator to reuse existing data for the gemspec
 
+### Fixed
+
+- Fixed Dependabot throwing an error because of `eval_gemfile` in the Gemfile
+
 ## [0.6.0] - 2020-01-20
 
 ### Added
