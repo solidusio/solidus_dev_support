@@ -12,7 +12,7 @@ require 'solidus_dev_support'
 
 require 'rspec/rails'
 require 'database_cleaner'
-require 'factory_bot_rails'
+require 'factory_bot'
 require 'ffaker'
 
 require 'spree/testing_support/authorization_helpers'
@@ -21,6 +21,8 @@ require 'spree/testing_support/url_helpers'
 require 'spree/testing_support/preferences'
 require 'spree/testing_support/controller_requests'
 require 'solidus_dev_support/testing_support/preferences'
+
+FactoryBot.find_definitions
 
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
