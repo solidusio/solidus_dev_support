@@ -51,8 +51,10 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
     cd(install_path) do
       %w[
         bin/setup
-        bin/rails
+        bin/r
         bin/console
+        bin/sandbox
+        bin/sandbox_rails
       ].each do |bin|
         bin = Pathname(bin)
         expect(bin.exist?).to eq(true)
@@ -95,13 +97,13 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
     cd(install_path) do
       output = sh('bundle exec rspec')
       expect(output).to include('1 example, 0 failures')
-      expect(output).to include(ENV['CODECOV_TOKEN'] ? 'Coverage reports upload successfully' : 'Coverage report generated')
+      expect(output).to include(ENV['CODECOV_TOKEN'] ? 'Coverage reports upload successfully' : 'Provide a CODECOV_TOKEN environment variable to enable Codecov uploads')
     end
   end
 
   def check_sandbox
     cd(install_path) do
-      command = 'bin/rails runner "puts %{The version of SolidusTestExtension is #{SolidusTestExtension::VERSION}}"'
+      command = 'bin/sandbox_rails runner "puts %{The version of SolidusTestExtension is #{SolidusTestExtension::VERSION}}"'
       first_run_output = sh(command)
       expect(first_run_output).to include("Creating the sandbox app...")
       expect(first_run_output).to include('The version of SolidusTestExtension is 0.0.1')
