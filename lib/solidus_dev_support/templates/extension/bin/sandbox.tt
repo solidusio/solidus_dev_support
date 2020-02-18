@@ -18,6 +18,13 @@ sqlite|'')
   ;;
 esac
 
+if [ ! -z $SOLIDUS_BRANCH ]
+then
+  BRANCH=$SOLIDUS_BRANCH
+else
+  BRANCH="master"
+fi
+
 extension_name="<%= file_name %>"
 
 # Stay away from the bundler env of the containing extension.
@@ -42,11 +49,12 @@ fi
 
 cd ./sandbox
 cat <<RUBY >> Gemfile
-
-gem '$extension_name', path: '..'
+gem 'solidus', github: 'solidusio/solidus', branch: '$BRANCH'
 gem 'solidus_auth_devise', '>= 2.1.0'
 gem 'rails-i18n'
 gem 'solidus_i18n'
+
+gem '$extension_name', path: '..'
 
 group :test, :development do
   platforms :mri do
@@ -69,4 +77,7 @@ unbundled bundle exec rails generate solidus:auth:install
 
 echo
 echo "🚀 Sandbox app successfully created for $extension_name!"
+echo "🚀 Using $RAILSDB and Solidus $BRANCH"
+echo "🚀 Use 'export DB=[postgres|mysql|sqlite]' to control the DB adapter"
+echo "🚀 Use 'export SOLIDUS_BRANCH=<BRANCH-NAME>' to control the Solidus version"
 echo "🚀 This app is intended for test purposes."

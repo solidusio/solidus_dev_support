@@ -69,6 +69,14 @@ Use Ctrl-C to stop
 #### Rebuilding the sandbox app
 
 To rebuild the sandbox app just remove the `./sandbox` folder or run `bin/sandbox`.
+You can control the DB adapter and Solidus version used with the sandbox by providing
+the `DB` and `SOLIDUS_BRANCH` env variables.
+
+```bash
+DB=[postgres|mysql|sqlite] SOLIDUS_BRANCH=<BRANCH-NAME> bin/sandbox
+```
+
+By default we use sqlite3 and the master branch.
 
 ### RSpec helpers
 
