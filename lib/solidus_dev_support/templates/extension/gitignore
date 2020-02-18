@@ -14,4 +14,4 @@ pkg
 *.swp
 spec/dummy
 spec/examples.txt
-sandbox
+/sandbox
