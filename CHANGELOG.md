@@ -13,6 +13,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- `bin/r` executable for running Rails command inside the extension
+- `bin/sandbox_rails` executable for running Rails command inside the sandbox
 - Made Git ignore `sandbox` in generated extensions
 - Add option to specify `SOLIDUS_BRANCH` (default to master) for sandbox generation
 
