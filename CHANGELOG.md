@@ -7,16 +7,18 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-### Fixed
-
-- Fix the Gemfile for sandbox, To run the sandbox correctly we need to add Solidus to the Gemfile as well (fixes #83, #89)
-
 ### Added
 
-- `bin/r` executable for running Rails command inside the extension
-- `bin/sandbox_rails` executable for running Rails command inside the sandbox
 - Made Git ignore `sandbox` in generated extensions
-- Add option to specify `SOLIDUS_BRANCH` (default to master) for sandbox generation
+- Added support for specifying `SOLIDUS_BRANCH` in the sandbox
+
+### Changed
+
+- Split `bin/rails` into `bin/r` and `bin/sandbox_rails`
+
+### Fixed
+
+- Fixed the sandbox Gemfile not including Solidus
 
 ## [1.0.1] - 2020-02-17
 
