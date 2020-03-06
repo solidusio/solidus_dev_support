@@ -22,18 +22,27 @@ end
 
 require 'spree/testing_support/capybara_ext'
 
+def dev_support_assets_preload
+  if Rails.application.respond_to?(:precompiled_assets)
+    Rails.application.precompiled_assets
+  else
+    # For older sprockets 2.x
+    Rails.application.config.assets.precompile.each do |asset|
+      Rails.application.assets.find_asset(asset)
+    end
+  end
+end
+
 RSpec.configure do |config|
   config.when_first_matching_example_defined(type: :feature) do
     config.before :suite do
-      # Preload assets
-      if Rails.application.respond_to?(:precompiled_assets)
-        Rails.application.precompiled_assets
-      else
-        # For older sprockets 2.x
-        Rails.application.config.assets.precompile.each do |asset|
-          Rails.application.assets.find_asset(asset)
-        end
-      end
+      dev_support_assets_preload
+    end
+  end
+
+  config.when_first_matching_example_defined(type: :system) do
+    config.before :suite do
+      dev_support_assets_preload
     end
   end
 end
