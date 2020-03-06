@@ -80,18 +80,14 @@ By default we use sqlite3 and the master branch.
 
 ### Rails generators
 
-Your extension will have a `bin/r` executable that you can use for generating models
-and migrations etc. It's the same as the default `rails` command for Engines.
+Your extension will have a `bin/r` executable that you can use for generating models, migrations
+etc. It's the same as the default `rails` command in Rails engines.
 
 Example:
 
 ```bash
 $ bin/r generate migration AddStoreIdToProducts
 ```
-
-Currently the rails sandbox generation is not working when the parent directory
-has a `bin/rails` executable that sets the `ENGINE_ROOT` and `ENGINE_PATH`. The
-workaround right now is to introduce the `bin/r` executable to circumvent this issue.
 
 ### RSpec helpers
 
