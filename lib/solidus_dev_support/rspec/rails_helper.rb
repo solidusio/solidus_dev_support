@@ -59,4 +59,29 @@ RSpec.configure do |config|
   end
 
   config.include ActiveJob::TestHelper
+
+  config.after(:suite) do
+    if Rails.respond_to?(:autoloaders) && Rails.autoloaders.zeitwerk_enabled?
+      Rails.autoloaders.main.class.eager_load_all
+    end
+  rescue NameError => e
+    class ZeitwerkNameError < NameError; end
+
+    message = <<~WARN
+      Zeitwerk raised the following error when trying to eager load your extension:
+
+      #{if e.message =~ /expected file .*? to define constant [\w:]+/
+        e.message.sub(/expected file #{Regexp.escape(File.expand_path('../..', Rails.root))}./, "expected file ")
+      else
+        e.message
+      end}
+
+      This most likely means that your extension's file structure is not
+      compatible with the Zeitwerk autoloader.
+      Refer to https://github.com/solidusio/solidus_support#engine-extensions in
+      order to update the file structure to match Zeitwerk's expectations.
+    WARN
+
+    raise ZeitwerkNameError, message
+  end
 end
