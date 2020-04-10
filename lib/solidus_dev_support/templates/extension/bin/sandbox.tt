@@ -71,6 +71,7 @@ unbundled bundle exec rails generate spree:install \
   --auto-accept \
   --user_class=Spree::User \
   --enforce_available_locales=true \
+  --with-authentication=false \
   $@
 
 unbundled bundle exec rails generate solidus:auth:install
