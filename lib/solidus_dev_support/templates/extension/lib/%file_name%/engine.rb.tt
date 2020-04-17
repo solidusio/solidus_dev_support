@@ -5,7 +5,7 @@ require '<%= file_name %>'
 
 module <%= class_name %>
   class Engine < Rails::Engine
-    include SolidusSupport::EngineExtensions::Decorators
+    include SolidusSupport::EngineExtensions
 
     isolate_namespace ::Spree
 
