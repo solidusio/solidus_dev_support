@@ -7,6 +7,14 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.2.0]
+
+## Changed
+
+- Updated the extension template with the latest modifications
+
+## [1.1.0]
+
 ### Added
 
 - Made Git ignore `sandbox` in generated extensions
@@ -15,7 +23,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 - Split `bin/rails` into `bin/r` and `bin/sandbox_rails`
-- Updated the extension template with the latest modifications
+
  
 ### Fixed
 
@@ -152,7 +160,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 Initial release.
 
-[Unreleased]: https://github.com/solidusio/solidus_dev_support/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/solidusio/solidus_dev_support/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/solidusio/solidus_dev_support/compare/v1.1.0...v1.2.0
+[1.1.0]: https://github.com/solidusio/solidus_dev_support/compare/v1.0.1...v1.1.0
 [1.0.1]: https://github.com/solidusio/solidus_dev_support/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/solidusio/solidus_dev_support/compare/v0.6.0...v1.0.0
 [0.6.0]: https://github.com/solidusio/solidus_dev_support/compare/v0.5.0...v0.6.0
