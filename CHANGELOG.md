@@ -9,7 +9,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [1.2.0]
 
-## Changed
+### Changed
 
 - Updated the extension template with the latest modifications
 
