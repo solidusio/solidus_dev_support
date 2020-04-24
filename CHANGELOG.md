@@ -15,7 +15,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 - Split `bin/rails` into `bin/r` and `bin/sandbox_rails`
-
+- Updated the extension template with the latest modifications
+ 
 ### Fixed
 
 - Fixed the sandbox Gemfile not including Solidus
