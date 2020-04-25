@@ -7,6 +7,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Update Ruby 2.5+ as the minimum Ruby version in generated extensions
+
 ## [1.2.0]
 
 ### Changed
@@ -24,7 +28,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Split `bin/rails` into `bin/r` and `bin/sandbox_rails`
 
- 
+
 ### Fixed
 
 - Fixed the sandbox Gemfile not including Solidus
