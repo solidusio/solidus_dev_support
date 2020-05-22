@@ -12,6 +12,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Updated the extension template to use latest (0.5.X) solidus_support
 - Set Ruby 2.5+ as the minimum Ruby version in generated extensions
 
+### Removed
+
+- Removed Stale from the default extension configuration
+
 ## [1.2.0]
 
 ### Changed
