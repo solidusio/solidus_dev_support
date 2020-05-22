@@ -7,6 +7,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Ignored `.rvmrc`, `.ruby-version` and `.ruby-gemset` by default in extensions
+
 ### Changed
 
 - Updated the extension template to use latest (0.5.X) solidus_support
