@@ -7,7 +7,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-## [1.3.0]
+## [1.3.0] - 2020-05-22
 
 ### Added
 
@@ -23,13 +23,13 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Removed Stale from the default extension configuration
 
-## [1.2.0]
+## [1.2.0] - 2020-04-24
 
 ### Changed
 
 - Updated the extension template with the latest modifications
 
-## [1.1.0]
+## [1.1.0] - 2020-03-06
 
 ### Added
 
