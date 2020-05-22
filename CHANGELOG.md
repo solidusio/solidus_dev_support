@@ -32,6 +32,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Made Git ignore `sandbox` in generated extensions
 - Added support for specifying `SOLIDUS_BRANCH` in the sandbox
+- Added deprecation warning when extensions don't support Zeitwerk
 
 ### Changed
 
