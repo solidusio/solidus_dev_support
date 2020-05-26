@@ -49,16 +49,26 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
     end
 
     cd(install_path) do
-      %w[
-        bin/setup
-        bin/r
-        bin/console
-        bin/sandbox
-        bin/sandbox_rails
-      ].each do |bin|
-        bin = Pathname(bin)
-        expect(bin.exist?).to eq(true)
-        expect(bin.stat.executable?).to eq(true)
+      aggregate_failures do
+        %w[
+          bin/console
+          bin/rails
+          bin/rails-engine
+          bin/rails-sandbox
+          bin/sandbox
+          bin/setup
+        ].each do |bin|
+          bin = Pathname(bin)
+          expect(
+            name: bin,
+            exist: bin.exist?,
+            executable: bin.stat.executable?
+          ).to eq(
+            name: bin,
+            exist: true,
+            executable: true
+          )
+        end
       end
     end
   end
@@ -103,7 +113,7 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
 
   def check_sandbox
     cd(install_path) do
-      command = 'bin/sandbox_rails runner "puts %{The version of SolidusTestExtension is #{SolidusTestExtension::VERSION}}"'
+      command = 'bin/rails-sandbox runner "puts %{The version of SolidusTestExtension is #{SolidusTestExtension::VERSION}}"'
       first_run_output = sh(command)
       expect(first_run_output).to include("Creating the sandbox app...")
       expect(first_run_output).to include('The version of SolidusTestExtension is 0.0.1')

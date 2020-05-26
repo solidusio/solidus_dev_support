@@ -50,16 +50,16 @@ sense to you.
 ### Sandbox app
 
 When developing an extension you will surely need to try it out within a Rails app with Solidus
-installed. Using solidus_dev_support your extension will have a `bin/sandbox_rails` executable that will
+installed. Using solidus_dev_support your extension will have a `bin/rails-sandbox` executable that will
 operate on a _sandbox_ app (creating it if necessary).
 
-The path for the sandbox app is `./sandbox` and `bin/sandbox_rails` will forward any Rails command
+The path for the sandbox app is `./sandbox` and `bin/rails-sandbox` will forward any Rails command
 to `sandbox/bin/rails`.
 
 Example:
 
 ```bash
-$ bin/sandbox_rails server
+$ bin/rails-sandbox server
 => Booting Puma
 => Rails 6.0.2.1 application starting in development
 * Listening on tcp://127.0.0.1:3000
@@ -80,14 +80,19 @@ By default we use sqlite3 and the master branch.
 
 ### Rails generators
 
-Your extension will have a `bin/r` executable that you can use for generating models, migrations
+Your extension will have a `bin/rails-engine` executable that you can use for generating models, migrations
 etc. It's the same as the default `rails` command in Rails engines.
 
 Example:
 
 ```bash
-$ bin/r generate migration AddStoreIdToProducts
+$ bin/rails-engine generate migration AddStoreIdToProducts
 ```
+
+### The `bin/rails` shortcut
+
+For convenience a `bin/rails` executable is also provided that will run everything but generators on the sandbox application. Generators will instead be processed in the context of the extension.
+
 
 ### RSpec helpers
 

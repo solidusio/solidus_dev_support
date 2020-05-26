@@ -7,6 +7,14 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Restored `bin/rails` and renamed the context specific bins to `bin/rails-engine` and `bin/rails-sandbox`
+
+### Deprecated
+
+- Deprecated `bin/r` in favor of `bin/rails-engine` and `bin/sandbox_rails` in favor of `bin/rails-sandbox`
+
 ## [1.3.0] - 2020-05-22
 
 ### Added
