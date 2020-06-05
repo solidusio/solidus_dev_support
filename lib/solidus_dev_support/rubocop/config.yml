@@ -183,6 +183,7 @@ AllCops:
   TargetRubyVersion: 2.5
   Exclude:
     - spec/dummy/**/*
+    - sandbox/**/*
     - vendor/**/*
 
 Metrics/BlockLength:

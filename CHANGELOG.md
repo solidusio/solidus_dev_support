@@ -15,6 +15,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Restored `bin/rails` and renamed the context specific bins to `bin/rails-engine` and `bin/rails-sandbox`
 - Adjusted the readme structure with better formatting and grammar
+- Moved the RuboCop `AllCops/Exclude` statement back to the internal configuration 
 
 ### Deprecated
 
