@@ -1,0 +1,4 @@
+issues=false
+exclude-labels=infrastructure
+since-tag=v1.4.0
+base=OLD_CHANGELOG.md
