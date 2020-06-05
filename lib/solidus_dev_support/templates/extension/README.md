@@ -17,6 +17,10 @@ bundle
 bundle exec rails g <%= file_name %>:install
 ```
 
+## Usage
+
+[Explain how to use your extension once it's been installed.]
+
 ## Development
 
 ### Testing the extension
