@@ -13,31 +13,22 @@ pull_request_rules:
         add:
           - needs changelog label
       comment:
-        message: >
-          It looks like this PR is missing a label to determine the type of change it introduces.
-          The maintainer should add one of the following labels:
+        message: |
+          It looks like this PR is missing a label to determine the type of change it introduces. The maintainer should add one of the following labels:
 
           - `bug` for bugfixes.
-
           - `enhancement` for new features and improvements.
-
           - `documentation` for documentation changes.
-
           - `security` for security patches.
-
           - `removed` for feature removals.
-
           - `infrastructure` for internal changes that should not go in the changelog.
 
           Additionally, the maintainer may also want to add one of the following:
 
           - `breaking` for breaking changes.
-
           - `deprecated` for feature deprecations.
 
-          Once the correct labels have been set, simply remove the `needs changelog label` label
-          from this PR so I can merge it.
-
+          Once the correct labels have been set, simply remove the `needs changelog label` label from this PR so I can merge it.
   - name: merge PRs automatically
     conditions:
       - base=master
