@@ -47,7 +47,7 @@ Simply add this require statement to your spec_helper:
 require '<%= file_name %>/factories'
 ```
 
-## Running the sandbox
+### Running the sandbox
 
 To run this extension in a sandboxed Solidus application, you can run `bin/sandbox`. The path for
 the sandbox app is `./sandbox` and `bin/rails` will forward any Rails commands to
