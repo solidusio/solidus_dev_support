@@ -7,9 +7,14 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Added a "Usage" section to the default readme
+
 ### Changed
 
 - Restored `bin/rails` and renamed the context specific bins to `bin/rails-engine` and `bin/rails-sandbox`
+- Adjusted the readme structure with better formatting and grammar
 
 ### Deprecated
 
