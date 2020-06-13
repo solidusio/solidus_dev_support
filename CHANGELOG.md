@@ -1,6 +1,16 @@
 # Changelog
 
-## [1.4.0] - 2020-06-05
+## [Unreleased](https://github.com/solidusio/solidus_dev_support/tree/HEAD)
+
+[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v1.4.0...HEAD)
+
+**Fixed bugs:**
+
+- Fix formatting typo in readme [\#117](https://github.com/solidusio/solidus_dev_support/pull/117) ([aldesantis](https://github.com/aldesantis))
+
+**Removed:**
+
+- Remove deprecated bin/r and bin/sandbox\_rails binaries [\#118](https://github.com/solidusio/solidus_dev_support/pull/118) ([aldesantis](https://github.com/aldesantis))
 
 ## [1.4.0] - 2020-06-05
 
