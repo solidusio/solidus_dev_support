@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/solidusio/solidus_dev_support/tree/HEAD)
+## [v1.5.0](https://github.com/solidusio/solidus_dev_support/tree/v1.5.0) (2020-06-13)
 
-[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v1.4.0...HEAD)
+[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v1.4.0...v1.5.0)
 
 **Fixed bugs:**
 
