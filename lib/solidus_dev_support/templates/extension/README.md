@@ -53,7 +53,7 @@ the sandbox app is `./sandbox` and `bin/rails` will forward any Rails commands t
 
 Here's an example:
 
-```shell
+```
 $ bin/rails server
 => Booting Puma
 => Rails 6.0.2.1 application starting in development
