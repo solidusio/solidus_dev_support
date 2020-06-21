@@ -13,8 +13,7 @@ gem '<%= file_name %>'
 Bundle your dependencies and run the installation generator:
 
 ```shell
-bundle
-bundle exec rails g <%= file_name %>:install
+bin/rails generate <%= file_name %>:install
 ```
 
 ## Usage
@@ -30,7 +29,6 @@ app if it does not exist, then it will run specs. The dummy app can be regenerat
 `bin/rake extension:test_app`.
 
 ```shell
-bundle
 bin/rake
 ```
 
@@ -55,7 +53,7 @@ the sandbox app is `./sandbox` and `bin/rails` will forward any Rails commands t
 
 Here's an example:
 
-```shell
+```
 $ bin/rails server
 => Booting Puma
 => Rails 6.0.2.1 application starting in development
