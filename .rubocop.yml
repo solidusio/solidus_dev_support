@@ -4,6 +4,7 @@ inherit_from:
 AllCops:
   Exclude:
     - tmp/**/*
+    - "vendor/**/*"
 
 Style/FrozenStringLiteralComment:
   Exclude:
