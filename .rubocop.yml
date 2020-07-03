@@ -2,6 +2,7 @@ inherit_from:
   - https://relaxed.ruby.style/rubocop.yml
 
 AllCops:
+  TargetRubyVersion: 2.5
   Exclude:
     - tmp/**/*
     - "vendor/**/*"
