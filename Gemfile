@@ -22,6 +22,10 @@ group :test do
   gem 'sqlite3'
 end
 
+# Keep the local rubocop up to date, whil giving some slack to the version
+# requirement for the extensions depending on dev-support.
+gem 'rubocop', '~> 0.86.0'
+
 # Use a local Gemfile to include development dependencies that might not be
 # relevant for the project or for other contributors, e.g.: `gem 'pry-debug'`.
 eval_gemfile 'Gemfile-local' if File.exist? 'Gemfile-local'
