@@ -4,7 +4,7 @@ require 'fileutils'
 require 'open3'
 require 'spec_helper'
 
-RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
+RSpec.describe 'Create extension' do
   include FileUtils
 
   let(:gem_root) { File.expand_path('../..', __dir__) }
