@@ -18,4 +18,3 @@ module SolidusDevSupport
     end
   end
 end
-
