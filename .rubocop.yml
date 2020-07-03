@@ -6,6 +6,8 @@ AllCops:
   Exclude:
     - tmp/**/*
     - "vendor/**/*"
+    # Generated binstubs
+    - bin/rake
 
 Style/FrozenStringLiteralComment:
   Exclude:
