@@ -89,7 +89,7 @@ module SolidusDevSupport
           'remote get-url origin',
           "git@github.com:#{github_user}/#{file_name}.git"
         ).sub(
-          %r{^.*github\.com.([^/]+)/([^/\.]+).*$},
+          %r{^.*github\.com.([^/]+)/([^/.]+).*$},
           'https://github.com/\1/\2'
         )
       end
