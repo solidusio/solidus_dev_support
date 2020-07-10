@@ -67,14 +67,17 @@ RSpec.configure do |config|
   rescue NameError => e
     class ZeitwerkNameError < NameError; end
 
-    message = <<~WARN
-      Zeitwerk raised the following error when trying to eager load your extension:
-
-      #{if e.message =~ /expected file .*? to define constant [\w:]+/
+    error_message =
+      if e.message =~ /expected file .*? to define constant [\w:]+/
         e.message.sub(/expected file #{Regexp.escape(File.expand_path('../..', Rails.root))}./, "expected file ")
       else
         e.message
-      end}
+      end
+
+    message = <<~WARN
+      Zeitwerk raised the following error when trying to eager load your extension:
+
+      #{error_message}
 
       This most likely means that your extension's file structure is not
       compatible with the Zeitwerk autoloader.

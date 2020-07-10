@@ -4,7 +4,7 @@ require 'fileutils'
 require 'open3'
 require 'spec_helper'
 
-RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
+RSpec.describe 'Create extension' do
   include FileUtils
 
   let(:gem_root) { File.expand_path('../..', __dir__) }
@@ -113,7 +113,10 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
 
   def check_sandbox
     cd(install_path) do
+      # rubocop:disable Lint/InterpolationCheck
       command = 'bin/rails-sandbox runner "puts %{The version of SolidusTestExtension is #{SolidusTestExtension::VERSION}}"'
+      # rubocop:enable Lint/InterpolationCheck
+
       first_run_output = sh(command)
       expect(first_run_output).to include("Creating the sandbox app...")
       expect(first_run_output).to include('The version of SolidusTestExtension is 0.0.1')
@@ -132,7 +135,7 @@ RSpec.describe 'Create extension' do # rubocop:disable Metrics/BlockLength
       output.to_s
     else
       if $DEBUG
-        warn '~'*80
+        warn '~' * 80
         warn "$ #{command}"
         warn output.to_s
       end
