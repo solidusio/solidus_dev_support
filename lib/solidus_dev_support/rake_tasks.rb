@@ -23,6 +23,7 @@ module SolidusDevSupport
       install_test_app_task
       install_dev_app_task
       install_rspec_task
+      install_changelog_task
     end
 
     def install_test_app_task
@@ -69,6 +70,17 @@ module SolidusDevSupport
               "--format RspecJunitFormatter --out #{ENV['TEST_RESULTS_PATH']}"
           end
         end
+      end
+    end
+
+    def install_changelog_task
+      require 'github_changelog_generator/task'
+
+      user, project = gemspec.homepage.split("/")[3..5]
+      GitHubChangelogGenerator::RakeTask.new(:changelog) do |config|
+        config.user = user || 'solidus-contrib'
+        config.project = project || gemspec.name
+        config.future_release = "v#{gemspec.version}"
       end
     end
   end
