@@ -23,6 +23,7 @@ module SolidusDevSupport
       install_test_app_task
       install_dev_app_task
       install_rspec_task
+      install_bundler_gem_tasks
     end
 
     def install_test_app_task
@@ -70,6 +71,12 @@ module SolidusDevSupport
           end
         end
       end
+    end
+
+    def install_bundler_gem_tasks
+      require 'bundler/gem_helper'
+
+      Bundler::GemHelper.install_tasks
     end
   end
 end
