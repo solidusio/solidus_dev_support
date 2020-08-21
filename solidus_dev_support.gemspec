@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'apparition', '~> 0.4'
   spec.add_dependency 'capybara', '~> 3.29'
   spec.add_dependency 'capybara-screenshot', '~> 1.0'
-  spec.add_dependency 'codecov', '~> 0.1.16'
+  spec.add_dependency 'codecov', '~> 0.2'
   spec.add_dependency 'database_cleaner', '~> 1.7'
   spec.add_dependency 'factory_bot_rails', '~> 5.1'
   spec.add_dependency 'ffaker', '~> 2.13'
