@@ -1,5 +1,23 @@
 # Changelog
 
+## [Unreleased](https://github.com/solidusio/solidus_dev_support/tree/HEAD)
+
+[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v1.5.0...HEAD)
+
+**Implemented enhancements:**
+
+- Add Changelog Rake task [\#128](https://github.com/solidusio/solidus_dev_support/pull/128) ([tvdeyen](https://github.com/tvdeyen))
+- Readme fixes [\#122](https://github.com/solidusio/solidus_dev_support/pull/122) ([elia](https://github.com/elia))
+
+**Fixed bugs:**
+
+- Don't install a payment-method in the sandbox [\#131](https://github.com/solidusio/solidus_dev_support/pull/131) ([elia](https://github.com/elia))
+- Run extension generator in sandbox [\#127](https://github.com/solidusio/solidus_dev_support/pull/127) ([elia](https://github.com/elia))
+
+**Merged pull requests:**
+
+- Add the codecov badge to the readme [\#123](https://github.com/solidusio/solidus_dev_support/pull/123) ([elia](https://github.com/elia))
+
 ## [v1.5.0](https://github.com/solidusio/solidus_dev_support/tree/v1.5.0) (2020-06-13)
 
 [Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v1.4.0...v1.5.0)
