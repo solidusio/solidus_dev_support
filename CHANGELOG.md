@@ -6,6 +6,8 @@
 
 **Implemented enhancements:**
 
+- Let the extension name include spaces [\#133](https://github.com/solidusio/solidus_dev_support/pull/133) ([elia](https://github.com/elia))
+- Add precompiled badges fro CI and coverage [\#132](https://github.com/solidusio/solidus_dev_support/pull/132) ([elia](https://github.com/elia))
 - Add Changelog Rake task [\#128](https://github.com/solidusio/solidus_dev_support/pull/128) ([tvdeyen](https://github.com/tvdeyen))
 - Readme fixes [\#122](https://github.com/solidusio/solidus_dev_support/pull/122) ([elia](https://github.com/elia))
 
@@ -13,10 +15,6 @@
 
 - Don't install a payment-method in the sandbox [\#131](https://github.com/solidusio/solidus_dev_support/pull/131) ([elia](https://github.com/elia))
 - Run extension generator in sandbox [\#127](https://github.com/solidusio/solidus_dev_support/pull/127) ([elia](https://github.com/elia))
-
-**Merged pull requests:**
-
-- Add the codecov badge to the readme [\#123](https://github.com/solidusio/solidus_dev_support/pull/123) ([elia](https://github.com/elia))
 
 ## [v1.5.0](https://github.com/solidusio/solidus_dev_support/tree/v1.5.0) (2020-06-13)
 
