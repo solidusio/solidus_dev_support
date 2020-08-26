@@ -1,6 +1,7 @@
 # solidus_dev_support
 
-[![CircleCI](https://circleci.com/gh/solidusio/solidus_dev_support.svg?style=svg)](https://circleci.com/gh/solidusio/solidus_dev_support)
+
+[![CircleCI](https://circleci.com/gh/solidusio/solidus_dev_support.svg?style=shield)](https://circleci.com/gh/solidusio/solidus_dev_support)
 [![codecov](https://codecov.io/gh/solidusio/solidus_dev_support/branch/master/graph/badge.svg)](https://codecov.io/gh/solidusio/solidus_dev_support)
 
 This gem contains common development functionality for Solidus extensions.

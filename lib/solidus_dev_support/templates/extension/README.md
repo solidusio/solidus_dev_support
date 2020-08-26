@@ -1,6 +1,14 @@
 # <%= class_name %>
 
-[Explain what your extension does.] 
+<!-- Replace REPO_ORG and uncomment the following to show badges for CI and coverage. -->
+
+<!--
+[![CircleCI](https://circleci.com/gh/REPO_ORG/<%= file_name %>.svg?style=shield)](https://circleci.com/gh/REPO_ORG/<%= file_name %>)
+[![codecov](https://codecov.io/gh/REPO_ORG/<%= file_name %>/branch/master/graph/badge.svg)](https://codecov.io/gh/REPO_ORG/<%= file_name %>)
+-->
+
+
+[Explain what your extension does.]
 
 ## Installation
 
