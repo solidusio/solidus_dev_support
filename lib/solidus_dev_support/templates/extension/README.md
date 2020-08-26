@@ -72,7 +72,6 @@ git add CHANGELOG.md
 git commit -m "Update the changelog"
 ```
 
-
 ### Releasing new versions
 
 Your new extension version can be released using `gem-release` like this:
