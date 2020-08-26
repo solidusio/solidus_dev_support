@@ -61,12 +61,24 @@ $ bin/rails server
 Use Ctrl-C to stop
 ```
 
+### Updating the changelog
+
+Before and after releases the changelog should be updated to reflect the up-to-date status of
+the project:
+
+```shell
+bin/rake changelog
+git add CHANGELOG.md
+git commit -m "Update the changelog"
+```
+
+
 ### Releasing new versions
 
 Your new extension version can be released using `gem-release` like this:
 
 ```shell
-bundle exec gem bump -v VERSION --tag --push --remote upstream && gem release
+bundle exec gem bump -v VERSION --tag --push --remote origin && gem release
 ```
 
 ## License
