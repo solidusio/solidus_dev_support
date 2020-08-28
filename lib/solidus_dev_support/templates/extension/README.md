@@ -84,7 +84,11 @@ git commit -m "Update the changelog"
 Your new extension version can be released using `gem-release` like this:
 
 ```shell
-bundle exec gem bump -v VERSION --tag --push --remote origin && gem release
+bundle exec gem bump -v 1.6.0
+bin/rake changelog
+git commit -a --amend
+git push
+bundle exec gem release
 ```
 
 ## License
