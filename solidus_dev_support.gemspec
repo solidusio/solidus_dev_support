@@ -40,7 +40,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'puma', '~> 4.3'
   spec.add_dependency 'rspec_junit_formatter'
   spec.add_dependency 'rspec-rails', '~> 4.0.0.beta3'
-  spec.add_dependency 'rubocop', '~> 0.87.1'
+  spec.add_dependency 'rubocop', '~> 0.90'
   spec.add_dependency 'rubocop-performance', '~> 1.5'
   spec.add_dependency 'rubocop-rails', '~> 2.3'
   spec.add_dependency 'rubocop-rspec', '~> 1.36'
