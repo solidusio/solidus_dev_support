@@ -2,4 +2,8 @@
 
 module SolidusDevSupport
   VERSION = "1.6.0"
+
+  def self.gem_version
+    Gem::Version.new(VERSION)
+  end
 end
