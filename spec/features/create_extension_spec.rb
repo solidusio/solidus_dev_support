@@ -21,13 +21,18 @@ RSpec.describe 'Create extension' do
     mkdir_p(tmp_path)
   end
 
+  def step(method_name)
+    puts "Step #{method_name}"
+    send method_name
+  end
+
   it 'checks the create extension process' do
-    check_solidus_cmd
-    check_create_extension
-    check_bundle_install
-    check_default_task
-    check_run_specs
-    check_sandbox
+    step :check_solidus_cmd
+    step :check_create_extension
+    step :check_bundle_install
+    step :check_default_task
+    step :check_run_specs
+    step :check_sandbox
   end
 
   private
