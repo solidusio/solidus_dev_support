@@ -11,7 +11,9 @@ commands:
   setup:
     steps:
       - checkout
-      - run: "gem install bundler -v '>=2' --conservative"
+      - run:
+          command: "gem install bundler -v '>=2' --conservative"
+          no_output_timeout: 20m
 
 jobs:
   solidus-master:
