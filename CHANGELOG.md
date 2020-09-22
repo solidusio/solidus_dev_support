@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/solidusio/solidus_dev_support/tree/HEAD)
+## [v2.0.0](https://github.com/solidusio/solidus_dev_support/tree/v2.0.0) (2020-09-22)
 
-[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v1.5.0...HEAD)
+[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v1.5.0...v2.0.0)
 
 **Breaking changes:**
 
