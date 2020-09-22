@@ -4,8 +4,15 @@
 
 [Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v1.5.0...HEAD)
 
+**Breaking changes:**
+
+- Switch the JS driver to WebDriver/Selenium [\#136](https://github.com/solidusio/solidus_dev_support/pull/136) ([elia](https://github.com/elia))
+
 **Implemented enhancements:**
 
+- Enable new RuboCop cops automatically [\#143](https://github.com/solidusio/solidus_dev_support/pull/143) ([aldesantis](https://github.com/aldesantis))
+- Don't forcefully close issues via stale-bot [\#139](https://github.com/solidusio/solidus_dev_support/pull/139) ([elia](https://github.com/elia))
+- Add the approximate recommendation for dev-support to the gemspec [\#137](https://github.com/solidusio/solidus_dev_support/pull/137) ([elia](https://github.com/elia))
 - Let the extension name include spaces [\#133](https://github.com/solidusio/solidus_dev_support/pull/133) ([elia](https://github.com/elia))
 - Add precompiled badges fro CI and coverage [\#132](https://github.com/solidusio/solidus_dev_support/pull/132) ([elia](https://github.com/elia))
 - Add Changelog Rake task [\#128](https://github.com/solidusio/solidus_dev_support/pull/128) ([tvdeyen](https://github.com/tvdeyen))
@@ -13,6 +20,9 @@
 
 **Fixed bugs:**
 
+- fix capybara driver declaration [\#141](https://github.com/solidusio/solidus_dev_support/pull/141) ([ccarruitero](https://github.com/ccarruitero))
+- Bump RuboCop to latest 0.90.0 version [\#138](https://github.com/solidusio/solidus_dev_support/pull/138) ([peterberkenbosch](https://github.com/peterberkenbosch))
+- Fix missing backslash in solidus install command [\#135](https://github.com/solidusio/solidus_dev_support/pull/135) ([nirebu](https://github.com/nirebu))
 - Don't install a payment-method in the sandbox [\#131](https://github.com/solidusio/solidus_dev_support/pull/131) ([elia](https://github.com/elia))
 - Run extension generator in sandbox [\#127](https://github.com/solidusio/solidus_dev_support/pull/127) ([elia](https://github.com/elia))
 
