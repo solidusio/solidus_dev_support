@@ -1,5 +1,13 @@
 # Changelog
 
+## [v2.0.1](https://github.com/solidusio/solidus_dev_support/tree/v2.0.1) (2020-09-22)
+
+[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.0.0...v2.0.1)
+
+**Fixed bugs:**
+
+- Fix gem\_version not being found during extension generation [\#144](https://github.com/solidusio/solidus_dev_support/pull/144) ([aldesantis](https://github.com/aldesantis))
+
 ## [v2.0.0](https://github.com/solidusio/solidus_dev_support/tree/v2.0.0) (2020-09-22)
 
 [Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v1.5.0...v2.0.0)
@@ -17,6 +25,7 @@
 - Add precompiled badges fro CI and coverage [\#132](https://github.com/solidusio/solidus_dev_support/pull/132) ([elia](https://github.com/elia))
 - Add Changelog Rake task [\#128](https://github.com/solidusio/solidus_dev_support/pull/128) ([tvdeyen](https://github.com/tvdeyen))
 - Readme fixes [\#122](https://github.com/solidusio/solidus_dev_support/pull/122) ([elia](https://github.com/elia))
+- Restore the generic bin/rails command [\#106](https://github.com/solidusio/solidus_dev_support/pull/106) ([elia](https://github.com/elia))
 
 **Fixed bugs:**
 
