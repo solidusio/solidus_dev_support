@@ -40,6 +40,7 @@ module SolidusDevSupport
       template 'rspec', "#{path}/.rspec"
       template 'spec/spec_helper.rb.tt', "#{path}/spec/spec_helper.rb"
       template 'rubocop.yml', "#{path}/.rubocop.yml"
+      template 'github_changelog_generator', "#{path}/.github_changelog_generator"
     end
 
     no_tasks do
