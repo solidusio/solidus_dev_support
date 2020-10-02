@@ -18,8 +18,8 @@ require 'solidus_dev_support/rspec/feature_helper'
 # in spec/support/ and its subdirectories.
 Dir["#{__dir__}/support/**/*.rb"].sort.each { |f| require f }
 
-# Requires factories defined in lib/<%= file_name %>/factories.rb
-require '<%= file_name %>/factories'
+# Requires factories defined in lib/<%= file_name %>/testing_support/factories.rb
+require '<%= file_name %>/testing_support/factories'
 
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
