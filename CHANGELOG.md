@@ -1,5 +1,19 @@
 # Changelog
 
+## [v2.1.0](https://github.com/solidusio/solidus_dev_support/tree/v2.1.0) (2020-10-02)
+
+[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.0.1...v2.1.0)
+
+**Implemented enhancements:**
+
+- Add standard github\_changelog\_generator configuration [\#151](https://github.com/solidusio/solidus_dev_support/pull/151) ([aldesantis](https://github.com/aldesantis))
+- Move generated factories to `testing\_support/` [\#150](https://github.com/solidusio/solidus_dev_support/pull/150) ([aldesantis](https://github.com/aldesantis))
+- Add extension configuration boilerplate [\#149](https://github.com/solidusio/solidus_dev_support/pull/149) ([aldesantis](https://github.com/aldesantis))
+
+**Fixed bugs:**
+
+- Fix `NewCops: Enable` option for RuboCop [\#148](https://github.com/solidusio/solidus_dev_support/pull/148) ([aldesantis](https://github.com/aldesantis))
+
 ## [v2.0.1](https://github.com/solidusio/solidus_dev_support/tree/v2.0.1) (2020-09-22)
 
 [Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.0.0...v2.0.1)
@@ -25,7 +39,6 @@
 - Add precompiled badges fro CI and coverage [\#132](https://github.com/solidusio/solidus_dev_support/pull/132) ([elia](https://github.com/elia))
 - Add Changelog Rake task [\#128](https://github.com/solidusio/solidus_dev_support/pull/128) ([tvdeyen](https://github.com/tvdeyen))
 - Readme fixes [\#122](https://github.com/solidusio/solidus_dev_support/pull/122) ([elia](https://github.com/elia))
-- Restore the generic bin/rails command [\#106](https://github.com/solidusio/solidus_dev_support/pull/106) ([elia](https://github.com/elia))
 
 **Fixed bugs:**
 
