@@ -34,6 +34,8 @@ pull_request_rules:
       - base=master
       - -label="needs changelog label"
       - -label=blocked
+      - "#approved-reviews-by>=1"
+      - -draft
     actions:
       merge:
         method: merge
