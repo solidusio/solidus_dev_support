@@ -13,6 +13,12 @@ module SolidusDevSupport
     desc 'e', 'Manage solidus extensions (shortcut for "extension")'
     subcommand 'e', Extension
 
+    desc 'version', 'Displays solidus_dev_support version'
+    def version
+      puts "Solidus Dev Support version #{SolidusDevSupport::VERSION}"
+    end
+    map ['-v', '--version'] => :version
+
     def self.exit_on_failure?
       true
     end
