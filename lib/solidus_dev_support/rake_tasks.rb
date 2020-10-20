@@ -76,9 +76,11 @@ module SolidusDevSupport
     def install_changelog_task
       require 'github_changelog_generator/task'
 
-      user, project = gemspec.homepage.split("/")[3..5]
+      source_code_uri = URI.parse(gemspec.metadata['source_code_uri'] || gemspec.homepage)
+      user, project = source_code_uri.path.split("/", 3)[1..2]
+
       GitHubChangelogGenerator::RakeTask.new(:changelog) do |config|
-        config.user = user || 'solidus-contrib'
+        config.user = user || 'solidusio-contrib'
         config.project = project || gemspec.name
         config.future_release = "v#{gemspec.version}"
       end
