@@ -86,8 +86,10 @@ Your new extension version can be released using `gem-release` like this:
 ```shell
 bundle exec gem bump -v 1.6.0
 bin/rake changelog
-git commit -a --amend
-git push
+git add CHANGELOG.md
+git commit --amend --no-edit
+gem tag
+git push --tags
 bundle exec gem release
 ```
 
