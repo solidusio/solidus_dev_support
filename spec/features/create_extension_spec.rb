@@ -13,8 +13,7 @@ RSpec.describe 'Create extension' do
   let(:gemspec_name) { "solidus_#{extension_name}.gemspec" }
   let(:tmp_path) { Pathname.new(gem_root).join('tmp') }
   let(:install_path) { tmp_path.join("solidus_#{extension_name}") }
-
-  class CommandFailed < StandardError; end
+  let(:command_failed_error) { Class.new(StandardError) }
 
   before do
     rm_rf(install_path)
@@ -83,7 +82,7 @@ RSpec.describe 'Create extension' do
       open('Gemfile', 'a') { |f| f.puts "gem 'solidus_dev_support', path: '../../..'" }
     end
 
-    expect { bundle_install }.to raise_error(CommandFailed, /invalid gemspec/)
+    expect { bundle_install }.to raise_error(command_failed_error, /invalid gemspec/)
 
     # Update gemspec with the required fields
     gemspec_path = install_path.join(gemspec_name)
@@ -144,7 +143,7 @@ RSpec.describe 'Create extension' do
         warn "$ #{command}"
         warn output.to_s
       end
-      raise(CommandFailed, "command failed: #{command}\n#{output}")
+      raise(command_failed_error, "command failed: #{command}\n#{output}")
     end
   end
 

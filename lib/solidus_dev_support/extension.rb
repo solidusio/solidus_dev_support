@@ -69,7 +69,7 @@ module SolidusDevSupport
           gem.email = git('config user.email', 'TODO: Write your email address')
           gem.homepage = default_homepage
           gem.license = 'BSD-3-Clause'
-          gem.metadata['changelog_uri'] = default_homepage + '/releases'
+          gem.metadata['changelog_uri'] = "#{default_homepage}/releases"
           gem.summary = 'TODO: Write a short summary, because RubyGems requires one.'
         end
       end
