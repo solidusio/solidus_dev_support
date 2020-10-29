@@ -81,15 +81,7 @@ git commit -m "Update the changelog"
 
 ### Releasing new versions
 
-Your new extension version can be released using `gem-release` like this:
-
-```shell
-bundle exec gem bump -v 1.6.0
-bin/rake changelog
-git commit -a --amend
-git push
-bundle exec gem release
-```
+Please refer to the dedicated [page](https://github.com/solidusio/solidus/wiki/How-to-release-extensions) on Solidus wiki.
 
 ## License
 
