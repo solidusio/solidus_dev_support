@@ -28,6 +28,7 @@ module SolidusDevSupport
         make_executable bin
       end
 
+      template 'CHANGELOG.md', "#{path}/CHANGELOG.md"
       template 'extension.gemspec', "#{path}/#{file_name}.gemspec"
       template 'Gemfile', "#{path}/Gemfile"
       template 'gitignore', "#{path}/.gitignore"
