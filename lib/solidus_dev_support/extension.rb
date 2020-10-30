@@ -55,6 +55,8 @@ module SolidusDevSupport
         @root = File.dirname(path)
         @path = File.join(root, file_name)
 
+        @repo = existing_repo || default_repo
+
         @gemspec = existing_gemspec || default_gemspec
       end
 
@@ -97,11 +99,19 @@ module SolidusDevSupport
         )
       end
 
+      def default_repo
+        "solidusio-contrib/#{file_name}"
+      end
+
+      def existing_repo
+        git('remote get-url origin')&.sub(%r{^.*github\.com.([^/]+)/([^/.]+).*$}, '\1/\2')
+      end
+
       def github_user
         @github_user ||= git('config github.user', '[USERNAME]')
       end
 
-      def git(command, default)
+      def git(command, default = nil)
         result = `git #{command} 2> /dev/null`.strip
         result.empty? ? default : result
       end
@@ -112,7 +122,7 @@ module SolidusDevSupport
         path.chmod(executable)
       end
 
-      attr_reader :root, :path, :file_name, :class_name, :gemspec
+      attr_reader :root, :path, :file_name, :class_name, :gemspec, :repo
     end
 
     def self.source_root
