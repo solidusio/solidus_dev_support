@@ -7,7 +7,7 @@
 [![codecov](https://codecov.io/gh/REPO_ORG/<%= file_name %>/branch/master/graph/badge.svg)](https://codecov.io/gh/REPO_ORG/<%= file_name %>)
 -->
 
-[Explain what your extension does.]
+<!-- Explain what your extension does. -->
 
 ## Installation
 
@@ -25,7 +25,7 @@ bin/rails generate <%= file_name %>:install
 
 ## Usage
 
-[Explain how to use your extension once it's been installed.]
+<!-- Explain how to use your extension once it's been installed. -->
 
 ## Development
 
