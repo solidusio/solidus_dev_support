@@ -1,11 +1,7 @@
 # <%= class_name.gsub(/(?<=[^A-Z])([A-Z])/, ' \1') %>
 
-<!-- Replace REPO_ORG and uncomment the following to show badges for CI and coverage. -->
-
-<!--
-[![CircleCI](https://circleci.com/gh/REPO_ORG/<%= file_name %>.svg?style=shield)](https://circleci.com/gh/REPO_ORG/<%= file_name %>)
-[![codecov](https://codecov.io/gh/REPO_ORG/<%= file_name %>/branch/master/graph/badge.svg)](https://codecov.io/gh/REPO_ORG/<%= file_name %>)
--->
+[![CircleCI](https://circleci.com/gh/<%= repo %>.svg?style=shield)](https://circleci.com/gh/<%= repo %>)
+[![codecov](https://codecov.io/gh/<%= repo %>/branch/master/graph/badge.svg)](https://codecov.io/gh/<%= repo %>)
 
 <!-- Explain what your extension does. -->
 
