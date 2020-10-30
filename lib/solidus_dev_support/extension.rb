@@ -60,6 +60,10 @@ module SolidusDevSupport
         @gemspec = existing_gemspec || default_gemspec
       end
 
+      attr_reader :root, :path, :file_name, :class_name, :gemspec, :repo
+
+      private
+
       def gemspec_path
         @gemspec_path ||= File.join(path, "#{file_name}.gemspec")
       end
@@ -69,10 +73,12 @@ module SolidusDevSupport
           gem.author = git('config user.name', 'TODO: Write your name')
           gem.description = 'TODO: Write a longer description or delete this line.'
           gem.email = git('config user.email', 'TODO: Write your email address')
-          gem.homepage = default_homepage
           gem.license = 'BSD-3-Clause'
-          gem.metadata['changelog_uri'] = "#{default_homepage}/releases"
           gem.summary = 'TODO: Write a short summary, because RubyGems requires one.'
+
+          gem.metadata['homepage_uri'] = gem.homepage = "https://github.com/#{repo}#readme"
+          gem.metadata['changelog_uri'] = "https://github.com/#{repo}/blob/master/CHANGELOG.md"
+          gem.metadata['source_code_uri'] = "https://github.com/#{repo}"
         end
       end
 
@@ -82,21 +88,15 @@ module SolidusDevSupport
         @existing_gemspec ||= Gem::Specification.load(gemspec_path).tap do |spec|
           spec.author ||= default_gemspec.author
           spec.email ||= default_gemspec.email
-          spec.homepage ||= default_gemspec.homepage
-          spec.license ||= default_gemspec.license
-          spec.metadata['changelog_uri'] ||= default_gemspec.metadata[:changelog_uri]
-          spec.summary ||= default_gemspec.summary
-        end
-      end
 
-      def default_homepage
-        @default_homepage ||= git(
-          'remote get-url origin',
-          "git@github.com:#{github_user}/#{file_name}.git"
-        ).sub(
-          %r{^.*github\.com.([^/]+)/([^/.]+).*$},
-          'https://github.com/\1/\2'
-        )
+          spec.summary ||= default_gemspec.summary
+          spec.license ||= default_gemspec.license
+
+          spec.homepage ||= default_gemspec.homepage
+          spec.metadata['source_code_uri'] ||= default_gemspec.metadata['source_code_uri']
+          spec.metadata['changelog_uri'] ||= default_gemspec.metadata['changelog_uri']
+          spec.metadata['source_code_uri'] ||= default_gemspec.metadata['source_code_uri']
+        end
       end
 
       def default_repo
@@ -105,10 +105,6 @@ module SolidusDevSupport
 
       def existing_repo
         git('remote get-url origin')&.sub(%r{^.*github\.com.([^/]+)/([^/.]+).*$}, '\1/\2')
-      end
-
-      def github_user
-        @github_user ||= git('config github.user', '[USERNAME]')
       end
 
       def git(command, default = nil)
@@ -121,8 +117,6 @@ module SolidusDevSupport
         executable = (path.stat.mode | 0o111)
         path.chmod(executable)
       end
-
-      attr_reader :root, :path, :file_name, :class_name, :gemspec, :repo
     end
 
     def self.source_root
