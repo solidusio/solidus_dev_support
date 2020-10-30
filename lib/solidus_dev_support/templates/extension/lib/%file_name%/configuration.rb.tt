@@ -12,6 +12,8 @@ module <%= class_name %>
       @configuration ||= Configuration.new
     end
 
+    alias config configuration
+
     def configure
       yield configuration
     end
