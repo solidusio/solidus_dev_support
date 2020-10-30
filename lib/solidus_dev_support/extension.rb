@@ -71,10 +71,11 @@ module SolidusDevSupport
       def default_gemspec
         @default_gemspec ||= Gem::Specification.new(file_name, '0.0.1') do |gem|
           gem.author = git('config user.name', 'TODO: Write your name')
-          gem.description = 'TODO: Write a longer description or delete this line.'
           gem.email = git('config user.email', 'TODO: Write your email address')
-          gem.license = 'BSD-3-Clause'
+
           gem.summary = 'TODO: Write a short summary, because RubyGems requires one.'
+          gem.description = 'TODO: Write a longer description or delete this line.'
+          gem.license = 'BSD-3-Clause'
 
           gem.metadata['homepage_uri'] = gem.homepage = "https://github.com/#{repo}#readme"
           gem.metadata['changelog_uri'] = "https://github.com/#{repo}/blob/master/CHANGELOG.md"

@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.email = '<%= gemspec.email %>'
 
   spec.summary = '<%= gemspec.summary %>'
-  spec.description = '<%= gemspec.description %>'
-  spec.homepage = '<%= gemspec.homepage %>'
+  <% if gemspec.description %>spec.description = '<%= gemspec.description %>'
+  <% end %>spec.homepage = '<%= gemspec.homepage %>'
   spec.license = '<%= gemspec.license %>'
 
   spec.metadata['homepage_uri'] = spec.homepage
