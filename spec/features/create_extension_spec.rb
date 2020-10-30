@@ -3,6 +3,7 @@
 require 'fileutils'
 require 'open3'
 require 'spec_helper'
+require 'spree/core/version'
 
 RSpec.describe 'Create extension' do
   include FileUtils
@@ -49,11 +50,13 @@ RSpec.describe 'Create extension' do
   def check_gem_version
     gem_version_commands = ['version', '--version', '-v']
     gem_version = SolidusDevSupport::VERSION
+    solidus_version = Spree.solidus_gem_version
 
     cd(tmp_path) do
       gem_version_commands.each do |gem_version_cmd|
         output = `#{solidus_cmd} #{gem_version_cmd}`
         expect($?).to be_success
+        expect(output).to include("Solidus version #{solidus_version}")
         expect(output).to include("Solidus Dev Support version #{gem_version}")
       end
     end

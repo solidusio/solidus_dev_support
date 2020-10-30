@@ -2,6 +2,7 @@
 
 require 'thor'
 require 'solidus_dev_support/extension'
+require 'spree/core/version'
 
 module SolidusDevSupport
   class SolidusCommand < Thor
@@ -15,6 +16,7 @@ module SolidusDevSupport
 
     desc 'version', 'Displays solidus_dev_support version'
     def version
+      puts "Solidus version #{Spree.solidus_gem_version}"
       puts "Solidus Dev Support version #{SolidusDevSupport::VERSION}"
     end
     map ['-v', '--version'] => :version
