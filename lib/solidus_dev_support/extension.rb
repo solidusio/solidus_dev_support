@@ -50,10 +50,10 @@ module SolidusDevSupport
         @file_name = Thor::Util.snake_case(File.basename(path))
         @file_name = PREFIX + @file_name unless @file_name.start_with?(PREFIX)
 
-        @class_name = Thor::Util.camel_case @file_name
+        @class_name = Thor::Util.camel_case file_name
 
         @root = File.dirname(path)
-        @path = File.join(@root, @file_name)
+        @path = File.join(root, file_name)
 
         @gemspec = existing_gemspec || default_gemspec
       end
@@ -63,7 +63,7 @@ module SolidusDevSupport
       end
 
       def default_gemspec
-        @default_gemspec ||= Gem::Specification.new(@file_name, '0.0.1') do |gem|
+        @default_gemspec ||= Gem::Specification.new(file_name, '0.0.1') do |gem|
           gem.author = git('config user.name', 'TODO: Write your name')
           gem.description = 'TODO: Write a longer description or delete this line.'
           gem.email = git('config user.email', 'TODO: Write your email address')
