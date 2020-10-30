@@ -2,7 +2,18 @@
 
 module <%= class_name %>
   class Configuration
-    # TODO: Remember to change this with your extension's actual preferences!
-    # attr_accessor :sample_preference
+    # Define here the settings for this extensions, e.g.:
+    #
+    # attr_accessor :my_setting
+  end
+
+  class << self
+    def configuration
+      @configuration ||= Configuration.new
+    end
+
+    def configure
+      yield configuration
+    end
   end
 end
