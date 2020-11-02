@@ -6,15 +6,3 @@ require 'solidus_support'
 require '<%=file_name%>/configuration'
 require '<%=file_name%>/version'
 require '<%=file_name%>/engine'
-
-module <%= class_name %>
-  class << self
-    def configuration
-      @configuration ||= Configuration.new
-    end
-
-    def configure
-      yield configuration
-    end
-  end
-end
