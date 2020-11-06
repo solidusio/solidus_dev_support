@@ -76,11 +76,13 @@ module SolidusDevSupport
     def install_changelog_task
       require 'github_changelog_generator/task'
 
-      user, project = gemspec.homepage.split("/")[3..5]
       GitHubChangelogGenerator::RakeTask.new(:changelog) do |config|
-        config.user = user || 'solidus-contrib'
-        config.project = project || gemspec.name
-        config.future_release = "v#{gemspec.version}"
+        require 'octokit'
+        repo = Octokit::Repository.from_url(gemspec.metadata['source_code_uri'] || gemspec.homepage)
+
+        config.user = repo.owner
+        config.project = repo.name
+        config.future_release = "v#{ENV['UNRELEASED_VERSION'] || gemspec.version}"
       end
     end
   end
