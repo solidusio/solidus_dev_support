@@ -1,5 +1,25 @@
 # Changelog
 
+## [2.2.0](https://github.com/solidusio/solidus_dev_support/tree/2.2.0) (2020-11-27)
+
+[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.1.0...2.2.0)
+
+**Implemented enhancements:**
+
+- Improve the URL generation for the gemspec and Readme \(defaulting to the solidusio-contrib organization\), consistently use a file-based Changelog [\#159](https://github.com/solidusio/solidus_dev_support/pull/159) ([elia](https://github.com/elia))
+- Configuration Cleanup [\#158](https://github.com/solidusio/solidus_dev_support/pull/158) ([elia](https://github.com/elia))
+- Refer to Solidus wiki page for gem release info [\#157](https://github.com/solidusio/solidus_dev_support/pull/157) ([spaghetticode](https://github.com/spaghetticode))
+- Upgrade to RuboCop 1.0 [\#156](https://github.com/solidusio/solidus_dev_support/pull/156) ([aldesantis](https://github.com/aldesantis))
+- Add a command to display gem's version [\#154](https://github.com/solidusio/solidus_dev_support/pull/154) ([igorbp](https://github.com/igorbp))
+
+**Fixed bugs:**
+
+- Require "webdrivers" before using it as the default javascript driver [\#152](https://github.com/solidusio/solidus_dev_support/pull/152) ([ccarruitero](https://github.com/ccarruitero))
+
+**Merged pull requests:**
+
+- Don't let mergify mark a PR as red because it's missing a review [\#153](https://github.com/solidusio/solidus_dev_support/pull/153) ([elia](https://github.com/elia))
+
 ## [v2.1.0](https://github.com/solidusio/solidus_dev_support/tree/v2.1.0) (2020-10-02)
 
 [Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.0.1...v2.1.0)
@@ -47,6 +67,10 @@
 - Fix missing backslash in solidus install command [\#135](https://github.com/solidusio/solidus_dev_support/pull/135) ([nirebu](https://github.com/nirebu))
 - Don't install a payment-method in the sandbox [\#131](https://github.com/solidusio/solidus_dev_support/pull/131) ([elia](https://github.com/elia))
 - Run extension generator in sandbox [\#127](https://github.com/solidusio/solidus_dev_support/pull/127) ([elia](https://github.com/elia))
+
+**Merged pull requests:**
+
+- Update readme template [\#109](https://github.com/solidusio/solidus_dev_support/pull/109) ([aldesantis](https://github.com/aldesantis))
 
 ## [v1.5.0](https://github.com/solidusio/solidus_dev_support/tree/v1.5.0) (2020-06-13)
 
