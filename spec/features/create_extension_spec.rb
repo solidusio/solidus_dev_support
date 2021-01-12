@@ -122,11 +122,16 @@ RSpec.describe 'Create extension' do
   end
 
   def check_run_specs
+    install_path.join('lib', 'solidus_test_extension', 'testing_support', 'factories.rb').open('a') do |factories_file|
+      factories_file.write "\n puts 'loading test_extension factories'"
+    end
+
     install_path.join('spec', 'some_spec.rb').write(
       "require 'spec_helper'\nRSpec.describe 'Some test' do it { expect(true).to be_truthy } end\n"
     )
     cd(install_path) do
       output = sh('bundle exec rspec')
+      expect(output).to include('loading test_extension factories')
       expect(output).to include('1 example, 0 failures')
       expect(output).to include(ENV['CODECOV_TOKEN'] ? 'Coverage reports upload successfully' : 'Provide a CODECOV_TOKEN environment variable to enable Codecov uploads')
     end

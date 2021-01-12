@@ -20,9 +20,8 @@ require 'spree/testing_support/factories'
 require 'spree/testing_support/url_helpers'
 require 'spree/testing_support/preferences'
 require 'spree/testing_support/controller_requests'
+require 'solidus_dev_support/testing_support/factories'
 require 'solidus_dev_support/testing_support/preferences'
-
-FactoryBot.find_definitions
 
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
