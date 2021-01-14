@@ -1,8 +1,21 @@
 # Changelog
 
-## [2.2.0](https://github.com/solidusio/solidus_dev_support/tree/2.2.0) (2020-11-27)
+## [2.3.0](https://github.com/solidusio/solidus_dev_support/tree/2.3.0) (2021-01-14)
 
-[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.1.0...2.2.0)
+[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.2.0...2.3.0)
+
+**Implemented enhancements:**
+
+- Do not raise if source\_code\_uri is missing in the gemspec [\#163](https://github.com/solidusio/solidus_dev_support/pull/163) ([kennyadsl](https://github.com/kennyadsl))
+- Factory bot fixes for latest Solidus 2.11 release [\#162](https://github.com/solidusio/solidus_dev_support/pull/162) ([elia](https://github.com/elia))
+
+**Fixed bugs:**
+
+- use rubocop-rspec 2.x [\#161](https://github.com/solidusio/solidus_dev_support/pull/161) ([ccarruitero](https://github.com/ccarruitero))
+
+## [v2.2.0](https://github.com/solidusio/solidus_dev_support/tree/v2.2.0) (2020-11-27)
+
+[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.1.0...v2.2.0)
 
 **Implemented enhancements:**
 
@@ -44,7 +57,7 @@
 
 ## [v2.0.0](https://github.com/solidusio/solidus_dev_support/tree/v2.0.0) (2020-09-22)
 
-[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v1.5.0...v2.0.0)
+[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v1.6.0...v2.0.0)
 
 **Breaking changes:**
 
@@ -55,6 +68,19 @@
 - Enable new RuboCop cops automatically [\#143](https://github.com/solidusio/solidus_dev_support/pull/143) ([aldesantis](https://github.com/aldesantis))
 - Don't forcefully close issues via stale-bot [\#139](https://github.com/solidusio/solidus_dev_support/pull/139) ([elia](https://github.com/elia))
 - Add the approximate recommendation for dev-support to the gemspec [\#137](https://github.com/solidusio/solidus_dev_support/pull/137) ([elia](https://github.com/elia))
+
+**Fixed bugs:**
+
+- fix capybara driver declaration [\#141](https://github.com/solidusio/solidus_dev_support/pull/141) ([ccarruitero](https://github.com/ccarruitero))
+- Bump RuboCop to latest 0.90.0 version [\#138](https://github.com/solidusio/solidus_dev_support/pull/138) ([peterberkenbosch](https://github.com/peterberkenbosch))
+- Fix missing backslash in solidus install command [\#135](https://github.com/solidusio/solidus_dev_support/pull/135) ([nirebu](https://github.com/nirebu))
+
+## [v1.6.0](https://github.com/solidusio/solidus_dev_support/tree/v1.6.0) (2020-08-26)
+
+[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v1.5.0...v1.6.0)
+
+**Implemented enhancements:**
+
 - Let the extension name include spaces [\#133](https://github.com/solidusio/solidus_dev_support/pull/133) ([elia](https://github.com/elia))
 - Add precompiled badges fro CI and coverage [\#132](https://github.com/solidusio/solidus_dev_support/pull/132) ([elia](https://github.com/elia))
 - Add Changelog Rake task [\#128](https://github.com/solidusio/solidus_dev_support/pull/128) ([tvdeyen](https://github.com/tvdeyen))
@@ -62,15 +88,8 @@
 
 **Fixed bugs:**
 
-- fix capybara driver declaration [\#141](https://github.com/solidusio/solidus_dev_support/pull/141) ([ccarruitero](https://github.com/ccarruitero))
-- Bump RuboCop to latest 0.90.0 version [\#138](https://github.com/solidusio/solidus_dev_support/pull/138) ([peterberkenbosch](https://github.com/peterberkenbosch))
-- Fix missing backslash in solidus install command [\#135](https://github.com/solidusio/solidus_dev_support/pull/135) ([nirebu](https://github.com/nirebu))
 - Don't install a payment-method in the sandbox [\#131](https://github.com/solidusio/solidus_dev_support/pull/131) ([elia](https://github.com/elia))
 - Run extension generator in sandbox [\#127](https://github.com/solidusio/solidus_dev_support/pull/127) ([elia](https://github.com/elia))
-
-**Merged pull requests:**
-
-- Update readme template [\#109](https://github.com/solidusio/solidus_dev_support/pull/109) ([aldesantis](https://github.com/aldesantis))
 
 ## [v1.5.0](https://github.com/solidusio/solidus_dev_support/tree/v1.5.0) (2020-06-13)
 
