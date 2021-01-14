@@ -83,6 +83,16 @@ module SolidusDevSupport
         config.user = repo.owner
         config.project = repo.name
         config.future_release = "v#{ENV['UNRELEASED_VERSION'] || gemspec.version}"
+
+      rescue Octokit::InvalidRepository
+        warn <<~WARN
+          It won't be possible to automatically generate the CHANGELOG for this extension because the
+          gemspec is missing the `source_code_uri` metadata. Please add this line to the gemspec to
+          enable automatic CHANGELOG generation:
+
+              s.metadata["source_code_uri"] = 'https://github.com/org/repo'
+
+        WARN
       end
     end
   end
