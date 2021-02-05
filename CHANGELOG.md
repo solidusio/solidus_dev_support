@@ -1,8 +1,25 @@
 # Changelog
 
-## [2.3.0](https://github.com/solidusio/solidus_dev_support/tree/2.3.0) (2021-01-14)
+## [v2.4.0](https://github.com/solidusio/solidus_dev_support/tree/v2.4.0) (2021-02-05)
 
-[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.2.0...2.3.0)
+[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.3.0...v2.4.0)
+
+**Implemented enhancements:**
+
+- Improve engine's requires to remove double inclusions [\#165](https://github.com/solidusio/solidus_dev_support/pull/165) ([kennyadsl](https://github.com/kennyadsl))
+- Remove double require of core factories from rails\_helper [\#164](https://github.com/solidusio/solidus_dev_support/pull/164) ([kennyadsl](https://github.com/kennyadsl))
+
+**Fixed bugs:**
+
+- Fix typo in configuration.rb.tt [\#166](https://github.com/solidusio/solidus_dev_support/pull/166) ([brchristian](https://github.com/brchristian))
+
+**Merged pull requests:**
+
+- Rename spree:install to solidus:install in the sandbox template [\#167](https://github.com/solidusio/solidus_dev_support/pull/167) ([blocknotes](https://github.com/blocknotes))
+
+## [v2.3.0](https://github.com/solidusio/solidus_dev_support/tree/v2.3.0) (2021-01-14)
+
+[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.2.0...v2.3.0)
 
 **Implemented enhancements:**
 
