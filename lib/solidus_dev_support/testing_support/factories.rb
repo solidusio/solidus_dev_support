@@ -30,20 +30,37 @@ module SolidusDevSupport
     module Factories
       def self.load_for(*engines)
         paths = engines.flat_map do |engine|
-          factories_file_or_folder = engine.root.glob('lib/*/testing_support/factories{,.rb}')
-          if factories_file_or_folder.size == 2
-            folder, file = factories_file_or_folder.partition(&:directory?).map(&:first).map { |path| path.to_s.gsub(engine.root.to_s, '') }
+          # Check if the extension has a lib/*/factories.rb. If it does, we emit a
+          # deprecation warning and just use it.
+          obsolete_factories_file = engine.root.glob('lib/*/factories.rb').first # 'lib/*/factories/*_factory.rb'
+          if obsolete_factories_file.present?
             ActiveSupport::Deprecation.warn <<-WARN.squish, caller(4)
               SolidusDevSupport::TestingSupport::Factories.load_for() is automatically loading
-              all factories present into #{folder}. You should now safely remove #{file} if it
-              is only used to load ./factories content.
+              all factories present in #{obsolete_factories_file.dirname.to_s.gsub(engine.root.to_s, '')}/testing_support/factories/.
+              Please move the content of #{obsolete_factories_file.to_s.gsub(engine.root.to_s, '')} to that directory.
             WARN
 
-            engine.root.glob('lib/*/testing_support/factories/**/*_factory.rb')
+            [obsolete_factories_file]
           else
-            factories_file_or_folder
-          end.map { |path| path.sub(/.rb\z/, '').to_s }
-        end
+            # If there are both a lib/*/testing_support/factories.rb and a lib/*/testing_support/factories/,
+            # we assume that the factories.rb file is only used to load all factories prensent in the directory.
+            # That file can be removed from the extension, in fact, we ignore it and emit a message asking to
+            # remove it.
+            factories_file_or_folder = engine.root.glob('lib/*/testing_support/factories{,.rb}')
+            if factories_file_or_folder.size == 2
+              folder, file = factories_file_or_folder.partition(&:directory?).map(&:first).map { |path| path.to_s.gsub(engine.root.to_s, '') }
+              ActiveSupport::Deprecation.warn <<-WARN.squish, caller(4)
+                SolidusDevSupport::TestingSupport::Factories.load_for() is automatically loading
+                all factories present into #{folder}. You should now safely remove #{file} if it
+                is only used to load ./factories content.
+              WARN
+
+              engine.root.glob('lib/*/testing_support/factories/**/*_factory.rb')
+            else
+              factories_file_or_folder
+            end
+          end
+        end.map { |path| path.sub(/.rb\z/, '').to_s }
 
         if using_factory_bot_definition_file_paths?
           FactoryBot.definition_file_paths = [
