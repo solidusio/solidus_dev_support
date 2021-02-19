@@ -1,10 +1,28 @@
 # frozen_string_literal: true
 
+require 'factory_bot'
+
+Spree::Deprecation.silence do
+  require 'spree/testing_support/factories'
+  puts <<~MSG
+    We are transitioning to a new way of loading factories for extensions.
+    Be sure this extension does not load factories using require but uses
+    the load_for() method in its spec_helper.rb, eg:
+
+      SolidusDevSupport::TestingSupport::Factories.load_for(ExtensionName1::Engine, ExtensionName2::Engine)
+
+    This will load Solidus Core factories right before the ones defined in
+    lib/extension_name/testing_support/factories/*_factory.rb or
+    lib/extension_name/testing_support/factories.rb
+
+    This message will be removed when all extensions are updated.
+  MSG
+end
+
 begin
   require 'spree/testing_support/factory_bot'
 rescue LoadError
-  require 'factory_bot'
-  require 'spree/testing_support/factories'
+  # Do nothing, we are testing the extension against an old version of Solidus
 end
 
 module SolidusDevSupport
