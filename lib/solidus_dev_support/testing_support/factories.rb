@@ -13,8 +13,7 @@ module SolidusDevSupport
       def self.load_for(*engines)
         paths = engines.flat_map do |engine|
           factories_file_or_folder = engine.root.glob('lib/*/testing_support/factories{,.rb}')
-
-          if factories_file_or_folder.size == 2 && using_factory_bot_definition_file_paths?
+          if factories_file_or_folder.size == 2
             folder, file = factories_file_or_folder.partition(&:directory?).map(&:first).map { |path| path.to_s.gsub(engine.root.to_s, '') }
             ActiveSupport::Deprecation.warn <<-WARN.squish, caller(4)
               SolidusDevSupport::TestingSupport::Factories.load_for() is automatically loading
