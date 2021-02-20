@@ -42,10 +42,17 @@ bundle exec rubocop
 ```
 
 When testing your application's integration with this extension you may use its factories.
-Simply add this require statement to your spec_helper:
+Simply add this require statement to your `spec/spec_helper.rb`:
 
 ```ruby
-require '<%= file_name %>/factories'
+require '<%= file_name %>/testing_support/factories'
+```
+
+Or, if you are using `FactoryBot.definition_file_paths`, you can load Solidus core
+factories along with this extension's factories using this statement:
+
+```ruby
+SolidusDevSupport::TestingSupport::Factories.load_for(<%= class_name %>::Engine)
 ```
 
 ### Running the sandbox
