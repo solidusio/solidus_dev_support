@@ -56,6 +56,8 @@ module SolidusDevSupport
               WARN
 
               engine.root.glob('lib/*/testing_support/factories/**/*_factory.rb')
+            elsif factories_file_or_folder.first.directory?
+              engine.root.glob('lib/*/testing_support/factories/**/*_factory.rb')
             else
               factories_file_or_folder
             end
