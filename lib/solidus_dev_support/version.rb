@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module SolidusDevSupport
-  VERSION = "2.4.2"
+  VERSION = "2.4.3"
 
   def self.gem_version
     Gem::Version.new(VERSION)
