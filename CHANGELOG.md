@@ -1,5 +1,39 @@
 # Changelog
 
+## [v2.5.0](https://github.com/solidusio/solidus_dev_support/tree/v2.5.0) (2021-04-20)
+
+[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.4.3...v2.5.0)
+
+**Implemented enhancements:**
+
+- Allow Solidus 3 [\#176](https://github.com/solidusio/solidus_dev_support/pull/176) ([kennyadsl](https://github.com/kennyadsl))
+- Relax Ruby version requirement [\#174](https://github.com/solidusio/solidus_dev_support/pull/174) ([gauravtiwari](https://github.com/gauravtiwari))
+
+## [v2.4.3](https://github.com/solidusio/solidus_dev_support/tree/v2.4.3) (2021-02-23)
+
+[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.4.2...v2.4.3)
+
+**Implemented enhancements:**
+
+- Add instruction on how to use the new factories in apps [\#172](https://github.com/solidusio/solidus_dev_support/pull/172) ([kennyadsl](https://github.com/kennyadsl))
+
+**Fixed bugs:**
+
+- Explode directories into individual files [\#171](https://github.com/solidusio/solidus_dev_support/pull/171) ([kennyadsl](https://github.com/kennyadsl))
+- Fix factories loading, part 2 [\#170](https://github.com/solidusio/solidus_dev_support/pull/170) ([kennyadsl](https://github.com/kennyadsl))
+
+## [v2.4.2](https://github.com/solidusio/solidus_dev_support/tree/v2.4.2) (2021-02-19)
+
+[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.4.1...v2.4.2)
+
+## [v2.4.1](https://github.com/solidusio/solidus_dev_support/tree/v2.4.1) (2021-02-19)
+
+[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.4.0...v2.4.1)
+
+**Fixed bugs:**
+
+- Fix loading factories in extensions after the last changes in Solidus [\#169](https://github.com/solidusio/solidus_dev_support/pull/169) ([kennyadsl](https://github.com/kennyadsl))
+
 ## [v2.4.0](https://github.com/solidusio/solidus_dev_support/tree/v2.4.0) (2021-02-05)
 
 [Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.3.0...v2.4.0)
@@ -57,7 +91,7 @@
 **Implemented enhancements:**
 
 - Add standard github\_changelog\_generator configuration [\#151](https://github.com/solidusio/solidus_dev_support/pull/151) ([aldesantis](https://github.com/aldesantis))
-- Move generated factories to `testing\_support/` [\#150](https://github.com/solidusio/solidus_dev_support/pull/150) ([aldesantis](https://github.com/aldesantis))
+- Move generated factories to `testing_support/` [\#150](https://github.com/solidusio/solidus_dev_support/pull/150) ([aldesantis](https://github.com/aldesantis))
 - Add extension configuration boilerplate [\#149](https://github.com/solidusio/solidus_dev_support/pull/149) ([aldesantis](https://github.com/aldesantis))
 
 **Fixed bugs:**
