@@ -15,6 +15,7 @@ Gem::Specification.new do |spec|
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['source_code_uri'] = 'https://github.com/solidusio/solidus_dev_support'
   spec.metadata['changelog_uri'] = 'https://github.com/solidusio/solidus_dev_support/blob/master/CHANGELOG.md'
+  spec.metadata['rubygems_mfa_required'] = 'true'
 
   spec.required_ruby_version = '>= 2.5.0'
 
@@ -45,7 +46,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'rubocop-rails', '~> 2.3'
   spec.add_dependency 'rubocop-rspec', '~> 2.0'
   spec.add_dependency 'solidus_core', ['>= 2.0', '< 4']
-  spec.add_dependency 'webdrivers', '~> 4.4'
+  spec.add_dependency 'webdrivers', '>= 4.4'
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake'
