@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.5.2](https://github.com/solidusio/solidus_dev_support/tree/2.5.2) (2021-11-23)
+
+[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.5.1...2.5.2)
+
+**Merged pull requests:**
+
+- Loosen webdrivers constraint in solidus\_dev\_support [\#180](https://github.com/solidusio/solidus_dev_support/pull/180) ([gsmendoza](https://github.com/gsmendoza))
+
+## [v2.5.1](https://github.com/solidusio/solidus_dev_support/tree/v2.5.1) (2021-08-31)
+
+[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.5.0...v2.5.1)
+
 ## [v2.5.0](https://github.com/solidusio/solidus_dev_support/tree/v2.5.0) (2021-04-20)
 
 [Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.4.3...v2.5.0)
