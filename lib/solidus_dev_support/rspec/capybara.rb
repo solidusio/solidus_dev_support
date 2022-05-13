@@ -9,12 +9,16 @@ Capybara.javascript_driver = (ENV['CAPYBARA_JAVASCRIPT_DRIVER'] || "solidus_chro
 Capybara.default_max_wait_time = 10
 Capybara.server = :puma, { Silent: true } # A fix for rspec/rspec-rails#1897
 
-Capybara.drivers[:selenium_chrome_headless].tap do |original_driver|
-  Capybara.register_driver :solidus_chrome_headless do |app|
-    original_driver.call(app).tap do |driver|
-      driver.options[:options].args << "--window-size=#{CAPYBARA_WINDOW_SIZE.join(',')}"
-    end
-  end
+chrome_options = Selenium::WebDriver::Chrome::Options.new.tap do |options|
+  options.add_argument("--window-size=#{CAPYBARA_WINDOW_SIZE.join(',')}")
+  options.add_argument("--headless")
+  options.add_argument("--disable-gpu")
+end
+
+options_key = Capybara::Selenium::Driver::CAPS_VERSION.satisfied_by?(version) ? :capabilities : :options
+
+Capybara.register_driver :solidus_chrome_headless do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options_key => chrome_options)
 end
 
 require 'spree/testing_support/capybara_ext'
