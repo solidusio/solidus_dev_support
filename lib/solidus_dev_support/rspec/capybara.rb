@@ -15,6 +15,7 @@ chrome_options = Selenium::WebDriver::Chrome::Options.new.tap do |options|
   options.add_argument("--disable-gpu")
 end
 
+version = Capybara::Selenium::Driver.load_selenium
 options_key = Capybara::Selenium::Driver::CAPS_VERSION.satisfied_by?(version) ? :capabilities : :options
 
 Capybara.register_driver :solidus_chrome_headless do |app|
