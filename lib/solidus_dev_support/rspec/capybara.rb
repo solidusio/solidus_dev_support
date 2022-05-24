@@ -3,9 +3,9 @@
 require 'webdrivers/chromedriver'
 
 # Allow to override the initial windows size
-CAPYBARA_WINDOW_SIZE = (ENV['CAPYBARA_WINDOW_SIZE'] || '1920x1080').split('x', 2).map(&:to_i)
+CAPYBARA_WINDOW_SIZE = ENV.fetch('CAPYBARA_WINDOW_SIZE', '1920x1080').split('x', 2).map(&:to_i)
 
-Capybara.javascript_driver = (ENV['CAPYBARA_JAVASCRIPT_DRIVER'] || "solidus_chrome_headless").to_sym
+Capybara.javascript_driver = ENV.fetch('CAPYBARA_JAVASCRIPT_DRIVER', "solidus_chrome_headless").to_sym
 Capybara.default_max_wait_time = 10
 Capybara.server = :puma, { Silent: true } # A fix for rspec/rspec-rails#1897
 
