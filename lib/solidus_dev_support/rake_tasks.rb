@@ -13,7 +13,7 @@ module SolidusDevSupport
 
     def initialize(root: Dir.pwd)
       @root = Pathname(root)
-      @test_app_path = @root.join(ENV['DUMMY_PATH'] || 'spec/dummy')
+      @test_app_path = @root.join(ENV.fetch('DUMMY_PATH', 'spec/dummy'))
       @gemspec = Bundler.load_gemspec(@root.glob("{,*}.gemspec").first)
     end
 
@@ -43,7 +43,7 @@ module SolidusDevSupport
           cd root
         end
 
-        directory ENV['DUMMY_PATH'] do
+        directory ENV.fetch('DUMMY_PATH', nil) do
           Rake::Task['extension:test_app'].invoke
         end
       end
@@ -61,7 +61,7 @@ module SolidusDevSupport
       require 'rspec/core/rake_task'
 
       namespace :extension do
-        ::RSpec::Core::RakeTask.new(:specs, [] => FileList[ENV['DUMMY_PATH']]) do |t|
+        ::RSpec::Core::RakeTask.new(:specs, [] => FileList[ENV.fetch('DUMMY_PATH', nil)]) do |t|
           # Ref: https://circleci.com/docs/2.0/configuration-reference#store_test_results
           # Ref: https://github.com/solidusio/circleci-orbs-extensions#test-results-rspec
           if ENV['TEST_RESULTS_PATH']
@@ -82,7 +82,7 @@ module SolidusDevSupport
 
         config.user = repo.owner
         config.project = repo.name
-        config.future_release = "v#{ENV['UNRELEASED_VERSION'] || gemspec.version}"
+        config.future_release = "v#{ENV.fetch('UNRELEASED_VERSION') { gemspec.version }}"
 
       rescue Octokit::InvalidRepository
         warn <<~WARN
