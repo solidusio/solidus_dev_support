@@ -36,6 +36,11 @@ Style/RedundantRegexpEscape:
 Style/SlicingWithRange:
   Enabled: true
 
+# Disable this cop until this isssue gets a clear answer:
+# https://github.com/rubocop/rubocop/issues/10675
+Gemspec/DeprecatedAttributeAssignment:
+  Enabled: false
+
 AllCops:
   TargetRubyVersion: 2.5
   Exclude:
