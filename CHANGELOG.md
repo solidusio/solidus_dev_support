@@ -1,8 +1,17 @@
 # Changelog
 
-## [2.5.2](https://github.com/solidusio/solidus_dev_support/tree/2.5.2) (2021-11-23)
+## [2.5.4](https://github.com/solidusio/solidus_dev_support/tree/2.5.4) (2022-05-31)
 
-[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.5.1...2.5.2)
+[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.5.2...2.5.4)
+
+**Fixed bugs:**
+
+- Add a missing require for octokit/repository [\#185](https://github.com/solidusio/solidus_dev_support/pull/185) ([elia](https://github.com/elia))
+- Fix window resizing of `solidus_chrome_headless` driver  [\#184](https://github.com/solidusio/solidus_dev_support/pull/184) ([gsmendoza](https://github.com/gsmendoza))
+
+## [v2.5.2](https://github.com/solidusio/solidus_dev_support/tree/v2.5.2) (2021-11-23)
+
+[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.5.1...v2.5.2)
 
 **Merged pull requests:**
 
