@@ -44,6 +44,7 @@ module SolidusDevSupport
         end
 
         directory ENV.fetch('DUMMY_PATH', nil) do
+          ENV['RAILS_ENV'] = 'test'
           Rake::Task['extension:test_app'].invoke
         end
       end
