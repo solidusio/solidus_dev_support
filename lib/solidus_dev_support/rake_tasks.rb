@@ -78,7 +78,6 @@ module SolidusDevSupport
 
       GitHubChangelogGenerator::RakeTask.new(:changelog) do |config|
         require 'octokit'
-        require 'octokit/repository'
         repo = Octokit::Repository.from_url(gemspec.metadata['source_code_uri'] || gemspec.homepage)
 
         config.user = repo.owner
