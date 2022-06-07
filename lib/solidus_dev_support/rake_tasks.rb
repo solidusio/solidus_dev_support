@@ -39,11 +39,29 @@ module SolidusDevSupport
         # We need to go back to the gem root since the upstream
         # extension:test_app changes the working directory to be the dummy app.
         task :test_app do
+          puts
+          puts "----------"
+          puts "SolidusDevSupport::RakeTasks#install_test_app_task - extension:test_app"
+          puts "Setting RAILS_ENV to test..."
+          ENV['RAILS_ENV'] = 'test'
+          puts "ENV['RAILS_ENV']: #{ENV.fetch('RAILS_ENV', nil)}"
+          puts "----------"
+          puts
+
           Rake::Task['extension:test_app'].invoke
           cd root
         end
 
         directory ENV.fetch('DUMMY_PATH', nil) do
+          puts
+          puts "----------"
+          puts "SolidusDevSupport::RakeTasks#install_test_app_task - extension"
+          puts "Setting RAILS_ENV to test..."
+          ENV['RAILS_ENV'] = 'test'
+          puts "ENV['RAILS_ENV']: #{ENV.fetch('RAILS_ENV', nil)}"
+          puts "----------"
+          puts
+
           Rake::Task['extension:test_app'].invoke
         end
       end
@@ -78,6 +96,7 @@ module SolidusDevSupport
 
       GitHubChangelogGenerator::RakeTask.new(:changelog) do |config|
         require 'octokit'
+        require 'octokit/repository'
         repo = Octokit::Repository.from_url(gemspec.metadata['source_code_uri'] || gemspec.homepage)
 
         config.user = repo.owner
