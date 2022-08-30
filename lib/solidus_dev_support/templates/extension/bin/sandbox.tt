@@ -9,7 +9,11 @@ postgres|postgresql)
 mysql)
   RAILSDB="mysql"
   ;;
-sqlite|'')
+sqlite)
+  RAILSDB="sqlite3"
+  ;;
+'')
+  echo "~~> Use 'export DB=[postgres|mysql|sqlite]' to control the DB adapter"
   RAILSDB="sqlite3"
   ;;
 *)
@@ -17,13 +21,16 @@ sqlite|'')
   exit 1
   ;;
 esac
+echo "~~> Using $RAILSDB as the database engine"
 
-if [ ! -z $SOLIDUS_BRANCH ]
+if [ -n $SOLIDUS_BRANCH ]
 then
   BRANCH=$SOLIDUS_BRANCH
 else
+  echo "~~> Use 'export SOLIDUS_BRANCH=[master|v3.2|...]' to control the Solidus branch"
   BRANCH="master"
 fi
+echo "~~> Using branch $BRANCH of solidus"
 
 extension_name="<%= file_name %>"
 
@@ -80,7 +87,4 @@ unbundled bundle exec rails generate ${extension_name}:install
 
 echo
 echo "🚀 Sandbox app successfully created for $extension_name!"
-echo "🚀 Using $RAILSDB and Solidus $BRANCH"
-echo "🚀 Use 'export DB=[postgres|mysql|sqlite]' to control the DB adapter"
-echo "🚀 Use 'export SOLIDUS_BRANCH=<BRANCH-NAME>' to control the Solidus version"
-echo "🚀 This app is intended for test purposes."
+echo "🧪 This app is intended for test purposes."
