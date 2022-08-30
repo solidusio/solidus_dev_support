@@ -32,6 +32,13 @@ else
 fi
 echo "~~> Using branch $BRANCH of solidus"
 
+if [ -z $SOLIDUS_FRONTEND ]
+then
+  echo "~~> Use 'export SOLIDUS_FRONTEND=[solidus_frontend|solidus_starter_frontend]' to control the Solidus frontend"
+  SOLIDUS_FRONTEND="solidus_frontend"
+fi
+echo "~~> Using branch $SOLIDUS_FRONTEND as the solidus frontend"
+
 extension_name="<%= file_name %>"
 
 # Stay away from the bundler env of the containing extension.
@@ -80,6 +87,7 @@ unbundled bundle exec rails generate solidus:install \
   --enforce_available_locales=true \
   --with-authentication=false \
   --payment-method=none \
+  --frontend=${SOLIDUS_FRONTEND} \
   $@
 
 unbundled bundle exec rails generate solidus:auth:install
