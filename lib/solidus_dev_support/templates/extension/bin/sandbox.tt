@@ -65,7 +65,6 @@ fi
 cd ./sandbox
 cat <<RUBY >> Gemfile
 gem 'solidus', github: 'solidusio/solidus', branch: '$BRANCH'
-gem 'solidus_auth_devise', '>= 2.1.0'
 gem 'rails-i18n'
 gem 'solidus_i18n'
 
@@ -86,7 +85,7 @@ unbundled bundle exec rails generate solidus:install \
   --auto-accept \
   --user_class=Spree::User \
   --enforce_available_locales=true \
-  --with-authentication=false \
+  --with-authentication=<%= file_name != 'solidus_auth_devise' %> \
   --payment-method=none \
   --frontend=${SOLIDUS_FRONTEND} \
   $@
