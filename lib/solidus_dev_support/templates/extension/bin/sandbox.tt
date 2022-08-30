@@ -9,7 +9,7 @@ postgres|postgresql)
 mysql)
   RAILSDB="mysql"
   ;;
-sqlite)
+sqlite3|sqlite)
   RAILSDB="sqlite3"
   ;;
 '')
@@ -17,7 +17,8 @@ sqlite)
   RAILSDB="sqlite3"
   ;;
 *)
-  echo "Invalid DB specified: $DB"
+  echo "Invalid value specified for the Solidus sandbox: DB=\"$DB\"."
+  echo "Please use 'postgres', 'mysql', or 'sqlite' instead."
   exit 1
   ;;
 esac
