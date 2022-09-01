@@ -183,7 +183,7 @@ RSpec.describe 'Create extension' do
     bundle_path = "#{gem_root}/vendor/bundle"
 
     command = 'bundle install'
-    command += " --path=#{bundle_path.shellescape}" if File.exist?(bundle_path)
+    command = "env BUNDLE_PATH=#{bundle_path.shellescape} #{command}" if File.exist?(bundle_path)
 
     output = nil
     cd(install_path) { output = sh command }
