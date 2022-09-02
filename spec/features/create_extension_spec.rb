@@ -159,16 +159,18 @@ RSpec.describe 'Create extension' do
       Open3.capture2e({ 'CI' => nil }, command)
     end
 
-    if status.success?
-      output.to_s
-    else
-      if $DEBUG
-        warn '~' * 80
-        warn "$ #{command}"
-        warn output.to_s
-      end
+    if $DEBUG || ENV['DEBUG']
+      warn '~' * 80
+      warn "$ #{command}"
+      warn output.to_s
+      warn "$ #{command} ~~~~> EXIT STATUS: #{status.exitstatus}"
+    end
+
+    unless status.success?
       raise(command_failed_error, "command failed: #{command}\n#{output}")
     end
+
+    output.to_s
   end
 
   def with_unbundled_env(&block)

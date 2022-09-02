@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
 set -e
+if [ ! -z $DEBUG ]
+then
+  set -x
+fi
 
 case "$DB" in
 postgres|postgresql)
