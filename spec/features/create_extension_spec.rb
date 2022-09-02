@@ -184,11 +184,12 @@ RSpec.describe 'Create extension' do
     # variables doesn't help because commands are run with a clean env.
     bundle_path = "#{gem_root}/vendor/bundle"
 
-    command = 'bundle install'
-    command = "env BUNDLE_PATH=#{bundle_path.shellescape} #{command}" if File.exist?(bundle_path)
+    if File.exist?(bundle_path)
+      sh "bundle config set --local path #{bundle_path.shellescape}"
+    end
 
     output = nil
-    cd(install_path) { output = sh command }
+    cd(install_path) { output = sh 'bundle install' }
     output
   end
 end
