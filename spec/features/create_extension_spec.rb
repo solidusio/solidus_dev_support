@@ -155,7 +155,9 @@ RSpec.describe 'Create extension' do
 
   def sh(*args)
     command = args.size == 1 ? args.first : args.shelljoin
-    output, status = with_unbundled_env { Open3.capture2e(command) }
+    output, status = with_unbundled_env do
+      Open3.capture2e({ 'CI' => nil }, command)
+    end
 
     if status.success?
       output.to_s
