@@ -12,6 +12,10 @@ require 'solidus_dev_support/rspec/rails_helper'
 require 'capybara-screenshot/rspec'
 require 'solidus_dev_support/rspec/capybara'
 
+Capybara::Screenshot.register_driver(:solidus_chrome_headless) do |driver, path|
+  driver.browser.save_screenshot(path)
+end
+
 def dev_support_assets_preload
   if Rails.application.respond_to?(:precompiled_assets)
     Rails.application.precompiled_assets
