@@ -14,7 +14,7 @@ commands:
       - run:
           name: "Update bundler"
           command: |
-            gem update --system
+            sudo gem update --system
             gem --version
             gem install bundler -v '>=2.3.21' --conservative
             bundle --version
