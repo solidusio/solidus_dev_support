@@ -21,4 +21,10 @@ Capybara.drivers[:selenium_chrome_headless].tap do |original_driver|
   end
 end
 
+require 'capybara-screenshot/rspec'
+
+Capybara::Screenshot.register_driver(:solidus_chrome_headless) do |driver, path|
+  driver.browser.save_screenshot(path)
+end
+
 require 'spree/testing_support/capybara_ext'
