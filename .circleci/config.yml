@@ -12,21 +12,25 @@ commands:
     steps:
       - checkout
       - run:
-          command: "gem install bundler -v '>=2' --conservative"
-          no_output_timeout: 20m
+          name: "Update bundler"
+          command: |
+            gem update --system
+            gem --version
+            gem install bundler -v '>=2.3.21' --conservative
+            bundle --version
 
 jobs:
   solidus-master:
-    executor: solidusio_extensions/sqlite-memory
+    executor: solidusio_extensions/sqlite
     steps: ['setup', 'solidusio_extensions/run-tests-solidus-master']
   solidus-current:
-    executor: solidusio_extensions/sqlite-memory
+    executor: solidusio_extensions/sqlite
     steps: ['setup', 'solidusio_extensions/run-tests-solidus-current']
   solidus-older:
-    executor: solidusio_extensions/sqlite-memory
+    executor: solidusio_extensions/sqlite
     steps: ['setup', 'solidusio_extensions/run-tests-solidus-older']
   lint-code:
-    executor: solidusio_extensions/sqlite-memory
+    executor: solidusio_extensions/sqlite
     steps: ['setup', 'solidusio_extensions/lint-code']
 
 workflows:

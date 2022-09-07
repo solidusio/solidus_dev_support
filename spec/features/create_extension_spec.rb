@@ -155,18 +155,22 @@ RSpec.describe 'Create extension' do
 
   def sh(*args)
     command = args.size == 1 ? args.first : args.shelljoin
-    output, status = with_unbundled_env { Open3.capture2e(command) }
+    output, status = with_unbundled_env do
+      Open3.capture2e({ 'CI' => nil }, command)
+    end
 
-    if status.success?
-      output.to_s
-    else
-      if $DEBUG
-        warn '~' * 80
-        warn "$ #{command}"
-        warn output.to_s
-      end
+    if $DEBUG || ENV['DEBUG']
+      warn '~' * 80
+      warn "$ #{command}"
+      warn output.to_s
+      warn "$ #{command} ~~~~> EXIT STATUS: #{status.exitstatus}"
+    end
+
+    unless status.success?
       raise(command_failed_error, "command failed: #{command}\n#{output}")
     end
+
+    output.to_s
   end
 
   def with_unbundled_env(&block)
@@ -182,11 +186,12 @@ RSpec.describe 'Create extension' do
     # variables doesn't help because commands are run with a clean env.
     bundle_path = "#{gem_root}/vendor/bundle"
 
-    command = 'bundle install'
-    command += " --path=#{bundle_path.shellescape}" if File.exist?(bundle_path)
+    if File.exist?(bundle_path)
+      sh "bundle config set --local path #{bundle_path.shellescape}"
+    end
 
     output = nil
-    cd(install_path) { output = sh command }
+    cd(install_path) { output = sh 'bundle install' }
     output
   end
 end
