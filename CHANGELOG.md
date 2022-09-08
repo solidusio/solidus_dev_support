@@ -1,8 +1,21 @@
 # Changelog
 
-## [2.5.4](https://github.com/solidusio/solidus_dev_support/tree/2.5.4) (2022-05-31)
+## [2.5.5](https://github.com/solidusio/solidus_dev_support/tree/2.5.5) (2022-09-08)
 
-[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.5.2...2.5.4)
+[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.5.4...2.5.5)
+
+**Implemented enhancements:**
+
+- Configure solidus\_chrome\_headless as capybara-screenshot driver [\#190](https://github.com/solidusio/solidus_dev_support/pull/190) ([tvdeyen](https://github.com/tvdeyen))
+- Misc: auth-devise, extracted frontend gem, sqlite [\#188](https://github.com/solidusio/solidus_dev_support/pull/188) ([elia](https://github.com/elia))
+
+**Fixed bugs:**
+
+- Revert temporary fix for Octokit [\#186](https://github.com/solidusio/solidus_dev_support/pull/186) ([waiting-for-dev](https://github.com/waiting-for-dev))
+
+## [v2.5.4](https://github.com/solidusio/solidus_dev_support/tree/v2.5.4) (2022-05-31)
+
+[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.5.2...v2.5.4)
 
 **Fixed bugs:**
 
