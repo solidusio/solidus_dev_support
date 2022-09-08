@@ -8,8 +8,6 @@
 #
 
 require 'solidus_dev_support/rspec/rails_helper'
-
-require 'capybara-screenshot/rspec'
 require 'solidus_dev_support/rspec/capybara'
 
 def dev_support_assets_preload
