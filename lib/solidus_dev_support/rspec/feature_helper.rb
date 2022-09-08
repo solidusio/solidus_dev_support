@@ -10,7 +10,7 @@
 require 'solidus_dev_support/rspec/rails_helper'
 require 'solidus_dev_support/rspec/capybara'
 
-def dev_support_assets_preload
+dev_support_assets_preload = ->(*) {
   if Rails.application.respond_to?(:precompiled_assets)
     Rails.application.precompiled_assets
   else
@@ -19,18 +19,14 @@ def dev_support_assets_preload
       Rails.application.assets.find_asset(asset)
     end
   end
-end
+}
 
 RSpec.configure do |config|
   config.when_first_matching_example_defined(type: :feature) do
-    config.before :suite do
-      dev_support_assets_preload
-    end
+    config.before :suite, &dev_support_assets_preload
   end
 
   config.when_first_matching_example_defined(type: :system) do
-    config.before :suite do
-      dev_support_assets_preload
-    end
+    config.before :suite, &dev_support_assets_preload
   end
 end
