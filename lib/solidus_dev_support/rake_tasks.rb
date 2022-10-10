@@ -27,11 +27,11 @@ module SolidusDevSupport
     end
 
     def install_test_app_task
-      require 'rake/clean'
-      require 'spree/testing_support/extension_rake'
-
       ENV['DUMMY_PATH'] = test_app_path.to_s
       ENV['LIB_NAME'] = gemspec.name
+
+      require 'rake/clean'
+      require 'spree/testing_support/extension_rake'
 
       ::CLOBBER.include test_app_path
 
