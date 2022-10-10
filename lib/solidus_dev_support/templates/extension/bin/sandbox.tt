@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
-if [ -n "$DEBUG" ]
-then
-  set -x
-fi
+test -z "${DEBUG+empty_string}" || set -x
 
 case "$DB" in
 postgres|postgresql)
