@@ -60,7 +60,7 @@ bin/rails generate solidus:install --auto-accept $@
 # If it's already in the bundle we can assume it was installed by solidus:install
 (bundle list | grep --quiet $extension_name) || (
   echo "~~~> Installing the extension" &&
-    bundle add $extension_name &&
+    bundle add $extension_name --path '..' &&
     ./bin/rails generate "${extension_name}:install" --auto-run-migrations
 )
 
