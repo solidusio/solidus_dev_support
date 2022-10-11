@@ -40,8 +40,7 @@ RSpec.describe 'Create extension' do
 
   def check_solidus_cmd
     cd(tmp_path) do
-      output = `#{solidus_cmd} -h`
-      expect($?).to be_success
+      output = sh "#{solidus_cmd} -h"
       expect(output).to include('Commands:')
     end
   end
@@ -53,8 +52,7 @@ RSpec.describe 'Create extension' do
 
     cd(tmp_path) do
       gem_version_commands.each do |gem_version_cmd|
-        output = `#{solidus_cmd} #{gem_version_cmd}`
-        expect($?).to be_success
+        output = sh "#{solidus_cmd} #{gem_version_cmd}"
         expect(output).to include("Solidus version #{solidus_version}")
         expect(output).to include("Solidus Dev Support version #{gem_version}")
       end
@@ -63,8 +61,7 @@ RSpec.describe 'Create extension' do
 
   def check_create_extension
     cd(tmp_path) do
-      output = `#{solidus_cmd} extension #{extension_name}`
-      expect($?).to be_success
+      output = sh "#{solidus_cmd} extension #{extension_name}"
       expect(output).to include(gemspec_name)
       expect(output).to include('.circleci')
     end
@@ -115,7 +112,7 @@ RSpec.describe 'Create extension' do
 
   def check_default_task
     cd(install_path) do
-      output = sh('bin/rake')
+      output = unbundled_sh('bin/rake')
       expect(output).to include('Generating dummy Rails application')
       expect(output).to include('0 examples, 0 failures')
     end
@@ -130,7 +127,7 @@ RSpec.describe 'Create extension' do
       "require 'spec_helper'\nRSpec.describe 'Some test' do it { expect(true).to be_truthy } end\n"
     )
     cd(install_path) do
-      output = sh('bundle exec rspec')
+      output = unbundled_sh('bundle exec rspec')
       expect(output).to include('loading test_extension factories')
       expect(output).to include('1 example, 0 failures')
       expect(output).to include(ENV['CODECOV_TOKEN'] ? 'Coverage reports upload successfully' : 'Provide a CODECOV_TOKEN environment variable to enable Codecov uploads')
@@ -143,11 +140,11 @@ RSpec.describe 'Create extension' do
       command = 'bin/rails-sandbox runner "puts %{The version of SolidusTestExtension is #{SolidusTestExtension::VERSION}}"'
       # rubocop:enable Lint/InterpolationCheck
 
-      first_run_output = sh(command)
+      first_run_output = unbundled_sh(command)
       expect(first_run_output).to include("Creating the sandbox app...")
       expect(first_run_output).to include('The version of SolidusTestExtension is 0.0.1')
 
-      second_run_output = sh(command)
+      second_run_output = unbundled_sh(command)
       expect(second_run_output).not_to include("Creating the sandbox app...")
       expect(second_run_output).to include('The version of SolidusTestExtension is 0.0.1')
     end
@@ -155,9 +152,7 @@ RSpec.describe 'Create extension' do
 
   def sh(*args)
     command = args.size == 1 ? args.first : args.shelljoin
-    output, status = Bundler.with_unbundled_env do
-      Open3.capture2e({ 'CI' => nil }, command)
-    end
+    output, status = Open3.capture2e({ 'CI' => nil }, command)
 
     if $DEBUG || ENV['DEBUG']
       warn '~' * 80
@@ -173,17 +168,21 @@ RSpec.describe 'Create extension' do
     output.to_s
   end
 
+  def unbundled_sh(*args)
+    Bundler.with_unbundled_env { sh(*args) }
+  end
+
   def bundle_install
     # Optimize the bundle path within the CI, in this context using bundler env
     # variables doesn't help because commands are run with a clean env.
     bundle_path = "#{gem_root}/vendor/bundle"
 
     if File.exist?(bundle_path)
-      sh "bundle config set --local path #{bundle_path.shellescape}"
+      unbundled_sh "bundle config set --local path #{bundle_path.shellescape}"
     end
 
     output = nil
-    cd(install_path) { output = sh 'bundle install' }
+    cd(install_path) { output = unbundled_sh 'bundle install' }
     output
   end
 end
