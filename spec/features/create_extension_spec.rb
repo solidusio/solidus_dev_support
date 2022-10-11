@@ -93,7 +93,7 @@ RSpec.describe 'Create extension' do
 
   def check_bundle_install
     cd(install_path) do
-      open('Gemfile', 'a') { |f| f.puts "gem 'solidus_dev_support', path: '../../..'" }
+      open('Gemfile', 'a') { |f| f.puts "gem 'solidus_dev_support', path: #{gem_root.inspect}" }
     end
 
     expect { bundle_install }.to raise_error(command_failed_error, /invalid gemspec/)
