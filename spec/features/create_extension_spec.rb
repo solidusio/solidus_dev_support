@@ -155,7 +155,7 @@ RSpec.describe 'Create extension' do
 
   def sh(*args)
     command = args.size == 1 ? args.first : args.shelljoin
-    output, status = with_unbundled_env do
+    output, status = Bundler.with_unbundled_env do
       Open3.capture2e({ 'CI' => nil }, command)
     end
 
@@ -171,14 +171,6 @@ RSpec.describe 'Create extension' do
     end
 
     output.to_s
-  end
-
-  def with_unbundled_env(&block)
-    if Bundler.respond_to?(:with_unbundled_env)
-      Bundler.with_unbundled_env(&block)
-    else
-      Bundler.with_clean_env(&block)
-    end
   end
 
   def bundle_install
