@@ -16,17 +16,16 @@ echo '~~~> Using branch $SOLIDUS_BRANCH of solidus'
 
 # Override bundle in order to stay away from the
 # bundler env of the containing extension.
-function bundle {
-  ruby -rbundler -e'Bundler.with_unbundled_env { system "bundle", *ARGV }' -- $@
+function with_unbundled_env {
+  ruby -rbundler -e'Bundler.with_unbundled_env { system *ARGV }' -- $@
 }
 
 echo "~~~> Removing the old sandbox"
 rm -rf ./sandbox
 
 echo "~~~> Creating a pristine Rails app"
-rails new sandbox \
+with_unbundled_env rails new sandbox \
   --database="$DB" \
-  --skip-bundle \
   --skip-git \
   --skip-keeps \
   --skip-rc \
@@ -52,16 +51,16 @@ RUBY
 
 bundle config local.$extension_name "$PWD/.."
 bundle config gemfile "$PWD/Gemfile"
-bundle install
+with_unbundled_env bundle install
 
 echo "~~~> Running the solidus:install generator"
-bin/rails generate solidus:install --auto-accept $@
+with_unbundled_env bin/rails generate solidus:install --auto-accept $@
 
 # If it's already in the bundle we can assume it was installed by solidus:install
-(bundle list | grep --quiet $extension_name) || (
+(with_unbundled_env bundle list | grep --quiet $extension_name) || (
   echo "~~~> Installing the extension" &&
-    bundle add $extension_name --path '..' &&
-    ./bin/rails generate "${extension_name}:install" --auto-run-migrations
+    with_unbundled_env bundle add $extension_name --path '..' &&
+    with_unbundled_env ./bin/rails generate "${extension_name}:install" --auto-run-migrations
 )
 
 echo

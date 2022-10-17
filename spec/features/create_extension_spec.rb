@@ -140,7 +140,7 @@ RSpec.describe 'Create extension' do
       command = 'bin/rails-sandbox runner "puts %{The version of SolidusTestExtension is #{SolidusTestExtension::VERSION}}"'
       # rubocop:enable Lint/InterpolationCheck
 
-      first_run_output = unbundled_sh(command)
+      first_run_output = sh(command)
       expect(first_run_output).to include("Creating the sandbox app...")
       expect(first_run_output).to include('The version of SolidusTestExtension is 0.0.1')
 
