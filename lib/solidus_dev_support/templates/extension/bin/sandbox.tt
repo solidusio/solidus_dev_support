@@ -46,6 +46,13 @@ echo "~~> Using branch $SOLIDUS_FRONTEND as the solidus frontend"
 
 extension_name="<%= file_name %>"
 
+if [ "$extension_name" = "solidus_auth_devise" ]
+then
+  AUTHENTICATION_TYPE="none"
+else
+  AUTHENTICATION_TYPE="devise"
+fi
+
 # Stay away from the bundler env of the containing extension.
 function unbundled {
   ruby -rbundler -e'b = proc {system *ARGV}; Bundler.respond_to?(:with_unbundled_env) ? Bundler.with_unbundled_env(&b) : Bundler.with_clean_env(&b)' -- $@
@@ -89,7 +96,7 @@ unbundled bundle exec rails generate solidus:install \
   --auto-accept \
   --user_class=Spree::User \
   --enforce_available_locales=true \
-  --with-authentication=<%= file_name != 'solidus_auth_devise' %> \
+  --authentication=${AUTHENTICATION_TYPE} \
   --payment-method=none \
   --frontend=${SOLIDUS_FRONTEND} \
   $@
