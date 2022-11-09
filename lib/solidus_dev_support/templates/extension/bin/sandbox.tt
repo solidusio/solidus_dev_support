@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
-if [ ! -z $DEBUG ]
+if [ ! -z "$DEBUG" ]
 then
   set -x
 fi
@@ -28,7 +28,7 @@ sqlite3|sqlite)
 esac
 echo "~~> Using $RAILSDB as the database engine"
 
-if [ -n $SOLIDUS_BRANCH ]
+if [ -n "$SOLIDUS_BRANCH" ]
 then
   BRANCH=$SOLIDUS_BRANCH
 else
@@ -37,7 +37,7 @@ else
 fi
 echo "~~> Using branch $BRANCH of solidus"
 
-if [ -z $SOLIDUS_FRONTEND ]
+if [ -z "$SOLIDUS_FRONTEND" ]
 then
   echo "~~> Use 'export SOLIDUS_FRONTEND=[solidus_frontend|solidus_starter_frontend]' to control the Solidus frontend"
   SOLIDUS_FRONTEND="solidus_frontend"
