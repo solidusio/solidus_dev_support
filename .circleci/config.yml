@@ -6,6 +6,7 @@ orbs:
   # to change this configuration every time a Solidus version is released
   # or goes EOL.
   solidusio_extensions: solidusio/extensions@volatile
+  slack: circleci/slack@4.9.3
 
 commands:
   setup:
@@ -19,27 +20,38 @@ commands:
             gem install bundler -v '>=2.3.21' --conservative
             bundle --version
 
+  notify:
+    steps:
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+          branch_pattern: master
+
 jobs:
   solidus-master:
     executor: solidusio_extensions/sqlite
-    steps: ['setup', 'solidusio_extensions/run-tests-solidus-master']
+    steps: ['setup', 'solidusio_extensions/run-tests-solidus-master', 'notify']
   solidus-current:
     executor: solidusio_extensions/sqlite
-    steps: ['setup', 'solidusio_extensions/run-tests-solidus-current']
+    steps: ['setup', 'solidusio_extensions/run-tests-solidus-current', 'notify']
   solidus-older:
     executor: solidusio_extensions/sqlite
-    steps: ['setup', 'solidusio_extensions/run-tests-solidus-older']
+    steps: ['setup', 'solidusio_extensions/run-tests-solidus-older', 'notify']
   lint-code:
     executor: solidusio_extensions/sqlite
-    steps: ['setup', 'solidusio_extensions/lint-code']
+    steps: ['setup', 'solidusio_extensions/lint-code', 'notify']
 
 workflows:
   "Run specs on supported Solidus versions":
     jobs:
-      - solidus-master
-      - solidus-current
-      - solidus-older
-      - lint-code
+      - solidus-master:
+          context: slack-secrets
+      - solidus-current:
+          context: slack-secrets
+      - solidus-older:
+          context: slack-secrets
+      - lint-code:
+          context: slack-secrets
 
   "Weekly run specs against master":
     triggers:
@@ -50,6 +62,9 @@ workflows:
               only:
                 - master
     jobs:
-      - solidus-master
-      - solidus-current
-      - solidus-older
+      - solidus-master:
+          context: slack-secrets
+      - solidus-current:
+          context: slack-secrets
+      - solidus-older:
+          context: slack-secrets
