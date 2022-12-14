@@ -29,13 +29,19 @@ commands:
 
 jobs:
   solidus-master:
-    executor: solidusio_extensions/sqlite
+    executor:
+      name: solidusio_extensions/sqlite
+      ruby_version: '3.1'
     steps: ['setup', 'solidusio_extensions/run-tests-solidus-master', 'notify']
   solidus-current:
-    executor: solidusio_extensions/sqlite
+    executor:
+      name: solidusio_extensions/sqlite
+      ruby_version: '3.0'
     steps: ['setup', 'solidusio_extensions/run-tests-solidus-current', 'notify']
   solidus-older:
-    executor: solidusio_extensions/sqlite
+    executor:
+      name: solidusio_extensions/sqlite
+      ruby_version: '2.7'
     steps: ['setup', 'solidusio_extensions/run-tests-solidus-older', 'notify']
   lint-code:
     executor: solidusio_extensions/sqlite
