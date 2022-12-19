@@ -11,6 +11,11 @@ orbs:
   solidusio_extensions: solidusio/extensions@volatile
 
 jobs:
+  run-specs-with-sqlite:
+    executor: solidusio_extensions/sqlite
+    steps:
+      - browser-tools/install-chrome
+      - solidusio_extensions/run-tests
   run-specs-with-postgres:
     executor: solidusio_extensions/postgres
     steps:
@@ -29,6 +34,7 @@ jobs:
 workflows:
   "Run specs on supported Solidus versions":
     jobs:
+      - run-specs-with-sqlite
       - run-specs-with-postgres
       - run-specs-with-mysql
       - lint-code
@@ -42,5 +48,6 @@ workflows:
               only:
                 - master
     jobs:
+      - run-specs-with-sqlite
       - run-specs-with-postgres
       - run-specs-with-mysql
