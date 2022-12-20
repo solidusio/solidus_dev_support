@@ -1,35 +1,31 @@
 #!/usr/bin/env bash
 
+# Set the extension name
+extension_name="<%= file_name %>"
+
 set -e
 test -z "${DEBUG+empty_string}" || set -x
 
+test -n "$DB" || echo "~~~> Use 'export DB=[postgres|mysql|sqlite3]' to control the DB adapter"
+# Support CircleCI runs in which DB is set to "sqlite" by the extension ORB.
 test "$DB" = "sqlite" && export DB="sqlite3"
+echo '~~~> Using $DB as the database engine'
 
-if [ -z "$SOLIDUS_BRANCH" ]
-then
-  echo "~~> Use 'export SOLIDUS_BRANCH=[master|v3.2|...]' to control the Solidus branch"
-  SOLIDUS_BRANCH="master"
-fi
-echo "~~> Using branch $SOLIDUS_BRANCH of solidus"
+test -n "$SOLIDUS_BRANCH" || echo "~~~> Use 'export SOLIDUS_BRANCH=[master|v3.2|...]' to control the Solidus branch"
+echo '~~~> Using branch $SOLIDUS_BRANCH of solidus'
 
-if [ -z "$SOLIDUS_FRONTEND" ]
-then
-  echo "~~> Use 'export SOLIDUS_FRONTEND=[solidus_frontend|solidus_starter_frontend]' to control the Solidus frontend"
-  SOLIDUS_FRONTEND="solidus_frontend"
-fi
-echo "~~> Using branch $SOLIDUS_FRONTEND as the solidus frontend"
-
-extension_name="<%= file_name %>"
-
-# Stay away from the bundler env of the containing extension.
-function unbundled {
-  ruby -rbundler -e'b = proc {system *ARGV}; Bundler.respond_to?(:with_unbundled_env) ? Bundler.with_unbundled_env(&b) : Bundler.with_clean_env(&b)' -- $@
+# Override bundle in order to stay away from the
+# bundler env of the containing extension.
+function with_unbundled_env {
+  ruby -rbundler -e'Bundler.with_unbundled_env { system *ARGV }' -- $@
 }
 
+echo "~~~> Removing the old sandbox"
 rm -rf ./sandbox
-unbundled bundle exec rails new sandbox \
-  --database="${DB:-sqlite3}" \
-  --skip-bundle \
+
+echo "~~~> Creating a pristine Rails app"
+with_unbundled_env rails new sandbox \
+  --database="$DB" \
   --skip-git \
   --skip-keeps \
   --skip-rc \
@@ -43,36 +39,30 @@ if [ ! -d "sandbox" ]; then
 fi
 
 cd ./sandbox
+
+# Ensure any previous sandbox DB is recreated
+bin/rails db:drop db:create
+
+echo "~~~> Adding solidus to the Gemfile"
 cat <<RUBY >> Gemfile
-gem 'solidus', github: 'solidusio/solidus', branch: '$SOLIDUS_BRANCH'
-gem 'rails-i18n'
-gem 'solidus_i18n'
-
-gem '$extension_name', path: '..'
-
-group :test, :development do
-  platforms :mri do
-    gem 'pry-byebug'
-  end
-end
+gem 'solidus', github: 'solidusio/solidus', branch: '$BRANCH'
+gem 'pry-byebug', group: [:test, :development], platforms: [:mri]
 RUBY
 
-unbundled bundle install --gemfile Gemfile
+bundle config local.$extension_name "$PWD/.."
+bundle config gemfile "$PWD/Gemfile"
+with_unbundled_env bundle install
 
-unbundled bundle exec rake db:drop db:create
+echo "~~~> Running the solidus:install generator"
+with_unbundled_env bin/rails generate solidus:install --auto-accept $@
 
-unbundled bundle exec rails generate solidus:install \
-  --auto-accept \
-  --user_class=Spree::User \
-  --enforce_available_locales=true \
-  --with-authentication=<%= file_name != 'solidus_auth_devise' %> \
-  --payment-method=none \
-  --frontend=${SOLIDUS_FRONTEND} \
-  $@
-
-unbundled bundle exec rails generate solidus:auth:install --auto-run-migrations
-unbundled bundle exec rails generate ${extension_name}:install --auto-run-migrations
+# If it's already in the bundle we can assume it was installed by solidus:install
+(with_unbundled_env bundle list | grep --quiet $extension_name) || (
+  echo "~~~> Installing the extension" &&
+    with_unbundled_env bundle add $extension_name --path '..' &&
+    with_unbundled_env ./bin/rails generate "${extension_name}:install" --auto-run-migrations
+)
 
 echo
-echo "🚀 Sandbox app successfully created for $extension_name!"
-echo "🧪 This app is intended for test purposes."
+echo "~~~> 🚀 Sandbox app successfully created for $extension_name!"
+echo "~~~> 🧪 This app is intended for test purposes."

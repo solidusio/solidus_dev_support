@@ -2,6 +2,7 @@
 
 require 'thor'
 require 'pathname'
+require 'shellwords'
 
 require 'solidus_dev_support/version'
 
@@ -16,7 +17,7 @@ module SolidusDevSupport
     def generate(raw_path = '.')
       self.path = raw_path
 
-      empty_directory path
+      run "git init #{path.shellescape} --quiet"
 
       directory 'app', "#{path}/app"
       directory 'lib', "#{path}/lib"

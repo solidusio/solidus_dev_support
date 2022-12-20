@@ -27,11 +27,15 @@ module SolidusDevSupport
     end
 
     def install_test_app_task
-      require 'rake/clean'
-      require 'spree/testing_support/extension_rake'
-
       ENV['DUMMY_PATH'] = test_app_path.to_s
       ENV['LIB_NAME'] = gemspec.name
+
+      # We need to skip solidus bolt for Solidus v3.2,
+      # otherwise it will try to install it when creating the dummy app.
+      ENV['SKIP_SOLIDUS_BOLT'] = 'true'
+
+      require 'rake/clean'
+      require 'spree/testing_support/extension_rake'
 
       ::CLOBBER.include test_app_path
 
