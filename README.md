@@ -38,11 +38,11 @@ in solidus_dev_support.
 
 #### Updating existing extensions
 
-If you have an existing extension and want to update it to use the latest standards from this gem,
-you can run the following in the extension's directory:
+If you have an existing extension generated with `solidus_dev_support` and want to update it to use
+the latest standards from this gem, you can run the following in the extension's directory:
 
 ```console
-$ solidus extension .
+$ bundle exec solidus extension .
 ```
 
 In case of conflicting files, you will be prompted for an action. You can overwrite the files with
