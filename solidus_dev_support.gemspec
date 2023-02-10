@@ -47,7 +47,4 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'rubocop-rspec', '~> 2.0'
   spec.add_dependency 'solidus_core', ['>= 2.0', '< 4']
   spec.add_dependency 'webdrivers', '>= 4.4'
-
-  spec.add_development_dependency 'bundler'
-  spec.add_development_dependency 'rake'
 end
