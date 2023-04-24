@@ -45,6 +45,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'rubocop-performance', '~> 1.5'
   spec.add_dependency 'rubocop-rails', '~> 2.3'
   spec.add_dependency 'rubocop-rspec', '~> 2.0'
-  spec.add_dependency 'solidus_core', ['>= 2.0', '< 4']
+  spec.add_dependency 'solidus_core', ['>= 2.0', '< 5']
   spec.add_dependency 'webdrivers', '>= 4.4'
 end
