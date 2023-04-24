@@ -238,7 +238,7 @@ To release a new version:
 
 1. update the version number in `version.rb`
 2. update the changelog with `bin/rake changelog`
-3. commit the changes using `Bump SolidusDevSupport to 1.2.3` as the message
+3. commit the changes using `Release SolidusDevSupport v1.2.3` as the message
 3. run `bin/rake release`
 
 The last command will create a git tag for the version, push git commits and tags, and push the `.gem` file to

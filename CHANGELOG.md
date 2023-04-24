@@ -1,8 +1,25 @@
 # Changelog
 
-## [2.5.5](https://github.com/solidusio/solidus_dev_support/tree/2.5.5) (2022-09-08)
+## [2.5.6](https://github.com/solidusio/solidus_dev_support/tree/2.5.6) (2023-04-24)
 
-[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.5.4...2.5.5)
+[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.5.5...2.5.6)
+
+**Implemented enhancements:**
+
+- Allow Solidus 4 [\#203](https://github.com/solidusio/solidus_dev_support/pull/203) ([elia](https://github.com/elia))
+- Update proposed defaults [\#191](https://github.com/solidusio/solidus_dev_support/pull/191) ([elia](https://github.com/elia))
+
+**Fixed bugs:**
+
+- Fix sandbox default solidus branch [\#192](https://github.com/solidusio/solidus_dev_support/pull/192) ([RyanofWoods](https://github.com/RyanofWoods))
+
+**Merged pull requests:**
+
+- Remove Slack notifications for CI failures [\#199](https://github.com/solidusio/solidus_dev_support/pull/199) ([waiting-for-dev](https://github.com/waiting-for-dev))
+
+## [v2.5.5](https://github.com/solidusio/solidus_dev_support/tree/v2.5.5) (2022-09-08)
+
+[Full Changelog](https://github.com/solidusio/solidus_dev_support/compare/v2.5.4...v2.5.5)
 
 **Implemented enhancements:**
 
