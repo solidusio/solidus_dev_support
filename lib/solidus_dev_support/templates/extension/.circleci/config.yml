@@ -39,14 +39,14 @@ workflows:
       - run-specs-with-mysql
       - lint-code
 
-  "Weekly run specs against master":
+  "Weekly run specs against main":
     triggers:
       - schedule:
           cron: "0 0 * * 4" # every Thursday
           filters:
             branches:
               only:
-                - master
+                - main
     jobs:
       - run-specs-with-sqlite
       - run-specs-with-postgres

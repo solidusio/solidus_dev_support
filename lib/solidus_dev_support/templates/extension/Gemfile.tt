@@ -3,11 +3,11 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-branch = ENV.fetch('SOLIDUS_BRANCH', 'master')
+branch = ENV.fetch('SOLIDUS_BRANCH', 'main')
 gem 'solidus', github: 'solidusio/solidus', branch: branch
 
 # The solidus_frontend gem has been pulled out since v3.2
-gem 'solidus_frontend', github: 'solidusio/solidus_frontend' if branch == 'master'
+gem 'solidus_frontend', github: 'solidusio/solidus_frontend' if branch == 'main'
 gem 'solidus_frontend' if branch >= 'v3.2' # rubocop:disable Bundler/DuplicatedGem
 
 # Needed to help Bundler figure out how to resolve dependencies,

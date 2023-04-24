@@ -7,7 +7,7 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 # Specify your gem's dependencies in solidus_dev_support.gemspec
 gemspec
 
-branch = ENV.fetch('SOLIDUS_BRANCH', 'master')
+branch = ENV.fetch('SOLIDUS_BRANCH', 'main')
 gem 'solidus', github: 'solidusio/solidus', branch: branch
 
 # A workaround for https://github.com/bundler/bundler/issues/6677
