@@ -162,7 +162,7 @@ RSpec.describe 'Create extension' do
     if $DEBUG || ENV['DEBUG']
       warn '~' * 80
       warn "$ #{command}"
-      warn output.to_s
+      warn output
       warn "$ #{command} ~~~~> EXIT STATUS: #{status.exitstatus}"
     end
 

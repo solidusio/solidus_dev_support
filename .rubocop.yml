@@ -1,6 +1,8 @@
 inherit_from:
   - https://relaxed.ruby.style/rubocop.yml
 
+Gemspec/RequiredRubyVersion:
+  Enabled: false
 Layout/EmptyLinesAroundAttributeAccessor:
   Enabled: true
 Layout/SpaceAroundMethodCallOperator:
@@ -42,7 +44,7 @@ Gemspec/DeprecatedAttributeAssignment:
   Enabled: false
 
 AllCops:
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 3.0
   Exclude:
     - tmp/**/*
     - "vendor/**/*"
@@ -55,4 +57,3 @@ Style/FrozenStringLiteralComment:
     - "**/bin/*"
     - "**/exe/*"
     - "spec/**/*"
-

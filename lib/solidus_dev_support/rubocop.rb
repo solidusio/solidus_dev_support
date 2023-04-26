@@ -2,7 +2,7 @@
 
 module SolidusDevSupport
   module RuboCop
-    CONFIG_PATH = "#{__dir__}/rubocop/config.yml"
+    CONFIG_PATH = "#{__dir__}/rubocop/config.yml".freeze
 
     def self.inject_defaults!
       config = ::RuboCop::ConfigLoader.load_file(CONFIG_PATH)
