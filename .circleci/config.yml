@@ -36,7 +36,9 @@ jobs:
       ruby_version: '2.7'
     steps: ['setup', 'solidusio_extensions/run-tests-solidus-older']
   lint-code:
-    executor: solidusio_extensions/sqlite
+    executor:
+      name: solidusio_extensions/sqlite
+      ruby_version: '3.0'
     steps: ['setup', 'solidusio_extensions/lint-code']
 
 workflows:
