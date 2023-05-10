@@ -8,7 +8,7 @@ module SolidusDevSupport
     module Factories
       def self.load_for(*engines)
         paths = engines.flat_map do |engine|
-          engine.root.glob('lib/*/testing_support/factories{,.rb}')
+          engine.root.glob('lib/**/testing_support/factories{,.rb}')
         end.map { |path| path.sub(/.rb\z/, '').to_s }
 
         FactoryBot.definition_file_paths = [
