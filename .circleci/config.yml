@@ -20,11 +20,11 @@ commands:
             bundle --version
 
 jobs:
-  solidus-master:
+  solidus-main:
     executor:
       name: solidusio_extensions/sqlite
       ruby_version: '3.1'
-    steps: ['setup', 'solidusio_extensions/run-tests-solidus-master']
+    steps: ['setup', 'solidusio_extensions/run-tests-solidus-main']
   solidus-current:
     executor:
       name: solidusio_extensions/sqlite
@@ -44,7 +44,7 @@ jobs:
 workflows:
   "Run specs on supported Solidus versions":
     jobs:
-      - solidus-master
+      - solidus-main
       - solidus-current
       - solidus-older
       - lint-code
@@ -58,6 +58,6 @@ workflows:
               only:
                 - master
     jobs:
-      - solidus-master
+      - solidus-main
       - solidus-current
       - solidus-older
