@@ -20,11 +20,11 @@ commands:
             bundle --version
 
 jobs:
-  solidus-master:
+  solidus-main:
     executor:
       name: solidusio_extensions/sqlite
       ruby_version: '3.1'
-    steps: ['setup', 'solidusio_extensions/run-tests-solidus-master']
+    steps: ['setup', 'solidusio_extensions/run-tests-solidus-main']
   solidus-current:
     executor:
       name: solidusio_extensions/sqlite
@@ -44,20 +44,20 @@ jobs:
 workflows:
   "Run specs on supported Solidus versions":
     jobs:
-      - solidus-master
+      - solidus-main
       - solidus-current
       - solidus-older
       - lint-code
 
-  "Weekly run specs against master":
+  "Weekly run specs against main":
     triggers:
       - schedule:
           cron: "0 0 * * 4" # every Thursday
           filters:
             branches:
               only:
-                - master
+                - main
     jobs:
-      - solidus-master
+      - solidus-main
       - solidus-current
       - solidus-older

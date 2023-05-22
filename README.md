@@ -78,7 +78,7 @@ the `DB` and `SOLIDUS_BRANCH` env variables.
 DB=[postgres|mysql|sqlite] SOLIDUS_BRANCH=<BRANCH-NAME> bin/sandbox
 ```
 
-By default we use sqlite3 and the master branch.
+By default we use sqlite3 and the main branch.
 
 ### Rails generators
 
