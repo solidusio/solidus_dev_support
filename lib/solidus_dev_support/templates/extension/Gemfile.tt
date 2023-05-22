@@ -7,8 +7,13 @@ branch = ENV.fetch('SOLIDUS_BRANCH', 'main')
 gem 'solidus', github: 'solidusio/solidus', branch: branch
 
 # The solidus_frontend gem has been pulled out since v3.2
-gem 'solidus_frontend', github: 'solidusio/solidus_frontend' if branch == 'main'
-gem 'solidus_frontend' if branch >= 'v3.2' # rubocop:disable Bundler/DuplicatedGem
+if branch >= 'v3.2'
+  gem 'solidus_frontend'
+elsif branch == 'main'
+  gem 'solidus_frontend', github: 'solidusio/solidus_frontend'
+else
+  gem 'solidus_frontend', github: 'solidusio/solidus', branch: branch
+end
 
 # Needed to help Bundler figure out how to resolve dependencies,
 # otherwise it takes forever to resolve them.
