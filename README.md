@@ -234,15 +234,9 @@ experiment.
 
 To install this gem onto your local machine, run `bin/rake install`.
 
-To release a new version:
+### Releasing new versions
 
-1. update the version number in `version.rb`
-2. update the changelog with `bin/rake changelog`
-3. commit the changes using `Release SolidusDevSupport v1.2.3` as the message
-3. run `bin/rake release`
-
-The last command will create a git tag for the version, push git commits and tags, and push the `.gem` file to
-[rubygems.org](https://rubygems.org).
+Please use the same process suggested for extensions in the [dedicated page](https://github.com/solidusio/solidus/wiki/How-to-release-extensions) in the Solidus wiki.
 
 ## Contributing
 
