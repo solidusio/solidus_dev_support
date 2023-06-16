@@ -2,7 +2,7 @@
 
 
 [![CircleCI](https://circleci.com/gh/solidusio/solidus_dev_support.svg?style=shield)](https://circleci.com/gh/solidusio/solidus_dev_support)
-[![codecov](https://codecov.io/gh/solidusio/solidus_dev_support/branch/master/graph/badge.svg)](https://codecov.io/gh/solidusio/solidus_dev_support)
+[![codecov](https://codecov.io/gh/solidusio/solidus_dev_support/branch/main/graph/badge.svg)](https://codecov.io/gh/solidusio/solidus_dev_support)
 
 This gem contains common development functionality for Solidus extensions.
 
@@ -192,7 +192,7 @@ The above command will:
 
 * bump the gem version to the next minor (you can also use `patch`, `major` or a specific version
   number);
-* commit the change and push it to `origin/master`;
+* commit the change and push it to `origin/main`;
 * create a Git tag;
 * push the tag to the `origin` remote;
 * release the new version on RubyGems.
