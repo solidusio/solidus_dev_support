@@ -1,7 +1,7 @@
 # <%= class_name.gsub(/(?<=[^A-Z])([A-Z])/, ' \1') %>
 
 [![CircleCI](https://circleci.com/gh/<%= repo %>.svg?style=shield)](https://circleci.com/gh/<%= repo %>)
-[![codecov](https://codecov.io/gh/<%= repo %>/branch/master/graph/badge.svg)](https://codecov.io/gh/<%= repo %>)
+[![codecov](https://codecov.io/gh/<%= repo %>/branch/main/graph/badge.svg)](https://codecov.io/gh/<%= repo %>)
 
 <!-- Explain what your extension does. -->
 

@@ -61,7 +61,7 @@ RSpec.describe SolidusDevSupport::Extension do
         expect(subject.gemspec.description).to eq('TODO: Write a longer description or delete this line.')
         expect(subject.gemspec.license).to eq('BSD-3-Clause')
         expect(subject.gemspec.homepage).to eq("https://github.com/solidusio-contrib/solidus_my_ext#readme")
-        expect(subject.gemspec.metadata['changelog_uri']).to eq("https://github.com/solidusio-contrib/solidus_my_ext/blob/master/CHANGELOG.md")
+        expect(subject.gemspec.metadata['changelog_uri']).to eq("https://github.com/solidusio-contrib/solidus_my_ext/blob/main/CHANGELOG.md")
         expect(subject.gemspec.metadata['source_code_uri']).to eq("https://github.com/solidusio-contrib/solidus_my_ext")
       end
     end

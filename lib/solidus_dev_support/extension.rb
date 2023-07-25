@@ -79,7 +79,7 @@ module SolidusDevSupport
           gem.license = 'BSD-3-Clause'
 
           gem.metadata['homepage_uri'] = gem.homepage = "https://github.com/#{repo}#readme"
-          gem.metadata['changelog_uri'] = "https://github.com/#{repo}/blob/master/CHANGELOG.md"
+          gem.metadata['changelog_uri'] = "https://github.com/#{repo}/blob/main/CHANGELOG.md"
           gem.metadata['source_code_uri'] = "https://github.com/#{repo}"
         end
       end
