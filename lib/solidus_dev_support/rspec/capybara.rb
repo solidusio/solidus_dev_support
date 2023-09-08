@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'webdrivers/chromedriver'
-
 # Allow to override the initial windows size
 CAPYBARA_WINDOW_SIZE = ENV.fetch('CAPYBARA_WINDOW_SIZE', '1920x1080').split('x', 2).map(&:to_i)
 CAPYBARA_WINDOW_WIDTH = CAPYBARA_WINDOW_SIZE[0]
