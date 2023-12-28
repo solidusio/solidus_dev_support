@@ -23,12 +23,12 @@ jobs:
   solidus-main:
     executor:
       name: solidusio_extensions/sqlite
-      ruby_version: '3.1'
+      ruby_version: '3.2'
     steps: ['setup', 'solidusio_extensions/run-tests-solidus-main']
   solidus-current:
     executor:
       name: solidusio_extensions/sqlite
-      ruby_version: '3.0'
+      ruby_version: '3.1'
     steps: ['setup', 'solidusio_extensions/run-tests-solidus-current']
   solidus-older:
     executor:
@@ -38,7 +38,7 @@ jobs:
   lint-code:
     executor:
       name: solidusio_extensions/sqlite
-      ruby_version: '3.0'
+      ruby_version: '3.1'
     steps: ['setup', 'solidusio_extensions/lint-code']
 
 workflows:

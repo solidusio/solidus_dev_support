@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.metadata['changelog_uri'] = 'https://github.com/solidusio/solidus_dev_support/releases'
   spec.metadata['rubygems_mfa_required'] = 'true'
 
-  spec.required_ruby_version = '>= 2.5.0'
+  spec.required_ruby_version = '>= 3.0.0'
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'capybara', '~> 3.29'
   spec.add_dependency 'capybara-screenshot', '~> 1.0'
   spec.add_dependency 'codecov', '~> 0.2'
-  spec.add_dependency 'database_cleaner', '~> 1.7'
+  spec.add_dependency 'database_cleaner', ['>= 1.7', '< 3']
   spec.add_dependency 'factory_bot', '>= 4.8'
   spec.add_dependency 'factory_bot_rails'
   spec.add_dependency 'ffaker', '~> 2.13'
