@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'capybara', '~> 3.29'
   spec.add_dependency 'capybara-screenshot', '~> 1.0'
   spec.add_dependency 'codecov', '~> 0.2'
-  spec.add_dependency 'database_cleaner', '~> 1.7'
+  spec.add_dependency 'database_cleaner', ['>= 1.7', '< 3']
   spec.add_dependency 'factory_bot', '>= 4.8'
   spec.add_dependency 'factory_bot_rails'
   spec.add_dependency 'ffaker', '~> 2.13'
