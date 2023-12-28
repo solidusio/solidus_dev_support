@@ -83,7 +83,6 @@ module SolidusDevSupport
         config.user = repo.owner
         config.project = repo.name
         config.future_release = "v#{ENV.fetch('UNRELEASED_VERSION') { gemspec.version }}"
-
       rescue Octokit::InvalidRepository
         warn <<~WARN
           It won't be possible to automatically generate the CHANGELOG for this extension because the
