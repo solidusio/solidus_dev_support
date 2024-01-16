@@ -173,11 +173,11 @@ RSpec.describe 'Create extension' do
     output.to_s
   end
 
-  def with_unbundled_env(&block)
+  def with_unbundled_env(...)
     if Bundler.respond_to?(:with_unbundled_env)
-      Bundler.with_unbundled_env(&block)
+      Bundler.with_unbundled_env(...)
     else
-      Bundler.with_clean_env(&block)
+      Bundler.with_clean_env(...)
     end
   end
 
