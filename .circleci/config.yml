@@ -1,63 +1,54 @@
-version: 2.1
-
+version: '2.1'
 orbs:
-  # Always take the latest version of the orb, this allows us to
-  # run specs against Solidus supported versions only without the need
-  # to change this configuration every time a Solidus version is released
-  # or goes EOL.
   solidusio_extensions: solidusio/extensions@volatile
-
-commands:
-  setup:
+jobs:
+  lint:
+    executor:
+      name: solidusio_extensions/sqlite-memory
+      ruby_version: '3.1'
     steps:
       - checkout
-      - run:
-          name: "Update bundler"
-          command: |
-            sudo gem update --system
-            gem --version
-            gem install bundler -v '>=2.3.21' --conservative
-            bundle --version
-
-jobs:
-  solidus-main:
+      - solidusio_extensions/test-branch:
+          command: bundle exec standardrb
+          command_verb: Check code style
+  run-specs-with-mysql:
     executor:
-      name: solidusio_extensions/sqlite
+      name: solidusio_extensions/mysql
       ruby_version: '3.2'
-    steps: ['setup', 'solidusio_extensions/run-tests-solidus-main']
-  solidus-current:
+    steps:
+      - checkout
+      - solidusio_extensions/dependencies
+      - solidusio_extensions/run-tests-solidus-main
+  run-specs-with-postgres:
+    executor:
+      name: solidusio_extensions/postgres
+      ruby_version: '3.3.2'
+    steps:
+      - checkout
+      - solidusio_extensions/dependencies
+      - solidusio_extensions/run-tests-solidus-main
+  run-specs-with-sqlite:
     executor:
       name: solidusio_extensions/sqlite
       ruby_version: '3.1'
-    steps: ['setup', 'solidusio_extensions/run-tests-solidus-current']
-  solidus-older:
-    executor:
-      name: solidusio_extensions/sqlite
-      ruby_version: '3.0'
-    steps: ['setup', 'solidusio_extensions/run-tests-solidus-older']
-  lint-code:
-    executor:
-      name: solidusio_extensions/sqlite
-      ruby_version: '3.1'
-    steps: ['setup', 'solidusio_extensions/lint-code']
-
+    steps:
+      - checkout
+      - solidusio_extensions/dependencies
+      - solidusio_extensions/run-tests-solidus-main
 workflows:
-  "Run specs on supported Solidus versions":
+  Run specs on supported Solidus versions:
     jobs:
-      - solidus-main
-      - solidus-current
-      - solidus-older
-      - lint-code
-
-  "Weekly run specs against main":
+      - lint
+      - run-specs-with-postgres
+      - run-specs-with-mysql
+      - run-specs-with-sqlite
+  Weekly run specs against main:
+    jobs:
+      - run-specs-with-sqlite
     triggers:
       - schedule:
-          cron: "0 0 * * 4" # every Thursday
+          cron: 0 0 * * 4
           filters:
             branches:
               only:
                 - main
-    jobs:
-      - solidus-main
-      - solidus-current
-      - solidus-older
