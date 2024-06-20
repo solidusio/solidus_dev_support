@@ -47,4 +47,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'rubocop-rspec', '~> 2.0'
   spec.add_dependency 'selenium-webdriver', '~> 4.11'
   spec.add_dependency 'solidus_core', ['>= 2.0', '< 5']
+  spec.add_dependency 'tailwindcss-rails', '~> 2.2'
 end
