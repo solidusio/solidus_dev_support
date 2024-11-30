@@ -7,14 +7,15 @@ module SolidusDevSupport
   class RakeTasks
     include Rake::DSL
 
-    def self.install(*args)
-      new(*args).tap(&:install)
+    def self.install(**args)
+      new(**args).tap(&:install)
     end
 
-    def initialize(root: Dir.pwd)
+    def initialize(root: Dir.pwd, user_class: "Spree::LegacyUser")
       @root = Pathname(root)
       @test_app_path = @root.join(ENV.fetch('DUMMY_PATH', 'spec/dummy'))
       @gemspec = Bundler.load_gemspec(@root.glob("{,*}.gemspec").first)
+      @user_class = user_class
     end
 
     attr_reader :test_app_path, :root, :gemspec
@@ -39,12 +40,12 @@ module SolidusDevSupport
         # We need to go back to the gem root since the upstream
         # extension:test_app changes the working directory to be the dummy app.
         task :test_app do
-          Rake::Task['extension:test_app'].invoke
+          Rake::Task['extension:test_app'].invoke(@user_class)
           cd root
         end
 
         directory ENV.fetch('DUMMY_PATH', nil) do
-          Rake::Task['extension:test_app'].invoke
+          Rake::Task['extension:test_app'].invoke(@user_class)
         end
       end
     end
