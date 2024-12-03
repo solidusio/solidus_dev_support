@@ -20,10 +20,6 @@ end
 # See https://github.com/bundler/bundler/issues/6677
 gem 'rails', '>0.a'
 
-<% if file_name != 'solidus_auth_devise' %>
-# Provides basic authentication functionality for testing parts of your engine
-gem 'solidus_auth_devise'
-<% end %>
 case ENV.fetch('DB', nil)
 when 'mysql'
   gem 'mysql2'
