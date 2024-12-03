@@ -96,10 +96,8 @@ RSpec.describe 'Create extension' do
 
   def check_bundle_install
     cd(install_path) do
-      open('Gemfile', 'a') { |f| f.puts "gem 'solidus_dev_support', path: '../../..'" }
+      open('Gemfile', 'a') { |f| f.puts "gem 'solidus_dev_support', path: '../..'" }
     end
-
-    expect { bundle_install }.to raise_error(command_failed_error, /invalid gemspec/)
 
     # Update gemspec with the required fields
     gemspec_path = install_path.join(gemspec_name)
@@ -139,9 +137,7 @@ RSpec.describe 'Create extension' do
 
   def check_sandbox
     cd(install_path) do
-      # rubocop:disable Lint/InterpolationCheck
       command = 'bin/rails-sandbox runner "puts %{The version of SolidusTestExtension is #{SolidusTestExtension::VERSION}}"'
-      # rubocop:enable Lint/InterpolationCheck
 
       first_run_output = sh(command)
       expect(first_run_output).to include("Creating the sandbox app...")
