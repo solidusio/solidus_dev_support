@@ -19,6 +19,14 @@ end
 if ENV['CODECOV_TOKEN']
   require 'codecov'
   SimpleCov.formatter = SimpleCov::Formatter::Codecov
+  warn <<~WARN
+    DEPRECATION WARNING: The Codecov ruby uploader is deprecated.
+    Please use the Codecov CLI uploader to upload code coverage reports.
+    See https://docs.codecov.com/docs/deprecated-uploader-migration-guide#ruby-uploader for more information on upgrading.
+  WARN
+elsif ENV['CODECOV_COVERAGE_PATH']
+  require 'simplecov-cobertura'
+  SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
 else
-  warn "Provide a CODECOV_TOKEN environment variable to enable Codecov uploads"
+  warn "Provide a CODECOV_COVERAGE_PATH environment variable to enable Codecov uploads"
 end
