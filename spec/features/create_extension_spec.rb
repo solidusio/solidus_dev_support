@@ -131,7 +131,7 @@ RSpec.describe 'Create extension' do
       output = sh('bundle exec rspec')
       expect(output).to include('loading test_extension factories')
       expect(output).to include('1 example, 0 failures')
-      expect(output).to include(ENV['CODECOV_TOKEN'] ? 'Coverage reports upload successfully' : 'Provide a CODECOV_TOKEN environment variable to enable Codecov uploads')
+      expect(output).to include(ENV['CODECOV_TOKEN'] ? 'Coverage reports upload successfully' : 'Provide a CODECOV_COVERAGE_PATH environment variable to enable Codecov uploads')
     end
   end
 

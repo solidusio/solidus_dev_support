@@ -143,6 +143,33 @@ you need to do! If your setup is more complex, look at the
 [SimpleCov](https://github.com/colszowka/simplecov)
 and [codecov-ruby](https://github.com/codecov/codecov-ruby) docs.
 
+> [!WARNING]
+> The Codecov ruby uploader is deprecated.
+> Please use the Codecov CLI uploader to upload code coverage reports.
+> See https://docs.codecov.com/docs/deprecated-uploader-migration-guide#ruby-uploader for more information on upgrading.
+
+#### Using GitHub Actions
+
+The recommended way to upload coverage reports to Codecov with GitHub Actions is to use the `solidusio/test-solidus-extension`
+workflow.
+
+```yaml
+jobs:
+  RSpec:
+    env:
+      CODECOV_COVERAGE_PATH: ./coverage/coverage.xml
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run extension tests
+        uses: solidusio/test-solidus-extension@main
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        continue-on-error: true
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ${{ env.CODECOV_COVERAGE_PATH }}
+```
+
 ### RuboCop configuration
 
 solidus_dev_support includes a default [RuboCop](https://github.com/rubocop-hq/rubocop)
