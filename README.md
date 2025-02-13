@@ -1,7 +1,7 @@
 # solidus_dev_support
 
 
-[![CircleCI](https://circleci.com/gh/solidusio/solidus_dev_support.svg?style=shield)](https://circleci.com/gh/solidusio/solidus_dev_support)
+[![Test](https://github.com/solidusio/solidus_dev_support/actions/workflows/test.yml/badge.svg)](https://github.com/solidusio/solidus_dev_support/actions/workflows/test.yml)
 [![codecov](https://codecov.io/gh/solidusio/solidus_dev_support/branch/main/graph/badge.svg)](https://codecov.io/gh/solidusio/solidus_dev_support)
 
 This gem contains common development functionality for Solidus extensions.
@@ -138,15 +138,10 @@ require 'solidus_dev_support/rspec/coverage'
 **Note: Make sure to add this at the VERY TOP of your spec_helper, otherwise you'll get skewed
 coverage reports!**
 
-If your extension is in a public repo and being tested on Travis or CircleCI, there's nothing else
+If your extension is in a public repo and being tested on GitHub actions, there's nothing else
 you need to do! If your setup is more complex, look at the
 [SimpleCov](https://github.com/colszowka/simplecov)
-and [codecov-ruby](https://github.com/codecov/codecov-ruby) docs.
-
-> [!WARNING]
-> The Codecov ruby uploader is deprecated.
-> Please use the Codecov CLI uploader to upload code coverage reports.
-> See https://docs.codecov.com/docs/deprecated-uploader-migration-guide#ruby-uploader for more information on upgrading.
+and [codecov](https://about.codecov.io/language/ruby/) docs.
 
 #### Using GitHub Actions
 
