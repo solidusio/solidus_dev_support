@@ -10,8 +10,8 @@ gemspec
 branch = ENV.fetch('SOLIDUS_BRANCH', 'main')
 gem 'solidus', github: 'solidusio/solidus', branch: branch
 
-# A workaround for https://github.com/bundler/bundler/issues/6677
-gem 'rails', '>0.a'
+rails_version = ENV.fetch("RAILS_VERSION", "~> 7.0")
+gem 'rails', rails_version
 
 gem 'bundler'
 gem 'rake'
