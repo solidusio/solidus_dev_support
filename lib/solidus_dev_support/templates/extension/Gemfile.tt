@@ -29,6 +29,10 @@ else
   gem 'sqlite3', '~> 1.4'
 end
 
+if rails_version == '~> 7.0'
+  gem 'concurrent-ruby', '< 1.3.5'
+end
+
 # While we still support Ruby < 3 we need to workaround a limitation in
 # the 'async' gem that relies on the latest ruby, since RubyGems doesn't
 # resolve gems based on the required ruby version.

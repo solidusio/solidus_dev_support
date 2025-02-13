@@ -27,3 +27,7 @@ end
 # Use a local Gemfile to include development dependencies that might not be
 # relevant for the project or for other contributors, e.g.: `gem 'pry-debug'`.
 eval_gemfile 'Gemfile-local' if File.exist? 'Gemfile-local'
+
+if rails_version == "~> 7.0"
+  gem 'concurrent-ruby', '< 1.3.5'
+end
