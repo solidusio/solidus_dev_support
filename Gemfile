@@ -10,8 +10,8 @@ gemspec
 branch = ENV.fetch('SOLIDUS_BRANCH', 'main')
 gem 'solidus', github: 'solidusio/solidus', branch: branch
 
-rails_version = ENV.fetch("RAILS_VERSION", "~> 7.0")
-gem 'rails', rails_version
+rails_version = ENV.fetch("RAILS_VERSION", "7.0")
+gem 'rails', "~> #{rails_version}"
 
 gem 'bundler'
 gem 'rake'
@@ -21,13 +21,13 @@ group :test do
   gem 'mysql2'
   gem 'pg'
   gem 'solidus_auth_devise'
-  gem 'sqlite3', rails_version < '~> 7.2' ? '~> 1.4' : '~> 2.0'
+  gem 'sqlite3', rails_version < '7.2' ? '~> 1.4' : '~> 2.0'
 end
 
 # Use a local Gemfile to include development dependencies that might not be
 # relevant for the project or for other contributors, e.g.: `gem 'pry-debug'`.
 eval_gemfile 'Gemfile-local' if File.exist? 'Gemfile-local'
 
-if rails_version == "~> 7.0"
+if rails_version == "7.0"
   gem 'concurrent-ruby', '< 1.3.5'
 end
