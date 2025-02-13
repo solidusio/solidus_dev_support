@@ -21,7 +21,7 @@ group :test do
   gem 'mysql2'
   gem 'pg'
   gem 'solidus_auth_devise'
-  gem 'sqlite3', '~> 1.4'
+  gem 'sqlite3', rails_version < '~> 7.2' ? '~> 1.4' : '~> 2.0'
 end
 
 # Use a local Gemfile to include development dependencies that might not be
