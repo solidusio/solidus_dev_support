@@ -8,7 +8,7 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 gemspec
 
 branch = ENV.fetch('SOLIDUS_BRANCH', 'main')
-gem 'solidus', github: 'solidusio/solidus', branch: branch
+gem 'solidus', github: 'mamhoff/solidus', branch: branch
 
 rails_version = ENV.fetch("RAILS_VERSION", "7.0")
 gem 'rails', "~> #{rails_version}"
