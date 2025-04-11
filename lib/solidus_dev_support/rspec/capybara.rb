@@ -7,6 +7,8 @@ CAPYBARA_WINDOW_SIZE = ENV.fetch('CAPYBARA_WINDOW_SIZE', '1920x1080')
 
 # Set Chrome version you want to use
 CAPYBARA_JAVASCRIPT_DRIVER_VERSION = ENV.fetch('CAPYBARA_JAVASCRIPT_DRIVER_VERSION', "133")
+# Make sure Selenium downloads this version of Chrome
+ENV['SE_BROWSER_VERSION'] = CAPYBARA_JAVASCRIPT_DRIVER_VERSION
 
 Capybara.javascript_driver = ENV.fetch('CAPYBARA_JAVASCRIPT_DRIVER', "solidus_chrome_headless").to_sym
 Capybara.default_max_wait_time = 10
