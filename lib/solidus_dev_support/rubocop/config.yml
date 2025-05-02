@@ -3,7 +3,9 @@ plugins:
   - rubocop-rails
   - rubocop-rspec
 
-AllCops: {TargetRubyVersion: 2.5, Exclude: ["spec/dummy/**/*", "sandbox/**/*", "vendor/**/*"]}
+AllCops:
+  TargetRubyVersion: 3.0
+  Exclude: ["spec/dummy/**/*", "sandbox/**/*", "vendor/**/*"]}
 
 Layout/ArgumentAlignment: {EnforcedStyle: with_fixed_indentation}
 Layout/DotPosition: {Enabled: false, StyleGuide: "https://relaxed.ruby.style/#layoutdotposition"}
