@@ -1,4 +1,7 @@
-require: ["rubocop-rspec", "rubocop-rails", "rubocop-performance"]
+plugins:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
 
 AllCops: {TargetRubyVersion: 2.5, Exclude: ["spec/dummy/**/*", "sandbox/**/*", "vendor/**/*"]}
 
