@@ -41,11 +41,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'puma', '>= 4.3', '< 7.0'
   spec.add_dependency 'rspec_junit_formatter'
   spec.add_dependency 'rspec-rails', '>= 5.0', '< 7.0'
-  spec.add_dependency 'rubocop', '~> 1.0'
-  spec.add_dependency 'rubocop-performance', '~> 1.5'
-  spec.add_dependency 'rubocop-rails', '~> 2.3'
-  spec.add_dependency 'rubocop-rspec', '~> 2.0'
   spec.add_dependency 'selenium-webdriver', '~> 4.11'
   spec.add_dependency 'simplecov-cobertura', '~> 2.1'
   spec.add_dependency 'solidus_core', ['>= 2.0', '< 5']
+  spec.add_dependency 'standard', '~> 1.49'
 end
