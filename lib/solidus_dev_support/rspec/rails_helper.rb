@@ -7,20 +7,20 @@
 #     require 'solidus_dev_support/rspec/rails_helper'
 #
 
-require 'solidus_dev_support/rspec/spec_helper'
-require 'solidus_dev_support'
+require "solidus_dev_support/rspec/spec_helper"
+require "solidus_dev_support"
 
-require 'rspec/rails'
-require 'database_cleaner'
-require 'factory_bot'
-require 'ffaker'
+require "rspec/rails"
+require "database_cleaner"
+require "factory_bot"
+require "ffaker"
 
-require 'spree/testing_support/authorization_helpers'
-require 'spree/testing_support/url_helpers'
-require 'spree/testing_support/preferences'
-require 'spree/testing_support/controller_requests'
-require 'solidus_dev_support/testing_support/factories'
-require 'solidus_dev_support/testing_support/preferences'
+require "spree/testing_support/authorization_helpers"
+require "spree/testing_support/url_helpers"
+require "spree/testing_support/preferences"
+require "spree/testing_support/controller_requests"
+require "solidus_dev_support/testing_support/factories"
+require "solidus_dev_support/testing_support/preferences"
 
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
@@ -66,8 +66,8 @@ RSpec.configure do |config|
     class ZeitwerkNameError < NameError; end
 
     error_message =
-      if e.message =~ /expected file .*? to define constant [\w:]+/
-        e.message.sub(/expected file #{Regexp.escape(File.expand_path('../..', Rails.root))}./, "expected file ")
+      if /expected file .*? to define constant [\w:]+/.match?(e.message)
+        e.message.sub(/expected file #{Regexp.escape(File.expand_path("../..", Rails.root))}./, "expected file ")
       else
         e.message
       end

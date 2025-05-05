@@ -1,47 +1,47 @@
 # frozen_string_literal: true
 
-require 'thor'
-require 'pathname'
+require "thor"
+require "pathname"
 
-require 'solidus_dev_support/version'
+require "solidus_dev_support/version"
 
 module SolidusDevSupport
   class Extension < Thor
     include Thor::Actions
-    PREFIX = 'solidus_'
+    PREFIX = "solidus_"
 
     default_command :generate
 
-    desc 'generate PATH', 'Generates a new Solidus extension'
-    def generate(raw_path = '.')
+    desc "generate PATH", "Generates a new Solidus extension"
+    def generate(raw_path = ".")
       self.path = raw_path
 
       empty_directory path
 
-      directory 'app', "#{path}/app"
-      directory 'lib', "#{path}/lib"
-      directory 'bin', "#{path}/bin"
-      directory '.circleci', "#{path}/.circleci"
-      directory '.github', "#{path}/.github"
+      directory "app", "#{path}/app"
+      directory "lib", "#{path}/lib"
+      directory "bin", "#{path}/bin"
+      directory ".circleci", "#{path}/.circleci"
+      directory ".github", "#{path}/.github"
 
       Dir["#{path}/bin/*"].each do |bin|
         make_executable bin
       end
 
-      template 'CHANGELOG.md', "#{path}/CHANGELOG.md"
-      template 'extension.gemspec', "#{path}/#{file_name}.gemspec"
-      template 'Gemfile', "#{path}/Gemfile"
-      template 'gitignore', "#{path}/.gitignore"
-      template 'gem_release.yml.tt', "#{path}/.gem_release.yml"
-      template 'LICENSE', "#{path}/LICENSE"
-      template 'Rakefile', "#{path}/Rakefile"
-      template 'README.md', "#{path}/README.md"
-      template 'config/routes.rb', "#{path}/config/routes.rb"
-      template 'config/locales/en.yml', "#{path}/config/locales/en.yml"
-      template 'rspec', "#{path}/.rspec"
-      template 'spec/spec_helper.rb.tt', "#{path}/spec/spec_helper.rb"
-      template 'rubocop.yml', "#{path}/.rubocop.yml"
-      template 'github_changelog_generator', "#{path}/.github_changelog_generator"
+      template "CHANGELOG.md", "#{path}/CHANGELOG.md"
+      template "extension.gemspec", "#{path}/#{file_name}.gemspec"
+      template "Gemfile", "#{path}/Gemfile"
+      template "gitignore", "#{path}/.gitignore"
+      template "gem_release.yml.tt", "#{path}/.gem_release.yml"
+      template "LICENSE", "#{path}/LICENSE"
+      template "Rakefile", "#{path}/Rakefile"
+      template "README.md", "#{path}/README.md"
+      template "config/routes.rb", "#{path}/config/routes.rb"
+      template "config/locales/en.yml", "#{path}/config/locales/en.yml"
+      template "rspec", "#{path}/.rspec"
+      template "spec/spec_helper.rb.tt", "#{path}/spec/spec_helper.rb"
+      template "rubocop.yml", "#{path}/.rubocop.yml"
+      template "github_changelog_generator", "#{path}/.github_changelog_generator"
     end
 
     no_tasks do
@@ -70,17 +70,17 @@ module SolidusDevSupport
       end
 
       def default_gemspec
-        @default_gemspec ||= Gem::Specification.new(file_name, '0.0.1') do |gem|
-          gem.author = git('config user.name', 'TODO: Write your name')
-          gem.email = git('config user.email', 'TODO: Write your email address')
+        @default_gemspec ||= Gem::Specification.new(file_name, "0.0.1") do |gem|
+          gem.author = git("config user.name", "TODO: Write your name")
+          gem.email = git("config user.email", "TODO: Write your email address")
 
-          gem.summary = 'TODO: Write a short summary, because RubyGems requires one.'
-          gem.description = 'TODO: Write a longer description or delete this line.'
-          gem.license = 'BSD-3-Clause'
+          gem.summary = "TODO: Write a short summary, because RubyGems requires one."
+          gem.description = "TODO: Write a longer description or delete this line."
+          gem.license = "BSD-3-Clause"
 
-          gem.metadata['homepage_uri'] = gem.homepage = "https://github.com/#{repo}#readme"
-          gem.metadata['changelog_uri'] = "https://github.com/#{repo}/blob/main/CHANGELOG.md"
-          gem.metadata['source_code_uri'] = "https://github.com/#{repo}"
+          gem.metadata["homepage_uri"] = gem.homepage = "https://github.com/#{repo}#readme"
+          gem.metadata["changelog_uri"] = "https://github.com/#{repo}/blob/main/CHANGELOG.md"
+          gem.metadata["source_code_uri"] = "https://github.com/#{repo}"
         end
       end
 
@@ -95,9 +95,9 @@ module SolidusDevSupport
           spec.license ||= default_gemspec.license
 
           spec.homepage ||= default_gemspec.homepage
-          spec.metadata['source_code_uri'] ||= default_gemspec.metadata['source_code_uri']
-          spec.metadata['changelog_uri'] ||= default_gemspec.metadata['changelog_uri']
-          spec.metadata['source_code_uri'] ||= default_gemspec.metadata['source_code_uri']
+          spec.metadata["source_code_uri"] ||= default_gemspec.metadata["source_code_uri"]
+          spec.metadata["changelog_uri"] ||= default_gemspec.metadata["changelog_uri"]
+          spec.metadata["source_code_uri"] ||= default_gemspec.metadata["source_code_uri"]
         end
       end
 
@@ -106,7 +106,7 @@ module SolidusDevSupport
       end
 
       def existing_repo
-        git('remote get-url origin')&.sub(%r{^.*github\.com.([^/]+)/([^/.]+).*$}, '\1/\2')
+        git("remote get-url origin")&.sub(%r{^.*github\.com.([^/]+)/([^/.]+).*$}, '\1/\2')
       end
 
       def git(command, default = nil)

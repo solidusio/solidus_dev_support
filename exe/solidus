@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require 'solidus_dev_support/solidus_command'
+require "solidus_dev_support/solidus_command"
 
 SolidusDevSupport::SolidusCommand.start

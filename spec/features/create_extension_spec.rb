@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
-require 'fileutils'
-require 'open3'
-require 'spec_helper'
-require 'spree/core/version'
+require "fileutils"
+require "open3"
+require "spec_helper"
+require "spree/core/version"
 
-RSpec.describe 'Create extension' do
+RSpec.describe "Create extension" do
   include FileUtils
 
-  let(:gem_root) { File.expand_path('../..', __dir__) }
+  let(:gem_root) { File.expand_path("../..", __dir__) }
   let(:solidus_cmd) { "#{gem_root}/exe/solidus" }
-  let(:extension_name) { 'test_extension' }
+  let(:extension_name) { "test_extension" }
   let(:gemspec_name) { "solidus_#{extension_name}.gemspec" }
-  let(:tmp_path) { Pathname.new(gem_root).join('tmp') }
+  let(:tmp_path) { Pathname.new(gem_root).join("tmp") }
   let(:install_path) { tmp_path.join("solidus_#{extension_name}") }
   let(:command_failed_error) { Class.new(StandardError) }
 
@@ -26,7 +26,7 @@ RSpec.describe 'Create extension' do
     send method_name
   end
 
-  it 'checks the create extension process' do
+  it "checks the create extension process" do
     step :check_solidus_cmd
     step :check_gem_version
     step :check_create_extension
@@ -42,12 +42,12 @@ RSpec.describe 'Create extension' do
     cd(tmp_path) do
       output = `#{solidus_cmd} -h`
       expect($?).to be_success
-      expect(output).to include('Commands:')
+      expect(output).to include("Commands:")
     end
   end
 
   def check_gem_version
-    gem_version_commands = ['version', '--version', '-v']
+    gem_version_commands = ["version", "--version", "-v"]
     gem_version = SolidusDevSupport::VERSION
     solidus_version = Spree.solidus_gem_version
 
@@ -66,7 +66,7 @@ RSpec.describe 'Create extension' do
       output = `#{solidus_cmd} extension #{extension_name}`
       expect($?).to be_success
       expect(output).to include(gemspec_name)
-      expect(output).to include('.circleci')
+      expect(output).to include(".circleci")
     end
 
     cd(install_path) do
@@ -96,7 +96,7 @@ RSpec.describe 'Create extension' do
 
   def check_bundle_install
     cd(install_path) do
-      open('Gemfile', 'a') { |f| f.puts "gem 'solidus_dev_support', path: '../..'" }
+      open("Gemfile", "a") { |f| f.puts "gem 'solidus_dev_support', path: '../..'" }
     end
 
     # Update gemspec with the required fields
@@ -113,25 +113,25 @@ RSpec.describe 'Create extension' do
 
   def check_default_task
     cd(install_path) do
-      output = sh('bin/rake')
-      expect(output).to include('Generating dummy Rails application')
-      expect(output).to include('0 examples, 0 failures')
+      output = sh("bin/rake")
+      expect(output).to include("Generating dummy Rails application")
+      expect(output).to include("0 examples, 0 failures")
     end
   end
 
   def check_run_specs
-    install_path.join('lib', 'solidus_test_extension', 'testing_support', 'factories.rb').open('a') do |factories_file|
+    install_path.join("lib", "solidus_test_extension", "testing_support", "factories.rb").open("a") do |factories_file|
       factories_file.write "\n puts 'loading test_extension factories'"
     end
 
-    install_path.join('spec', 'some_spec.rb').write(
+    install_path.join("spec", "some_spec.rb").write(
       "require 'spec_helper'\nRSpec.describe 'Some test' do it { expect(true).to be_truthy } end\n"
     )
     cd(install_path) do
-      output = sh('bundle exec rspec')
-      expect(output).to include('loading test_extension factories')
-      expect(output).to include('1 example, 0 failures')
-      expect(output).to include(ENV['CODECOV_TOKEN'] ? 'Coverage reports upload successfully' : 'Provide a CODECOV_COVERAGE_PATH environment variable to enable Codecov uploads')
+      output = sh("bundle exec rspec")
+      expect(output).to include("loading test_extension factories")
+      expect(output).to include("1 example, 0 failures")
+      expect(output).to include(ENV["CODECOV_TOKEN"] ? "Coverage reports upload successfully" : "Provide a CODECOV_COVERAGE_PATH environment variable to enable Codecov uploads")
     end
   end
 
@@ -141,22 +141,22 @@ RSpec.describe 'Create extension' do
 
       first_run_output = sh(command)
       expect(first_run_output).to include("Creating the sandbox app...")
-      expect(first_run_output).to include('The version of SolidusTestExtension is 0.0.1')
+      expect(first_run_output).to include("The version of SolidusTestExtension is 0.0.1")
 
       second_run_output = sh(command)
       expect(second_run_output).not_to include("Creating the sandbox app...")
-      expect(second_run_output).to include('The version of SolidusTestExtension is 0.0.1')
+      expect(second_run_output).to include("The version of SolidusTestExtension is 0.0.1")
     end
   end
 
   def sh(*args)
-    command = args.size == 1 ? args.first : args.shelljoin
+    command = (args.size == 1) ? args.first : args.shelljoin
     output, status = with_unbundled_env do
-      Open3.capture2e({ 'CI' => nil }, command)
+      Open3.capture2e({"CI" => nil}, command)
     end
 
-    if $DEBUG || ENV['DEBUG']
-      warn '~' * 80
+    if $DEBUG || ENV["DEBUG"]
+      warn "~" * 80
       warn "$ #{command}"
       warn output
       warn "$ #{command} ~~~~> EXIT STATUS: #{status.exitstatus}"
@@ -187,7 +187,7 @@ RSpec.describe 'Create extension' do
     end
 
     output = nil
-    cd(install_path) { output = sh 'bundle install' }
+    cd(install_path) { output = sh "bundle install" }
     output
   end
 end
