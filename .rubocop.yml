@@ -1,59 +1,8 @@
-inherit_from:
-  - https://relaxed.ruby.style/rubocop.yml
+require:
+  - standard
 
-Gemspec/RequiredRubyVersion:
-  Enabled: false
-Layout/EmptyLinesAroundAttributeAccessor:
-  Enabled: true
-Layout/SpaceAroundMethodCallOperator:
-  Enabled: true
-Lint/DeprecatedOpenSSLConstant:
-  Enabled: true
-Lint/MixedRegexpCaptureTypes:
-  Enabled: true
-Lint/RaiseException:
-  Enabled: true
-Lint/StructNewOverride:
-  Enabled: true
-Style/AccessorGrouping:
-  Enabled: true
-Style/BisectedAttrAccessor:
-  Enabled: true
-Style/ExponentialNotation:
-  Enabled: true
-Style/HashEachMethods:
-  Enabled: true
-Style/HashTransformKeys:
-  Enabled: true
-Style/HashTransformValues:
-  Enabled: true
-Style/RedundantAssignment:
-  Enabled: true
-Style/RedundantFetchBlock:
-  Enabled: true
-Style/RedundantRegexpCharacterClass:
-  Enabled: true
-Style/RedundantRegexpEscape:
-  Enabled: true
-Style/SlicingWithRange:
-  Enabled: true
-
-# Disable this cop until this isssue gets a clear answer:
-# https://github.com/rubocop/rubocop/issues/10675
-Gemspec/DeprecatedAttributeAssignment:
-  Enabled: false
+inherit_gem:
+  standard: config/base.yml
 
 AllCops:
   TargetRubyVersion: 3.0
-  Exclude:
-    - tmp/**/*
-    - "vendor/**/*"
-    # Generated binstubs
-    - bin/rake
-  NewCops: enable
-
-Style/FrozenStringLiteralComment:
-  Exclude:
-    - "**/bin/*"
-    - "**/exe/*"
-    - "spec/**/*"

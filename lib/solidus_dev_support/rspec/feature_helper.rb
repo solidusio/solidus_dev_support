@@ -7,8 +7,8 @@
 #     require 'solidus_dev_support/rspec/feature_helper'
 #
 
-require 'solidus_dev_support/rspec/rails_helper'
-require 'solidus_dev_support/rspec/capybara'
+require "solidus_dev_support/rspec/rails_helper"
+require "solidus_dev_support/rspec/capybara"
 
 dev_support_assets_preload = ->(*) {
   if Rails.application.respond_to?(:precompiled_assets)

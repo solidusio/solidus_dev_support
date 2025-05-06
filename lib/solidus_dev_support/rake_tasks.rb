@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'rake'
-require 'pathname'
+require "rake"
+require "pathname"
 
 module SolidusDevSupport
   class RakeTasks
@@ -13,7 +13,7 @@ module SolidusDevSupport
 
     def initialize(root: Dir.pwd, user_class: "Spree::LegacyUser")
       @root = Pathname(root)
-      @test_app_path = @root.join(ENV.fetch('DUMMY_PATH', 'spec/dummy'))
+      @test_app_path = @root.join(ENV.fetch("DUMMY_PATH", "spec/dummy"))
       @gemspec = Bundler.load_gemspec(@root.glob("{,*}.gemspec").first)
       @user_class = user_class
     end
@@ -28,11 +28,11 @@ module SolidusDevSupport
     end
 
     def install_test_app_task
-      require 'rake/clean'
-      require 'spree/testing_support/extension_rake'
+      require "rake/clean"
+      require "spree/testing_support/extension_rake"
 
-      ENV['DUMMY_PATH'] = test_app_path.to_s
-      ENV['LIB_NAME'] = gemspec.name
+      ENV["DUMMY_PATH"] = test_app_path.to_s
+      ENV["LIB_NAME"] = gemspec.name
 
       ::CLOBBER.include test_app_path
 
@@ -40,12 +40,12 @@ module SolidusDevSupport
         # We need to go back to the gem root since the upstream
         # extension:test_app changes the working directory to be the dummy app.
         task :test_app do
-          Rake::Task['extension:test_app'].invoke(@user_class)
+          Rake::Task["extension:test_app"].invoke(@user_class)
           cd root
         end
 
-        directory ENV.fetch('DUMMY_PATH', nil) do
-          Rake::Task['extension:test_app'].invoke(@user_class)
+        directory ENV.fetch("DUMMY_PATH", nil) do
+          Rake::Task["extension:test_app"].invoke(@user_class)
         end
       end
     end
@@ -59,31 +59,31 @@ module SolidusDevSupport
     end
 
     def install_rspec_task
-      require 'rspec/core/rake_task'
+      require "rspec/core/rake_task"
 
       namespace :extension do
-        ::RSpec::Core::RakeTask.new(:specs, [] => FileList[ENV.fetch('DUMMY_PATH', nil)]) do |t|
+        ::RSpec::Core::RakeTask.new(:specs, [] => FileList[ENV.fetch("DUMMY_PATH", nil)]) do |t|
           # Ref: https://circleci.com/docs/2.0/configuration-reference#store_test_results
           # Ref: https://github.com/solidusio/circleci-orbs-extensions#test-results-rspec
-          if ENV['TEST_RESULTS_PATH']
+          if ENV["TEST_RESULTS_PATH"]
             t.rspec_opts =
               "--format progress " \
-              "--format RspecJunitFormatter --out #{ENV['TEST_RESULTS_PATH']}"
+              "--format RspecJunitFormatter --out #{ENV["TEST_RESULTS_PATH"]}"
           end
         end
       end
     end
 
     def install_changelog_task
-      require 'github_changelog_generator/task'
+      require "github_changelog_generator/task"
 
       GitHubChangelogGenerator::RakeTask.new(:changelog) do |config|
-        require 'octokit'
-        repo = Octokit::Repository.from_url(gemspec.metadata['source_code_uri'] || gemspec.homepage)
+        require "octokit"
+        repo = Octokit::Repository.from_url(gemspec.metadata["source_code_uri"] || gemspec.homepage)
 
         config.user = repo.owner
         config.project = repo.name
-        config.future_release = "v#{ENV.fetch('UNRELEASED_VERSION') { gemspec.version }}"
+        config.future_release = "v#{ENV.fetch("UNRELEASED_VERSION") { gemspec.version }}"
       rescue Octokit::InvalidRepository
         warn <<~WARN
           It won't be possible to automatically generate the CHANGELOG for this extension because the

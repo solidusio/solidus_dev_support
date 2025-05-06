@@ -168,9 +168,7 @@ jobs:
 ### RuboCop configuration
 
 solidus_dev_support includes a default [RuboCop](https://github.com/rubocop-hq/rubocop)
-configuration for Solidus extensions. Currently, this is based on
-[Relaxed Ruby Style](https://relaxed.ruby.style) with a few customizations, but in the future we
-plan to provide custom cops to ensure your extension follows established Solidus best practices.
+configuration for Solidus extensions. This configuration is based on the excellent [`standardrb`](https://github.com/standardrb/standard) gem.
 
 We strongly recommend including the RuboCop configuration in your extension. All you have to do is
 add this to your `.rubocop.yml`:

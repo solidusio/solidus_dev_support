@@ -14,8 +14,8 @@ RSpec.configure do |config|
   config.mock_with :rspec
   config.color = true
 
-  config.fail_fast = ENV.fetch('FAIL_FAST', false)
-  config.order = 'random'
+  config.fail_fast = ENV.fetch("FAIL_FAST", false)
+  config.order = "random"
 
   config.raise_errors_for_deprecations!
 
