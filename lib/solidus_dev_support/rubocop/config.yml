@@ -10,3 +10,4 @@ AllCops:
     - spec/dummy/**/*
     - sandbox/**/*
     - vendor/**/*
+    - bin/*
