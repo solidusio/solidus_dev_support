@@ -31,7 +31,7 @@ rm -rf ./sandbox
 
 echo "~~~> Creating a pristine Rails app"
 rails_version=`bundle exec ruby -e'require "rails"; puts Rails.version'`
-rails _${rails_version}_ new sandbox \
+unbundled bundle exec rails _${rails_version}_ new sandbox \
   --database="${DB:-sqlite3}" \
   --skip-git \
   --skip-keeps \
