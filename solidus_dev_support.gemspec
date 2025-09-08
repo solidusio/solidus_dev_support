@@ -39,7 +39,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "github_changelog_generator", "~> 1.15"
   spec.add_dependency "puma", ">= 4.3", "< 7.0"
   spec.add_dependency "rspec_junit_formatter"
-  spec.add_dependency "rspec-rails", ">= 5.0", "< 7.0"
+  spec.add_dependency "rspec-rails", ">= 6.0", "< 9.0"
   spec.add_dependency "selenium-webdriver", "~> 4.11"
   spec.add_dependency "simplecov-cobertura", "~> 2.1"
   spec.add_dependency "solidus_core", [">= 2.0", "< 5"]

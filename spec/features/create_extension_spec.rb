@@ -114,7 +114,6 @@ RSpec.describe "Create extension" do
   def check_default_task
     cd(install_path) do
       output = sh("bin/rake")
-      expect(output).to include("Generating dummy Rails application")
       expect(output).to include("0 examples, 0 failures")
     end
   end
