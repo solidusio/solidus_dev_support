@@ -11,7 +11,6 @@ on:
 
 concurrency:
   group: test-${{ github.ref_name }}
-  cancel-in-progress: ${{ github.ref_name != 'main' }}
 
 permissions:
   contents: read
