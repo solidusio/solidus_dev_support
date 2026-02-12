@@ -8,6 +8,7 @@ require "solidus_dev_support/version"
 module SolidusDevSupport
   class Extension < Thor
     include Thor::Actions
+
     PREFIX = "solidus_"
 
     default_command :generate
